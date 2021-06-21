@@ -31,8 +31,8 @@
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="add-tool.php">Add Tools</a></li>
-                                    <li><a href="#">Manage Tools</a></li>
-                                    <li><a href="#">Trash Tools</a></li>
+                                    <li><a href="manage-tools.php">Manage Tools</a></li>
+                                    <li><a href="trash-tools.php">Trash Tools</a></li>
                                 </ul>
                             </li>
 
