@@ -12,25 +12,13 @@
 
                             </li>
 
-                            <!--tools category  -->
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span>Tools Category </span> <span
-                                        class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="add-category.php">Add Tool Category</a></li>
-                                    <li><a href="manage-categories.php">Manage Categories</a></li>
-                                </ul>
-                            </li>  
-
-
                             <!--tools management  -->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
                                         class="mdi mdi-format-list-bulleted"></i> <span> Tools </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="add-tool.php">Add Tools</a></li>
+                                    <li><a href="add-group.php">Add Tools</a></li>
                                     <li><a href="#">Manage Tools</a></li>
                                     <li><a href="#">Trash Tools</a></li>
                                 </ul>

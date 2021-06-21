@@ -1,4 +1,32 @@
 <?php
+session_start();
+include('includes/config.php');
+
+if (isset($_POST['login'])) {
+    $user_type=$_POST['type'];
+
+    $email= $_POST['email'];
+    $password= $_POST['password'];
+    
+    if ($user_type=='user') {
+        $query = mysqli_query($con,"SELECT * FROM usertbl WHERE email='$email' AND password='$password'");
+        $num= mysqli_fetch_array($query);
+         
+        if ($num>0) {
+            $_SESSION['id']=$num['uid'];
+            $_SESSION['fn']=$num['Firstname'];
+            $_SESSION['ln']=$num['Lastname'];
+            echo "<script type='text/javascript'> document.location = 'user/dashboard.php'; </script>";
+        }else{
+            echo "<script>alert('User not registered with us');</script>";
+        }
+    }else if ($user_type=='teacher') {
+        
+    }else if ($user_type=='student') {
+        
+    }
+}
+
 
 ?>
 
@@ -53,13 +81,13 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="email" class="form-control form-control-user"
+                                                <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="password" class="form-control form-control-user"
+                                                <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                             </div>
                                            
@@ -69,7 +97,7 @@
 
                                         <hr>
                                         <div class="text-center">
-                                            <a class="small" href="register.html">Create an Account!</a>
+                                            <a class="small" href="register.html">Create an Account as Student only!</a>
                                         </div>
                                     </div>
                                 </div>

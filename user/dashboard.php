@@ -1,3 +1,13 @@
+<?php
+session_start();
+include('includes/config.php');
+error_reporting(0);
+if(strlen($_SESSION['id'])==0)
+  { 
+header('location:../login.php');
+}
+else{
+     ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +18,7 @@
     <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
     <meta name="author" content="Coderthemes">
     <!-- App title -->
-    <title>User| Dashboard</title>
+    <title><?php echo $_SESSION['fn']." ".$_SESSION['ln'];?>| Dashboard</title>
     <link rel="stylesheet" href="plugins/morris/morris.css">
 
     <!-- App css -->
@@ -153,3 +163,4 @@
 </body>
 
 </html>
+<?php } ?>
