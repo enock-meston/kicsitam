@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include('includes/config.php');
+
+?>            
             <div class="topbar">
 
                 <!-- LOGO -->
@@ -40,7 +45,7 @@
 
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                     <li>
-                                        <h5>Hi, Member</h5>
+                                        <h5>Hi, <?php echo $_SESSION['fn']." ".$_SESSION['ln'];?></h5>
                                     </li>
                               
                                     <li><a href="change-password.php"><i class="ti-settings m-r-5"></i> Chnage Password</a></li>

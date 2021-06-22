@@ -96,31 +96,60 @@ else{
                     <!-- end row -->
 
                     <div class="row">
-                        <a href="manage-categories.php">
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="card-box widget-box-one">
-                                    <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
-                                    <div class="wigdet-one-content">
-                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow"
-                                            title="Statistics">TOOLS</p>
-                                        <?php 
-                                        include 'includes/config.php';
-                                        $query=mysqli_query($con,"select * from usertbl where ActiveStatus =1");
+                    <!-- numbers of categories -->
+                            <a href="manage-categories.php">
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <div class="card-box widget-box-one">
+                                        <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
+                                        <div class="wigdet-one-content">
+                                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Categories Listed</p>
+                                            <?php $query=mysqli_query($con,"select * from tblcategory where Is_Active=1");
                                             $countcat=mysqli_num_rows($query);
                                             ?>
-
-                                        <h2><?php echo htmlentities($countcat);?> <small></small></h2>
-
+                                            <h2><?php echo htmlentities($countcat);?> <small></small></h2>
+                                            
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </a><!-- end col -->
+                                    </div></a> <!-- end numbers of categories -->
+                                    <!-- end col -->
 
+                                    <!-- numbers of tools -->
+                                        <a href="manage-tools.php">
+                                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                                <div class="card-box widget-box-one">
+                                                    <i class="mdi mdi-layers widget-one-icon"></i>
+                                                    <div class="wigdet-one-content">
+                                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Tool Listed</p>
+                                                        <?php $query=mysqli_query($con,"select * from tbltools where ActiveStatus=1");
+                                                        $countposts=mysqli_num_rows($query);
+                                                        ?>
+                                                        <h2><?php echo htmlentities($countposts);?> <small></small></h2>
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div><!-- end col -->
+                                            </a> <!-- end numbers of tools -->
+                                            
+                                            <!-- trash tools -->
+                                        <a href="trash-tools.php">
+                                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                                <div class="card-box widget-box-one">
+                                                    <i class="mdi mdi-layers widget-one-icon"></i>
+                                                    <div class="wigdet-one-content">
+                                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Trash Tool Listed</p>
+                                                        <?php $query=mysqli_query($con,"select * from tbltools where ActiveStatus=0");
+                                                        $countposts=mysqli_num_rows($query);
+                                                        ?>
+                                                        <h2><?php echo htmlentities($countposts);?> <small></small></h2>
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div><!-- end col -->
+                                            </a> <!-- end trash tools -->
+                                        </div>
+                                        <!-- end row -->
 
-
-
-
-
+                    
 
 
 
