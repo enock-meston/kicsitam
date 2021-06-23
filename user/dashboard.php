@@ -31,7 +31,7 @@ else{
     <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="plugins/switchery/switchery.min.css">
     <script src="assets/js/modernizr.min.js"></script>
-    <link rel="shortcut icon" href="images1/kmn_App_logo.jpg" type="image/x-icon" />
+    <link rel="shortcut icon" href="../imagess/logo.png" type="image/x-icon" />
 
 </head>
 

@@ -2,7 +2,9 @@
 
 <div class="bs-example">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">KICSITAM</a>
+        <a class="navbar-brand" href="#">
+            <img src="imagess/kics_logo_2015.jpg" alt="Logo" style="width:120px;">
+        </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
