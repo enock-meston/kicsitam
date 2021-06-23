@@ -7,7 +7,7 @@ if (isset($_POST['login'])) {
 
     $email= $_POST['email'];
     $password= $_POST['password'];
-    
+    // User login side
     if ($user_type=='user') {
         $query = mysqli_query($con,"SELECT * FROM usertbl WHERE email='$email' AND password='$password'");
         $num= mysqli_fetch_array($query);
@@ -20,10 +20,26 @@ if (isset($_POST['login'])) {
         }else{
             echo "<script>alert('User not registered with us');</script>";
         }
-    }else if ($user_type=='teacher') {
+    }
+    // Teacher login side
+    else if ($user_type=='teacher') {
         
-    }else if ($user_type=='student') {
-        
+    }
+    // student login side
+    else if ($user_type=='student') {
+        $query = mysqli_query($con,"SELECT * FROM tblstudent WHERE email='$email' AND password='$password'");
+        $num= mysqli_fetch_array($query);
+         
+        if ($num>0) {
+            $_SESSION['id']=$num['id'];
+            $_SESSION['fn']=$num['Firstname'];
+            $_SESSION['ln']=$num['Lastname'];
+            $_SESSION['email']=$num['email'];
+            $_SESSION['profile']=$num['profilePicture'];
+            echo "<script type='text/javascript'> document.location = 'student/dashboard.php'; </script>";
+        }else{
+            echo "<script>alert('User not registered with us');</script>";
+        }
     }
 }
 

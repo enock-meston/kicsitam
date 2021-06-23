@@ -121,6 +121,7 @@ $error="Something went wrong . Please try again.";
 <th>Name</th>
 <th>Category</th>
 <th>Image</th>
+<th>Allowed</th>
 <th>Description</th>
 <th>Action</th>
 </tr>
@@ -128,7 +129,7 @@ $error="Something went wrong . Please try again.";
 <tbody>
 
 <?php
-$query=mysqli_query($con,"select tbltools.id as toolid,tbltools.Toolname as name,tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,tblcategory.CategoryName as category 
+$query=mysqli_query($con,"select tbltools.id as toolid,tbltools.Toolname as name,tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
 from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory where tbltools.ActiveStatus=1");
 $rowcount=mysqli_num_rows($query);
 if($rowcount==0)
@@ -144,12 +145,13 @@ while($row=mysqli_fetch_array($query))
 {
 ?>
  <tr>
-<td><b><?php echo htmlentities($row['name']);?></b></td>
-<td><?php echo htmlentities($row['category'])?></td>
-<td><b>
+<td style="width: 20%;"><b><?php echo htmlentities($row['name']);?></b></td>
+<td style="width: 20%;"><?php echo htmlentities($row['category'])?></td>
+<td style="width: 30%;"><b>
     <img src="toolimages/<?php echo $row['image'];?>" alt="" style="width: 20%;">
 </b></td>
-<td><?php echo htmlentities($row['ToolDescription'])?></td>
+<td><b><?php echo htmlentities($row['allowed']);?></b></td>
+<td style="width: 30%;"><?php echo htmlentities($row['ToolDescription'])?></td>
 
 <td><a href="edit-tool.php?pid=<?php echo htmlentities($row['toolid']);?>"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a> 
     &nbsp;<a href="manage-tools.php?pid=<?php echo htmlentities($row['toolid']);?>&&action=del" onclick="return confirm('Do you reaaly want to delete ?')"> <i class="fa fa-trash-o" style="color: #f05050"></i></a> </td>

@@ -13,6 +13,7 @@ if(isset($_POST['submit']))
 {
 $posttitle=addslashes($_POST['toolname']);
 $catid=$_POST['category'];
+$allowedby=$_POST['allowed'];
 // $subcatid=$_POST['subcategory'];
 // $postdetails=$_POST['postdescription'];
 $tooldetails= addslashes($_POST['description']);
@@ -36,8 +37,8 @@ $imgnewfile=md5($imgfile).$extension;
 move_uploaded_file($_FILES["postimage"]["tmp_name"],"toolimages/".$imgnewfile);
 
 $status=1;
-$query=mysqli_query($con,"INSERT INTO `tbltools`(`Toolname`, `ToolImage`, `ToolCategory`, `ToolDescription`, `ActiveStatus`) 
-VALUES ('$posttitle','$imgnewfile','$catid','$tooldetails','$status')");
+$query=mysqli_query($con,"INSERT INTO `tbltools`(`Toolname`, `ToolImage`, `ToolCategory`, `ToolDescription`,`isAllowedBy`,`ActiveStatus`) 
+VALUES ('$posttitle','$imgnewfile','$catid','$tooldetails','$allowedby','$status')");
 if($query)
 {
 $msg="Tool successfully added ";
@@ -199,6 +200,15 @@ while($result=mysqli_fetch_array($ret))
 </div>
 </div>
 
+<div class="form-group m-b-20">
+<label for="exampleInputEmail1">Tools Accessible by</label>
+<select class="form-control" name="allowed" id="category" onChange="getSubCat(this.value);" required>
+<option value="">Allowed by </option>
+<option value="teacher">Teacher</option>
+<option value="student">Student</option>
+
+</select> 
+</div>
 
 <div class="row">
 <div class="col-sm-12">
