@@ -14,11 +14,11 @@ else{
     // from studentbookingtbl,tbltools LEFT join tblcategory on tblcategory.c_id=tbltools.ToolCategory where 
     // tbltools.ActiveStatus=1 and tbltools.isAllowedBy='student' and studentbookingtbl.ActiveStatus!=2 and studentbookingtbl.ActiveStatus!=3");
    
-    $query=mysqli_query($con,"SELECT studentbookingtbl.toolID as toolid,studentbookingtbl.studentID AS studentID,
+    $query=mysqli_query($con,"SELECT studentbookingtbl.toolID as Tid,studentbookingtbl.studentID AS studentID,
     studentbookingtbl.ActiveStatus as tstatus,
-     studentbookingtbl.returnDate,tbltools.id as toolid,tbltools.Toolname as toolname,tbltools.ToolImage as image,
+     studentbookingtbl.returnDate as redate,tbltools.id as toolid,tbltools.Toolname as toolname,tbltools.ToolImage as image,
      tbltools.ActiveStatus AS toolsta, tbltools.isAllowedBy as allow FROM tbltools LEFT JOIN 
-     studentbookingtbl ON studentbookingtbl.bid=tbltools.id WHERE tbltools.isAllowedBy='student' AND tbltools.ActiveStatus=1 AND 4");
+     studentbookingtbl ON studentbookingtbl.toolID=tbltools.id WHERE tbltools.isAllowedBy='student' AND tbltools.ActiveStatus=1 AND 4");
 
      ?>
 <!DOCTYPE html>
@@ -93,6 +93,7 @@ else{
     <table id="example" class="display table table-hover" style="width:100%">
         <thead>
             <tr>
+                <th>Tool ID</th>
                 <th>Tool name</th>
                 <th>Tool Image</th>
                 <!-- <th>Tool Description</th> -->
@@ -106,6 +107,7 @@ else{
                 
                 ?>
                     <tr>
+                        <td><?php echo $row['Tid'];?></td>
                         <td><?php echo $row['toolname'];?></td>
                         <td style="width: 40%;">
                             <a href="../user/toolimages/<?php echo $row['image'];?>"></a>
@@ -149,6 +151,7 @@ else{
         </tbody>
         <tfoot>
             <tr>
+                <th>Tool ID</th>
                 <th>Tool name</th>
                 <th>Tool Image</th>
                 <!-- <th>Tool Description</th> -->
