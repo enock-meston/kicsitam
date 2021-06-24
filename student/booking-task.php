@@ -5,7 +5,21 @@ error_reporting(0);
 if (strlen($_SESSION['id']) == 0) {
     header('location:../login.php');
 } else {
+    if (isset($_POST['submit'])) {
+        $toolID=$_POST['toolid'];
+        $studentID=$_POST['studentid'];
+        $returnDate=$_POST['returning'];
+        $status=1;
 
+        $query1=mysqli_query($con,"INSERT INTO `studentbookingtbl`(`toolID`, `studentID`,`returnDate`, `ActiveStatus`) 
+        VALUES ('$toolID','$studentID','$returnDate','$status')");
+
+        if ($query1) {
+            $msg="Your action of booking tool is Pending";
+        }else {
+            $error="there is samething went wrong!";
+        }
+    }
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -153,12 +167,6 @@ from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory wh
 
 
 
-
-                                        <?php } ?>
-
-
-
-
                                         </div>
                                     </div> <!-- end p-20 -->
                                 </div> <!-- end col -->
@@ -177,10 +185,13 @@ from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory wh
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Date to return</label>
                                             <div class="col-md-5">
+                                                 <input type="hidden" value="<?php echo $_SESSION['id']; ?>" name="studentid">
+                                                 <input type="hidden" value="<?php echo htmlentities($row['toolid']); ?>" name="toolid">
                                                 <input type="date" class="form-control" value="" name="returning" required>
                                             </div>
                                             
                                         </div>
+                                        <?php } ?>
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">&nbsp;</label>
                                             <div class="col-md-10">

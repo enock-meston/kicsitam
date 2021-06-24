@@ -8,9 +8,17 @@ header('location:../login.php');
 }
 else{
 
-    $query=mysqli_query($con,"select tbltools.id as toolid,tbltools.Toolname as name,tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
-    from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory where tbltools.ActiveStatus=1 and tbltools.isAllowedBy='student'");
+    // $query=mysqli_query($con,"select tbltools.id as toolid,tbltools.Toolname as name,
+    // tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,
+    // tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category,studentbookingtbl.ActiveStatus as tstatus,tbltools.ToolCategory
+    // from studentbookingtbl,tbltools LEFT join tblcategory on tblcategory.c_id=tbltools.ToolCategory where 
+    // tbltools.ActiveStatus=1 and tbltools.isAllowedBy='student' and studentbookingtbl.ActiveStatus!=2 and studentbookingtbl.ActiveStatus!=3");
    
+    $query=mysqli_query($con,"SELECT studentbookingtbl.toolID as toolid,studentbookingtbl.studentID AS studentID,
+    studentbookingtbl.ActiveStatus as tstatus,
+     studentbookingtbl.returnDate,tbltools.id as toolid,tbltools.Toolname as toolname,tbltools.ToolImage as image,
+     tbltools.ActiveStatus AS toolsta, tbltools.isAllowedBy as allow FROM tbltools LEFT JOIN 
+     studentbookingtbl ON studentbookingtbl.bid=tbltools.id WHERE tbltools.isAllowedBy='student' AND tbltools.ActiveStatus=1 AND 4");
 
      ?>
 <!DOCTYPE html>
@@ -73,9 +81,9 @@ else{
                             <a class="nav-link active" href="dashboard.php">BACK</a>
                         </li>
                
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" style="color: white;" href="#">Link</a>
-                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: white;" href="#"><?php echo $_SESSION['fn']."  ".$_SESSION['ln'];?></a>
+                        </li>
                         
                 </ul>
     </div>
@@ -87,7 +95,7 @@ else{
             <tr>
                 <th>Tool name</th>
                 <th>Tool Image</th>
-                <th>Tool Description</th>
+                <!-- <th>Tool Description</th> -->
                 <th>Action</th>
                  
             </tr>
@@ -98,18 +106,36 @@ else{
                 
                 ?>
                     <tr>
-                        <td><?php echo $row['name'];?></td>
+                        <td><?php echo $row['toolname'];?></td>
                         <td style="width: 40%;">
                             <a href="../user/toolimages/<?php echo $row['image'];?>"></a>
                                  <img src="../user/toolimages/<?php echo $row['image'];?>" style="width: 10%;">
                             </a>
                            
                         </td>
-                        <td><?php echo $row['ToolDescription'];?></td>
+                        
 
                         <td>
-                            <a href="booking-task.php?book=<?php echo $row['toolid'];?>" 
-                            class="btn btn-info">Booking</a>
+                            
+                            <?php
+                            // $select=mysqli_query($con,"SELECT * FROM studentbookingtbl WHERE ActiveStatus=1");
+                            // $r=mysqli_fetch_array($select);
+                                if ($row['tstatus']==1) {
+                                    ?>
+                                                <div class="disabled" style="pointer-events: none;">
+                                                    <a href="booking-task.php?book=<?php echo $row['toolid'];?>" 
+                                                        class="btn btn-secondary">Pending</a>
+
+                                                </div>
+                                    <?php
+                                }else {
+                                    ?>          
+                                            <a href="booking-task.php?book=<?php echo $row['toolid'];?>" 
+                                                class="btn btn-success">Booking</a>
+                                                
+                                    <?php
+                                }
+                            ?>
                         
                         </td>
                     </tr>
@@ -125,7 +151,7 @@ else{
             <tr>
                 <th>Tool name</th>
                 <th>Tool Image</th>
-                <th>Tool Description</th>
+                <!-- <th>Tool Description</th> -->
                 <th>Action</th>
             </tr>
         </tfoot>
