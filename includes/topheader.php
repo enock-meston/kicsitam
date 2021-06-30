@@ -1,7 +1,7 @@
             <div class="topbar">
 
                 <!-- LOGO -->
-                <div class="topbar-left">
+                <div class="topbar-left" style="background-color: #2d2b7e;color:white;">
                     <a href="dashboard.php" class="logo"><span>kicsi<span>tam</span></span><i class="mdi mdi-layers"></i></a>
                     <!-- Image logo  -->
                     <a href="dashboard.php" class="logo">

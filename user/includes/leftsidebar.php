@@ -1,4 +1,4 @@
-            <div class="left side-menu">
+            <div class="left side-menu" style="background-color: #2d2b7e;color:white;">
                 <div class="sidebar-inner slimscrollleft">
 
                     <!--- Sidemenu -->
@@ -15,10 +15,10 @@
                             <!--tools category  -->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span>Tools Category </span> <span
+                                        class="mdi mdi-format-list-bulleted"></i> <span>Assets Category </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="add-category.php">Add Tool Category</a></li>
+                                    <li><a href="add-category.php">Add Asset Category</a></li>
                                     <li><a href="manage-categories.php">Manage Categories</a></li>
                                 </ul>
                             </li>  
@@ -27,15 +27,46 @@
                             <!--tools management  -->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span> Tools </span> <span
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Assets </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="add-tool.php">Add Tools</a></li>
-                                    <li><a href="manage-tools.php">Manage Tools</a></li>
-                                    <li><a href="trash-tools.php">Trash Tools</a></li>
+                                    <li><a href="add-tool.php">Add Asset</a></li>
+                                    <li><a href="manage-tools.php">Manage Assets</a></li>
+                                    <li><a href="trash-tools.php">Trash Asset</a></li>
                                 </ul>
                             </li>
 
+                            <!--tools reply  -->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Reply </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="reply-student.php">Student Reply</a></li>
+                                    <li><a href="#">Staff Reply</a></li>
+                                </ul>
+                            </li>
+
+                            <!--Recieve  Asset from student-->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Recieve Asset </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="asset-from-student.php">From Student</a></li>
+                                    <li><a href="#">From Staff</a></li>
+                                </ul>
+                            </li>
+
+                            <!--Help  Desk-->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Help Desk </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Make Help</a></li>
+                                </ul>
+                            </li>
 
                         </ul>
                     </div>

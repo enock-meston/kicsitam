@@ -146,7 +146,7 @@ if (isset($_POST['save'])) {
                                             id="exampleRepeatPassword" placeholder="Repeat Password" name="repass">
                                     </div>
                                 </div>
-                                <input type="submit" name="save" class="btn btn-primary btn-user btn-block" value="Register Me">
+                                <input type="submit" name="save" class="btn btn-user btn-block" style="background-color: #2d2b7e;color:white;" value="Register Me">
                                
                             </form>
                             <hr>

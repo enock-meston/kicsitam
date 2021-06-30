@@ -6,18 +6,22 @@ if (strlen($_SESSION['id']) == 0) {
     header('location:../login.php');
 } else {
     if (isset($_POST['submit'])) {
-        $toolID=$_POST['toolid'];
-        $studentID=$_POST['studentid'];
-        $returnDate=$_POST['returning'];
-        $status=1;
+        $toolID = $_POST['toolid'];
+        $studentID = $_POST['studentid'];
+        $returnDate = $_POST['returning'];
+        $option = $_POST['option'];
+        $purpose = addslashes($_POST['purpose']);
+        $status = 1;
+        $bookstatus = 0;
 
-        $query1=mysqli_query($con,"INSERT INTO `studentbookingtbl`(`toolID`, `studentID`,`returnDate`, `ActiveStatus`) 
-        VALUES ('$toolID','$studentID','$returnDate','$status')");
+        $query1 = mysqli_query($con, "INSERT INTO `studentbookingtbl`(`toolID`, `studentID`,`studentOption`,
+         `purpose`,`returnDate`, `ActiveStatus`,`BookStatus`) 
+        VALUES ('$toolID','$studentID','$option','$purpose','$returnDate','$status','$bookstatus')");
 
         if ($query1) {
-            $msg="Your action of booking tool is Pending";
-        }else {
-            $error="there is samething went wrong!";
+            $msg = "Your action of booking tool is Pending";
+        } else {
+            $error = "there is samething went wrong!";
         }
     }
 ?>
@@ -135,8 +139,11 @@ if (strlen($_SESSION['id']) == 0) {
 
                         <?php
                         $book = intval($_GET['book']);
-                        $query = mysqli_query($con, "select tbltools.id as toolid,tbltools.Toolname as name,tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,tblcategory.CategoryName as category,tblcategory.c_id as cid
-from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory where tbltools.ActiveStatus=1 and tbltools.id='$book'");
+                        $query = mysqli_query($con, "select tbltools.id as toolid,tbltools.Toolname as name,
+                        tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,
+                        tblcategory.CategoryName as category,tblcategory.c_id as cid
+from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory where 
+tbltools.ActiveStatus=1 and tbltools.id='$book'");
                         while ($row = mysqli_fetch_array($query)) {
                         ?>
                             <div class="row">
@@ -181,47 +188,66 @@ from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory wh
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <form class="form-horizontal" method="post">
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">Date to return</label>
-                                            <div class="col-md-5">
-                                                 <input type="hidden" value="<?php echo $_SESSION['id']; ?>" name="studentid">
-                                                 <input type="hidden" value="<?php echo htmlentities($row['toolid']); ?>" name="toolid">
-                                                <input type="date" class="form-control" value="" name="returning" required>
-                                            </div>
-                                            
-                                        </div>
-                                        <?php } ?>
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">&nbsp;</label>
-                                            <div class="col-md-10">
-                                                <input type="submit" class="btn btn-custom" 
-                                                value="Submit" name="submit">
-                                                 
-                                            </div>
-                                        </div>
+                                    <form class="user" method="post">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card-box">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                                            <label class="form-group m-b-20">Date to return</label>
+                                                            <input type="hidden" value="<?php echo $_SESSION['id']; ?>" name="studentid">
+                                                            <input type="hidden" value="<?php echo htmlentities($row['toolid']); ?>" name="toolid">
+                                                            <input type="date" class="form-control" value="" name="returning" required>
+                                                        </div>
 
-                                    </form>
+
+                                                    <?php } ?>
+                                                    </div>
+                                                    <!--  -->
+
+                                                    <label class="form-group m-b-20">Select your Option</label>
+
+                                                    <select name="option" class="form-control" id="exampleInputEmail">
+                                                        <option>Select Option</option>
+                                                        <option value="primary">primary</option>
+                                                        <option value="secondary">Secondary</option>
+
+                                                    </select>
+
+
+                                                    <label class="col-md-2 control-label">Purpose:</label>
+                                                    <textarea class="form-control" rows="5" cols="10" name="purpose" required></textarea>
+
+                                                    <label class="col-md-2 control-label">&nbsp;</label><br>
+
+                                                    <input type="submit" class="btn btn-custom" value="Submit" name="submit">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
                                 </div>
-
-
+                                </form>
                             </div>
 
 
+                    </div>
 
 
-                    </div> <!-- container -->
-
-                </div> <!-- content -->
-
-                <?php include('includes/footer.php'); ?>
-
-            </div>
 
 
-            <!-- ============================================================== -->
-            <!-- End Right content here -->
-            <!-- ============================================================== -->
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+
+            <?php include('includes/footer.php'); ?>
+
+        </div>
+
+
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
 
 
         </div>

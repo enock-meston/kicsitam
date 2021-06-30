@@ -1,4 +1,4 @@
-            <div class="left side-menu">
+            <div class="left side-menu" style="background-color: #2d2b7e;color:white;">
                 <div class="sidebar-inner slimscrollleft">
 
                     <!--- Sidemenu -->

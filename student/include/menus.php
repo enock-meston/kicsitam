@@ -1,7 +1,7 @@
 <!-- Navbar content --> 
 
 <div class="bs-example">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #2d2b7e;">
         <a class="navbar-brand" href="#">
             <img src="../imagess/kics_logo_2015.jpg" alt="Logo" style="width:120px;">
         </a>

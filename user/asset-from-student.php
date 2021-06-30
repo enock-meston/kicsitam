@@ -6,15 +6,25 @@ if (strlen($_SESSION['id']) == 0) {
     header('location:../login.php');
 } else {
 
-    if ($_GET['action'] = 'del') {
-        $postid = intval($_GET['pid']);
-        $query = mysqli_query($con, "update tbltools set ActiveStatus=0 where id='$postid'");
+    if ($_GET['action'] = 'rep') {
+        $stid = intval($_GET['rid']);
+        $query = mysqli_query($con, "DELETE FROM `studentbookingtbl` WHERE `studentbookingtbl`.`bid` ='$stid'");
         if ($query) {
-            $msg = "Tool deleted ";
+            $msg = " You say Yes ,Request was approved";
         } else {
             $error = "Something went wrong . Please try again.";
         }
     }
+
+    // if ($_GET['action1'] = 'rep') {
+    //     $stid = intval($_GET['tid1']);
+    //     $query = mysqli_query($con, "DELETE FROM `studentbookingtbl` WHERE `studentbookingtbl`.`bid` ='$stid'");
+    //     if ($query) {
+    //         $msg = "You say NO, Request was approved";
+    //     } else {
+    //         $error = "Something went wrong . Please try again.";
+    //     }
+    // }
 ?>
 
     <!DOCTYPE html>
@@ -83,16 +93,16 @@ if (strlen($_SESSION['id']) == 0) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Manage Tools </h4>
+                                    <h4 class="page-title">Recieve Asset From Student </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="#">Tools</a>
+                                            <a href="#">Assets</a>
                                         </li>
                                         <li>
-                                            <a href="#">Tools</a>
+                                            <a href="#">Assets</a>
                                         </li>
                                         <li class="active">
-                                            Manage Tools
+                                            Recieve Asset From Student
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -113,20 +123,24 @@ if (strlen($_SESSION['id']) == 0) {
                                         <table class="table table-colored table-centered table-inverse m-0" style="width: 100%;">
                                             <thead>
                                                 <tr>
-
-                                                    <th>Name</th>
-                                                    <th>Category</th>
-                                                    <th>Image</th>
-                                                    <th>Allowed</th>
-                                                    <th>Description</th>
-                                                    <th>Action</th>
+                                                    <th>Student Name</th>
+                                                    <th>class</th>
+                                                    <th>Department</th>
+                                                    <th>Booked Asset</th>
+                                                    <th>Purpose</th>
+                                                    <th>Date of Booking</th>
+                                                    <th>Date of Returning</th>
+                                                    <th style="width: 20%;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                                 <?php
-                                                $query = mysqli_query($con, "select tbltools.id as toolid,tbltools.Toolname as name,tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
-from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory");
+                                                $query = mysqli_query($con, "SELECT tbltools.id as tid,tblstudent.Firstname as fname,
+                                                tblstudent.Lastname as lname,tblstudent.class as class,tblstudent.email as email,studentbookingtbl.bid as stboo,studentbookingtbl.studentOption as stuoption,
+                                                tbltools.Toolname as toolname,studentbookingtbl.purpose as purpose,studentbookingtbl.BookedDate as bookeddate,
+                                                studentbookingtbl.returnDate FROM tblstudent,tbltools LEFT JOIN studentbookingtbl ON studentbookingtbl.toolID=tbltools.id 
+                                                WHERE studentbookingtbl.studentID=tblstudent.id AND studentbookingtbl.ActiveStatus=1 AND studentbookingtbl.BookStatus=1");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>
@@ -141,17 +155,18 @@ from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory");
                                                         while ($row = mysqli_fetch_array($query)) {
                                                         ?>
                                                     <tr>
-                                                        <td style="width: 20%;"><b><?php echo htmlentities($row['name']); ?></b></td>
-                                                        <td style="width: 20%;"><?php echo htmlentities($row['category']) ?></td>
-                                                        <td style="width: 30%;"><b>
-                                                                <img src="toolimages/<?php echo $row['image']; ?>" alt="" style="width: 20%;">
-                                                            </b></td>
-                                                        <td><b><?php echo htmlentities($row['allowed']); ?></b></td>
-                                                        <td style="width: 30%;"><?php echo htmlentities($row['ToolDescription']) ?></td>
+                                                        <td><b><?php echo $row['fname'] . "  " . $row['lname']; ?></b></td>
+                                                        <td><?php echo $row['class']; ?></td>
+                                                        <td><?php echo $row['stuoption']; ?></td>
+                                                        <td><?php echo $row['toolname']; ?></td>
+                                                        <td><?php echo $row['purpose']; ?></td>
 
-                                                        <td><a href="edit-tool.php?pid=<?php echo htmlentities($row['toolid']); ?>"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a>
-                                                            &nbsp;<a href="manage-tools.php?pid=<?php echo htmlentities($row['toolid']); ?>&&action=del" onclick="return confirm('Do you reaaly want to delete ?')"> 
-                                                            <i class="fa fa-trash-o" style="color: #f05050"></i></a> </td>
+                                                        <td style="background-color: #f37020;color:white;"><?php echo $row['bookeddate']; ?></td>
+                                                        <td style="background-color: #f37020;color:white;"><?php echo $row['returnDate']; ?></td>
+                                                        <td>
+                                                            <a href="asset-from-student.php?rid=<?php echo htmlentities($row['stboo']); ?>&&action=rep" onclick="return confirm('Do you realy Recieve An Asset ?')" class=" btn btn-success">Recieved</a>
+                                                            <a href="asset-from-student.php?rid1=<?php echo htmlentities($row['stboo']); ?>&&action1=rep" onclick="return confirm('Ohh No This asset was Crashed ?')" class="btn btn-danger">Crashed</a>
+                                                        </td>
                                                     </tr>
                                             <?php }
                                                     } ?>

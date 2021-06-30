@@ -77,7 +77,7 @@ else{
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="page-title-box">
-                                <h4 class="page-title"><?php echo $_SESSION['fn']." ".$_SESSION['ln']." ";?> 
+                                <h4 style="color: #f37020;" class="page-title"><?php echo $_SESSION['fn']." ".$_SESSION['ln']." ";?> 
                                 - Welcome to Student Dashboard</h4>
                                 <ol class="breadcrumb p-0 m-0">
                                     <li>
