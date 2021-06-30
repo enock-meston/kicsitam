@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
             $_SESSION['email'] = $num['email'];
             echo "<script type='text/javascript'> document.location = 'teacher/dashboard.php'; </script>";
         } else {
-            echo "<script>alert('User not registered with us');</script>";
+            echo "<script>alert('User not registered with us');</script>"; 
         }
     }
     
