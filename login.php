@@ -23,7 +23,20 @@ if (isset($_POST['login'])) {
     }
     // Teacher login side
     else if ($user_type == 'staff') {
+        $query = mysqli_query($con, "SELECT * FROM teachertbl WHERE email='$email' AND password='$password'");
+        $num = mysqli_fetch_array($query);
+
+        if ($num > 0) {
+            $_SESSION['tid'] = $num['tid'];
+            $_SESSION['fn'] = $num['Firstname'];
+            $_SESSION['ln'] = $num['Lastname'];
+            $_SESSION['email'] = $num['email'];
+            echo "<script type='text/javascript'> document.location = 'teacher/dashboard.php'; </script>";
+        } else {
+            echo "<script>alert('User not registered with us');</script>";
+        }
     }
+    
     // student login side
     else if ($user_type == 'student') {
         $query = mysqli_query($con, "SELECT * FROM tblstudent WHERE email='$email' AND password='$password'");

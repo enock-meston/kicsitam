@@ -1,4 +1,4 @@
-            <div class="left side-menu">
+<div class="left side-menu" style="background-color: #2d2b7e;color:white;">
                 <div class="sidebar-inner slimscrollleft">
 
                     <!--- Sidemenu -->
@@ -12,29 +12,19 @@
 
                             </li>
 
-                            <!--tools category  -->
+                            <!--tools -->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span>Tools Category </span> <span
+                                        class="mdi mdi-format-list-bulleted"></i> <span>Tools</span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="add-category.php">Add Tool Category</a></li>
-                                    <li><a href="manage-categories.php">Manage Categories</a></li>
+                                    <li><a href="booking-tool.php">Booking Tool</a></li>
+                                    <li><a href="#"> Ask for help</a></li>
                                 </ul>
                             </li>  
 
 
-                            <!--tools management  -->
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span> Tools </span> <span
-                                        class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="add-tool.php">Add Tools</a></li>
-                                    <li><a href="manage-tools.php">Manage Tools</a></li>
-                                    <li><a href="trash-tools.php">Trash Tools</a></li>
-                                </ul>
-                            </li>
+                           
 
 
                         </ul>
