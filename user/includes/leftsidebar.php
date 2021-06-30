@@ -43,7 +43,7 @@
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="reply-student.php">Student Reply</a></li>
-                                    <li><a href="#">Staff Reply</a></li>
+                                    <li><a href="reply-staff.php">Staff Reply</a></li>
                                 </ul>
                             </li>
 
@@ -54,7 +54,7 @@
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="asset-from-student.php">From Student</a></li>
-                                    <li><a href="#">From Staff</a></li>
+                                    <li><a href="asset-from-staff.php">From Staff</a></li>
                                 </ul>
                             </li>
 
