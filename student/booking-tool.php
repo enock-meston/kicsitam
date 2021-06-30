@@ -79,7 +79,7 @@ if (strlen($_SESSION['id']) == 0) {
                     <br>
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" style="color: white;" href="dashboard.php">
+                            <a class="nav-link active" style="background-color: #2d2b7e;color: white;" href="dashboard.php">
                                 <- BACK</a>
                         </li>
 
