@@ -11,6 +11,16 @@
                                     <span> Dashboard </span> </a>
 
                             </li>
+                                 <!--Asset QR Code  -->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span>Use QR code</span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Set QR Code</a></li>
+                                    <li><a href="#">Scan Asset</a></li>
+                                </ul>
+                            </li> 
 
                             <!--tools category  -->
                             <li class="has_sub">
