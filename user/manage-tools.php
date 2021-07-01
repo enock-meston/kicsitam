@@ -117,6 +117,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                     <th>Name</th>
                                                     <th>Category</th>
                                                     <th>Image</th>
+                                                    <th>Serial Number</th>
                                                     <th>Allowed</th>
                                                     <th>Description</th>
                                                     <th>Action</th>
@@ -125,8 +126,10 @@ if (strlen($_SESSION['id']) == 0) {
                                             <tbody>
 
                                                 <?php
-                                                $query = mysqli_query($con, "select tbltools.id as toolid,tbltools.Toolname as name,tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
-from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory");
+                                                $query = mysqli_query($con, "SELECT tbltools.id as toolid,tbltools.Toolname as name,
+                                                tbltools.ToolImage as image,tbltools.serial_number as serialnumber,tbltools.ToolDescription as ToolDescription,
+                                                tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
+                                                from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>
@@ -146,12 +149,13 @@ from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory");
                                                         <td style="width: 30%;"><b>
                                                                 <img src="toolimages/<?php echo $row['image']; ?>" alt="" style="width: 20%;">
                                                             </b></td>
+                                                        <td><?php echo htmlentities($row['serialnumber']) ?></td>
                                                         <td><b><?php echo htmlentities($row['allowed']); ?></b></td>
                                                         <td style="width: 30%;"><?php echo htmlentities($row['ToolDescription']) ?></td>
 
                                                         <td><a href="edit-tool.php?pid=<?php echo htmlentities($row['toolid']); ?>"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a>
-                                                            &nbsp;<a href="manage-tools.php?pid=<?php echo htmlentities($row['toolid']); ?>&&action=del" onclick="return confirm('Do you reaaly want to delete ?')"> 
-                                                            <i class="fa fa-trash-o" style="color: #f05050"></i></a> </td>
+                                                            &nbsp;<a href="manage-tools.php?pid=<?php echo htmlentities($row['toolid']); ?>&&action=del" onclick="return confirm('Do you reaaly want to delete ?')">
+                                                                <i class="fa fa-trash-o" style="color: #f05050"></i></a> </td>
                                                     </tr>
                                             <?php }
                                                     } ?>

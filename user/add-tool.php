@@ -11,6 +11,7 @@ if (strlen($_SESSION['id']) == 0) {
         $posttitle = addslashes($_POST['toolname']);
         $catid = $_POST['category'];
         $allowedby = $_POST['allowed'];
+        $serial=$_POST['serial'];
         // $subcatid=$_POST['subcategory'];
         // $postdetails=$_POST['postdescription'];
         $tooldetails = addslashes($_POST['description']);
@@ -32,8 +33,8 @@ if (strlen($_SESSION['id']) == 0) {
 
             $status = 1;
             $respone_status=0;
-            $query = mysqli_query($con, "INSERT INTO `tbltools`(`Toolname`, `ToolImage`, `ToolCategory`, `ToolDescription`,`isAllowedBy`,`ActiveStatus`,`response_status`) 
-VALUES ('$posttitle','$imgnewfile','$catid','$tooldetails','$allowedby','$status','$respone_status')");
+            $query = mysqli_query($con, "INSERT INTO `tbltools`(`Toolname`, `ToolImage`,`serial_number`, `ToolCategory`, `ToolDescription`,`isAllowedBy`,`ActiveStatus`,`response_status`) 
+VALUES ('$posttitle','$imgnewfile','$serial','$catid','$tooldetails','$allowedby','$status','$respone_status')");
             if ($query) {
                 $msg = "Tool successfully added ";
             } else {
@@ -163,9 +164,13 @@ VALUES ('$posttitle','$imgnewfile','$catid','$tooldetails','$allowedby','$status
                                         <form name="addpost" method="post" enctype="multipart/form-data">
                                             <div class="form-group m-b-20">
                                                 <label for="exampleInputEmail1">Tool Name </label>
-                                                <input type="text" class="form-control" id="posttitle" name="toolname" placeholder="Enter title" required>
+                                                <input type="text" class="form-control" id="posttitle" name="toolname" placeholder="Enter Title" required>
                                             </div>
 
+                                            <div class="form-group m-b-20">
+                                                <label for="exampleInputEmail1">Serial Number</label>
+                                                <input type="text" class="form-control" id="posttitle" name="serial" placeholder="Enter Serial Number" required>
+                                            </div>
 
 
                                             <div class="form-group m-b-20">
@@ -197,7 +202,7 @@ VALUES ('$posttitle','$imgnewfile','$catid','$tooldetails','$allowedby','$status
                                                 <label for="exampleInputEmail1">Tools Accessible by</label>
                                                 <select class="form-control" name="allowed" id="category" onChange="getSubCat(this.value);" required>
                                                     <option value="">Allowed by </option>
-                                                    <option value="teacher">Teacher</option>
+                                                    <option value="teacher">Staff</option>
                                                     <option value="student">Student</option>
 
                                                 </select>
