@@ -17,8 +17,7 @@
                                         class="mdi mdi-format-list-bulleted"></i> <span>Use QR code</span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Set QR Code</a></li>
-                                    <li><a href="#">Scan Asset</a></li>
+                                    <li><a href="scan-asset.php">Scan Asset</a></li>
                                 </ul>
                             </li> 
 

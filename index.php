@@ -24,7 +24,7 @@
 <div class="bg">
     <div class="text">
         <h1 style="font-size:50px">Welcome To KICSIT Asset Management <br><center>(KICSITAM)</center></h1>
-    </div>
+     </div>
 </div>
 
 
