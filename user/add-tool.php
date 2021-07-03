@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("phpqrcode/qrlib.php");
 include('includes/config.php');
 error_reporting(0);
 if (strlen($_SESSION['id']) == 0) {
@@ -8,10 +9,17 @@ if (strlen($_SESSION['id']) == 0) {
 
     // For adding post  
     if (isset($_POST['submit'])) {
+
         $posttitle = addslashes($_POST['toolname']);
         $catid = $_POST['category'];
         $allowedby = $_POST['allowed'];
         $serial=$_POST['serial'];
+        $assigned =$_POST['assigned'];
+        //qrpath
+        $qrpath='/img';
+        $file=$qrpath.$_POST['serial'].'.png';
+        // qrname
+        $qrkey=$serial." - ".$assigned;
         // $subcatid=$_POST['subcategory'];
         // $postdetails=$_POST['postdescription'];
         $tooldetails = addslashes($_POST['description']);
@@ -33,8 +41,10 @@ if (strlen($_SESSION['id']) == 0) {
 
             $status = 1;
             $respone_status=0;
-            $query = mysqli_query($con, "INSERT INTO `tbltools`(`Toolname`, `ToolImage`,`serial_number`, `ToolCategory`, `ToolDescription`,`isAllowedBy`,`ActiveStatus`,`response_status`) 
-VALUES ('$posttitle','$imgnewfile','$serial','$catid','$tooldetails','$allowedby','$status','$respone_status')");
+            // qr method
+            Qrcode::png($qrkey,$file);
+            $query = mysqli_query($con, "INSERT INTO `tbltools`(`Toolname`, `ToolImage`,`QRimage`,`serial_number`, `ToolCategory`, `ToolDescription`,`isAllowedBy`,`ActiveStatus`,`response_status`) 
+VALUES ('$posttitle','$imgnewfile','$file','$qrkey','$catid','$tooldetails','$allowedby','$status','$respone_status')");
             if ($query) {
                 $msg = "Tool successfully added ";
             } else {
@@ -170,6 +180,10 @@ VALUES ('$posttitle','$imgnewfile','$serial','$catid','$tooldetails','$allowedby
                                             <div class="form-group m-b-20">
                                                 <label for="exampleInputEmail1">Serial Number</label>
                                                 <input type="text" class="form-control" id="posttitle" name="serial" placeholder="Enter Serial Number" required>
+                                            </div>
+                                            <div class="form-group m-b-20">
+                                                <label for="exampleInputEmail1">Assigned To if there is</label>
+                                                <input type="text" class="form-control" id="posttitle" name="assigned" placeholder="Enter Person Name">
                                             </div>
 
 
