@@ -73,7 +73,7 @@
                                         class="mdi mdi-format-list-bulleted"></i> <span> Help Desk </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Make Help</a></li>
+                                    <li><a href="make-help.php">Make Help</a></li>
                                 </ul>
                             </li>
 

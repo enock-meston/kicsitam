@@ -10,9 +10,9 @@ include('includes/config.php');
                     <a href="dashboard.php" class="logo"><span>kicsi<span>tam</span></span><i class="mdi mdi-layers"></i></a>
                     <!-- Image logo  -->
                     <a href="dashboard.php" class="logo">
-                        <span>
+                        <!-- <span>
                             <img src="images1/kmn_App_logo.jpg" alt="" height="20">
-                        </span>
+                        </span> -->
                         <!-- <i>
                             <img src="images1/kmn_App_logo.png" alt="" height="28">
                         </i> -->

@@ -19,7 +19,7 @@
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="booking-tool.php">Booking Tool</a></li>
-                                    <li><a href="#"> Ask for help</a></li>
+                                    <li><a href="new-tichet.php"> Ask for help</a></li>
                                 </ul>
                             </li>  
 
