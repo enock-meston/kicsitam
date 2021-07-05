@@ -7,5 +7,5 @@ session_destroy();
 
 ?>
 <script language="javascript">
-document.location="../login.php";
+document.location="index.php";
 </script>

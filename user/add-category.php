@@ -4,7 +4,7 @@ include('includes/config.php');
 error_reporting(0);
 if(strlen($_SESSION['id'])==0)
   { 
-    header('location:../login.php');
+    header('location:index.php');
 }
 else{
 

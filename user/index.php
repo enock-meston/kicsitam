@@ -3,42 +3,21 @@ session_start();
 include('includes/config.php');
 
 if (isset($_POST['login'])) {
-    $user_type = $_POST['type'];
-
+    
     $email = $_POST['email'];
     $password = $_POST['password'];
-    // Teacher login side
-    if ($user_type == 'staff') {
-        $query = mysqli_query($con, "SELECT * FROM teachertbl WHERE email='$email' AND password='$password'");
+    // User login side
+        $query = mysqli_query($con, "SELECT * FROM usertbl WHERE email='$email' AND password='$password'");
         $num = mysqli_fetch_array($query);
 
         if ($num > 0) {
-            $_SESSION['tid'] = $num['tid'];
+            $_SESSION['id'] = $num['uid'];
             $_SESSION['fn'] = $num['Firstname'];
             $_SESSION['ln'] = $num['Lastname'];
-            $_SESSION['email'] = $num['email'];
-            echo "<script type='text/javascript'> document.location = 'teacher/dashboard.php'; </script>";
-        } else {
-            echo "<script>alert('User not registered with us');</script>"; 
-        }
-    }
-    
-    // student login side
-    else if ($user_type == 'student') {
-        $query = mysqli_query($con, "SELECT * FROM tblstudent WHERE email='$email' AND password='$password'");
-        $num = mysqli_fetch_array($query);
-
-        if ($num > 0) {
-            $_SESSION['id'] = $num['id'];
-            $_SESSION['fn'] = $num['Firstname'];
-            $_SESSION['ln'] = $num['Lastname'];
-            $_SESSION['email'] = $num['email'];
-            $_SESSION['profile'] = $num['profilePicture'];
-            echo "<script type='text/javascript'> document.location = 'student/dashboard.php'; </script>";
+            echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
         } else {
             echo "<script>alert('User not registered with us');</script>";
-        }
-    }
+        }  
 }
 
 
@@ -89,14 +68,6 @@ if (isset($_POST['login'])) {
                                     <form class="user" method="POST">
 
                                         <div class="form-group">
-                                            <select name="type" class="form-control" id="exampleInputEmail">
-                                                <option>Select User type</option>
-                                                <option value="staff">Staff</option>
-                                                <option value="student">Student</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                         </div>
 
@@ -108,11 +79,7 @@ if (isset($_POST['login'])) {
 
                                     </form>
 
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="student/new-account.php">Create an Account as Student </a><br>
-                                        <a class="small" href="teacher/new-account.php">Create an Account as Staff </a>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
