@@ -16,7 +16,7 @@ if (strlen($_SESSION['id']) == 0) {
         $serial=$_POST['serial'];
         $assigned =$_POST['assigned'];
         //qrpath
-        $qrpath='/img';
+        $qrpath='img/';
         $file=$qrpath.$_POST['serial'].'.png';
         // qrname
         $qrkey=$serial." - ".$assigned;
