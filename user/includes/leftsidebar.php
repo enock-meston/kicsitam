@@ -48,22 +48,24 @@
                             <!--tools reply  -->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span> Reply </span> <span
+                                        class="mdi mdi-format-list-bulleted"></i> <span>Student </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="reply-student.php">Student Reply</a></li>
-                                    <li><a href="reply-staff.php">Staff Reply</a></li>
+                                    <li><a href="asset-from-student.php">From Student</a></li>
+                                    <li><a href="student-report.php">Student Report</a></li>
                                 </ul>
                             </li>
 
                             <!--Recieve  Asset from student-->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span> Recieve Asset </span> <span
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Staff </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="asset-from-student.php">From Student</a></li>
-                                    <li><a href="asset-from-staff.php">From Staff</a></li>
+                                    <li><a href="reply-staff.php">Asset To Staff</a></li>
+                                    <li><a href="asset-from-staff.php">Asset From Staff</a></li>
+                                    <li><a href="#">Student Staff</a></li>
                                 </ul>
                             </li>
 
