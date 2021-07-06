@@ -85,28 +85,42 @@ if (strlen($_SESSION['id']) == 0) {
                         <!-- end row -->
                         <div class="row">
                             <?php
-                                $categoryID=$_GET['view'];
-                                $query = mysqli_query($con, "SELECT studentbookingtbl.toolID as Tid,studentbookingtbl.studentID AS studentID,
+                            $categoryID = $_GET['view'];
+                            $query = mysqli_query($con, "SELECT studentbookingtbl.toolID as Tid,studentbookingtbl.studentID AS studentID,
     studentbookingtbl.ActiveStatus as tstatus,studentbookingtbl.BookStatus as bookstatus,tbltools.ToolDescription as ToolDescription,
      studentbookingtbl.returnDate as redate,tbltools.id as toolid,tbltools.Toolname as toolname,tbltools.ToolImage as image,
      tbltools.ActiveStatus AS toolsta, tbltools.isAllowedBy as allow FROM tbltools LEFT JOIN 
      studentbookingtbl ON studentbookingtbl.toolID=tbltools.id WHERE tbltools.isAllowedBy='student' 
      AND tbltools.response_status=0 AND tbltools.ToolCategory ='$categoryID'");
-                                while ($row= mysqli_fetch_array($query)) {
-                                    ?>
-                            <div class="col-lg-3 col-md-4 col-sm-6">
-                                <div class="card-box widget-box-one">
-                                    <img class="card-img-top" src="../user/toolimages/<?php echo $row['image']; ?>" 
-                                    alt="Card image" style="width:50%;height: 90px;">
-                                    <h4 class="card-title"><?php echo $row['toolname'];?></h4>
-                                    <p class="card-text"><?php echo $row['ToolDescription'];?></p>
-                                    <a href="booking-task.php?book=<?php echo $row['toolid']; ?>" class="btn" 
-                                    style="background-color: #2d2b7e; color:aliceblue">BOOK NOW</a>
+                            while ($row = mysqli_fetch_array($query)) {
+                            ?>
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="card-box widget-box-one">
+                                        <img class="card-img-top" src="../user/toolimages/<?php echo $row['image']; ?>" alt="Card image" style="width:50%;height: 90px;">
+                                        <h4 class="card-title"><?php echo $row['toolname']; ?></h4>
+                                        <p class="card-text"><?php echo $row['ToolDescription']; ?></p>
+                                        <?php
+                                        if ($row['tstatus'] == 1) {
+                                        ?>
+                                            <div class="disabled" style="pointer-events: none;">
+                                            <a href="booking-task.php?book=<?php echo $row['toolid']; ?>" 
+                                            class="btn" style="background-color: #2d2b7e; color:aliceblue">BOOKED</a>
+                                            </div>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <a href="booking-task.php?book=<?php echo $row['toolid']; ?>" 
+                                            class="btn" style="background-color: #f37020; color:aliceblue">BOOK NOW</a>
+                                        <?php
+                                        }
+                                        ?>
+
+
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- end col -->
+                                <!-- end col -->
                             <?php
-                                }
+                            }
                             ?>
                         </div>
                         <!-- end row -->

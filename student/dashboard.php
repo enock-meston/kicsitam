@@ -102,7 +102,7 @@ if (strlen($_SESSION['id']) == 0) {
                                         <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
                                         <div class="wigdet-one-content">
                                             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Categories Listed</p>
-                                            <?php $query = mysqli_query($con, "select * from tblcategory where Is_Active=1");
+                                            <?php $query = mysqli_query($con, "SELECT * from tblcategory where Is_Active=1");
                                             $countcat = mysqli_num_rows($query);
                                             ?>
                                             <h2><?php echo htmlentities($countcat); ?> <small></small></h2>

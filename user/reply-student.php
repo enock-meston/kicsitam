@@ -6,17 +6,38 @@ if (strlen($_SESSION['id']) == 0) {
     header('location:index.php');
 } else {
 
-    if ($_GET['action'] = 'rep') {
-        $stid = intval($_GET['tid']);
+    if (isset($_GET['action2'])) {
+        $stid = intval($_GET['tid2']);
         $query = mysqli_query($con, "UPDATE studentbookingtbl set BookStatus=1 where bid='$stid'");
+        
         if ($query) {
             $msg = " You say Yes ,Request was approved";
+            // query of making student report
+        $select1 = mysqli_query($con, "SELECT tbltools.id as tid,tblstudent.Firstname as fname,
+        tblstudent.Lastname as lname,tblstudent.class as class,tblstudent.email as email,studentbookingtbl.bid as stboo,studentbookingtbl.studentOption as stuoption,
+        tbltools.Toolname as toolname,studentbookingtbl.purpose as purpose,studentbookingtbl.BookedDate as bookeddate,
+        studentbookingtbl.returnDate FROM tblstudent,tbltools LEFT JOIN studentbookingtbl ON studentbookingtbl.toolID=tbltools.id 
+        WHERE studentbookingtbl.studentID=tblstudent.id AND studentbookingtbl.ActiveStatus=1 AND studentbookingtbl.BookStatus=0");
+        $data = mysqli_fetch_array($select1);
+        $names=$data['fname'] . "  " . $data['lname'];
+        $calss=$data['class'];
+        $option=$data['stuoption']; 
+        $assetname=$data['toolname']; 
+        $pur=$data['purpose']; 
+        $bookDate=$data['bookeddate'];
+        $returnDate=$data['returnDate'];
+        // end of query of making student report
+        
+        // query of insertind data in database inside table called tblstudentreport
+        $repotyQuery=mysqli_query($con,"INSERT INTO `tblstudentreport`(`studentnames`, `class`, `stuOption`, `Assetname`,
+             `purpose`, `bookedDate`, `returnedDate`) VALUES ('$names','$calss','$option','$assetname','$pur','$bookDate','$returnDate')");
+             header('location:reply-student.php');
         } else {
             $error = "Something went wrong . Please try again.";
         }
     }
 
-    if ($_GET['action1'] = 'rep') {
+    else if (isset($_GET['action1'])) {
         $stid = intval($_GET['tid1']);
         $query = mysqli_query($con, "DELETE FROM `studentbookingtbl` WHERE `studentbookingtbl`.`bid` ='$stid'");
         if ($query) {
@@ -164,7 +185,9 @@ if (strlen($_SESSION['id']) == 0) {
                                                         <td style="background-color: #f37020;color:white;"><?php echo $row['bookeddate']; ?></td>
                                                         <td style="background-color: #f37020;color:white;"><?php echo $row['returnDate']; ?></td>
                                                         <td>
-                                                            <a href="reply-student.php?tid=<?php echo htmlentities($row['stboo']); ?>&&action=rep" onclick="return confirm('Do you realy want to Approve this request ?')" class=" btn btn-success">YES</a>
+                                                            <a href="reply-student.php?tid2=<?php echo htmlentities($row['stboo']); ?>&&action2=rep2" 
+                                                            onclick="return confirm('Do you realy want to Approve this request ?')" class=" btn btn-success">YES</a>
+
                                                             <a href="reply-student.php?tid1=<?php echo htmlentities($row['stboo']); ?>&&action1=rep" onclick="return confirm('Do you realy want to say NO ?')" class="btn btn-danger">NO</a>
                                                             <form method="POST">
                                                                 <input type="text" name="comment" class="form-control" placeholder="Enter your comment">
