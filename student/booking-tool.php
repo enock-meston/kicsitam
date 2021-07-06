@@ -13,7 +13,7 @@ if (strlen($_SESSION['id']) == 0) {
     // tbltools.ActiveStatus=1 and tbltools.isAllowedBy='student' and studentbookingtbl.ActiveStatus!=2 and studentbookingtbl.ActiveStatus!=3");
 
     $query = mysqli_query($con, "SELECT studentbookingtbl.toolID as Tid,studentbookingtbl.studentID AS studentID,
-    studentbookingtbl.ActiveStatus as tstatus,studentbookingtbl.BookStatus as bookstatus,
+    studentbookingtbl.ActiveStatus as tstatus,studentbookingtbl.BookStatus as bookstatus,tbltools.ToolCategory as catname,
      studentbookingtbl.returnDate as redate,tbltools.id as toolid,tbltools.Toolname as toolname,tbltools.ToolImage as image,
      tbltools.ActiveStatus AS toolsta, tbltools.isAllowedBy as allow FROM tbltools LEFT JOIN 
      studentbookingtbl ON studentbookingtbl.toolID=tbltools.id WHERE tbltools.isAllowedBy='student' 
@@ -96,6 +96,7 @@ if (strlen($_SESSION['id']) == 0) {
                         <thead>
                             <tr>
                                 <th>Tool name</th>
+                                <th>Tool Category</th>
                                 <th>Tool Image</th>
                                 <!-- <th>Tool Description</th> -->
                                 <th>Action</th>
@@ -110,6 +111,7 @@ if (strlen($_SESSION['id']) == 0) {
                             ?>
                                 <tr>
                                     <td><?php echo $row['toolname']; ?></td>
+                                    <td><?php echo $row['catname']; ?></td>
                                     <td style="width: 40%;">
                                         <a href="../user/toolimages/<?php echo $row['image']; ?>"></a>
                                         <img src="../user/toolimages/<?php echo $row['image']; ?>" style="width: 10%;">
@@ -172,6 +174,7 @@ if (strlen($_SESSION['id']) == 0) {
                         <tfoot>
                             <tr>
                                 <th>Tool name</th>
+                                <th>Tool Category</th>
                                 <th>Tool Image</th>
                                 <!-- <th>Tool Description</th> -->
                                 <th>Action</th>

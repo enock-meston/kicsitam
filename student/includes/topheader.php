@@ -2,7 +2,12 @@
 session_start();
 include('includes/config.php');
 
-?>            
+?>      
+
+
+<head>
+</head>
+
             <div class="topbar">
 
                 <!-- LOGO -->
@@ -10,12 +15,7 @@ include('includes/config.php');
                     <a href="dashboard.php" class="logo"><span>kicsi<span>tam</span></span><i class="mdi mdi-layers"></i></a>
                     <!-- Image logo  -->
                     <a href="dashboard.php" class="logo">
-                        <!-- <span>
-                            <img src="images1/kmn_App_logo.jpg" alt="" height="20">
-                        </span> -->
-                        <!-- <i>
-                            <img src="images1/kmn_App_logo.png" alt="" height="28">
-                        </i> -->
+                       
                     </a>
                 </div>
 

@@ -16,12 +16,11 @@ if (strlen($_SESSION['id']) == 0) {
         $description = addslashes($_POST['description']);
         $status = 1;
 
-        $Date_chech = mysqli_query($con,"SELECT * FROM tichethelptbl WHERE ChoosedDate='$date' AND helper='$helper'");
+        $Date_chech = mysqli_query($con, "SELECT * FROM tichethelptbl WHERE ChoosedDate='$date' AND helper='$helper'");
 
         if (mysqli_num_rows($Date_chech) > 0) {
             $error = "Date is areald Taken.";
-        } 
-        else {
+        } else {
             $query = mysqli_query($con, "INSERT INTO `tichethelptbl`(`persontohelp`, `helper`, `priority`, `category`, `description`, `ChoosedDate`, `ActiveStatus`) 
         VALUES ('$person','$helper','$priority','$category','$description','$date','$status')");
             if ($query) {
@@ -30,7 +29,6 @@ if (strlen($_SESSION['id']) == 0) {
                 $error = "Something went wrong . Please try again.";
             }
         }
-        
     }
 ?>
 
@@ -199,7 +197,7 @@ if (strlen($_SESSION['id']) == 0) {
 
 
                                             <input type="submit" name="send" class="btn btn-primary" value="Send">
-                                            
+
                                         </form>
                                     </div>
                                 </div> <!-- end p-20 -->

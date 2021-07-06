@@ -1,7 +1,10 @@
 <?php
 session_start();
-
-
+include('includes/config.php');
+error_reporting(0);
+if (strlen($_SESSION['id']) == 0) {
+    header('location:index.php');
+} else {
 ?>
 
 <html>
@@ -149,3 +152,7 @@ session_start();
 </body>
 
 </html>
+
+<?php
+}
+?>
