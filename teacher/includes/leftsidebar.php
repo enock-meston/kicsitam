@@ -15,15 +15,20 @@
                             <!--tools -->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span>Tools</span> <span
+                                        class="fa fa-desktop"></i> <span>IT Tools</span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
+                                    <li><a href="tool-category.php">Category</a></li>
                                     <li><a href="booking-tool.php">Booking Tool</a></li>
-                                    <li><a href="new-tichet.php"> IT Support</a></li>
+                                    
                                 </ul>
                             </li>  
 
+                            <li class="has_sub">
+                                <a href="new-tichet.php" class="waves-effect"><i class="fa fa-question-circle"></i>
+                                    <span> IT Support </span> </a>
 
+                            </li>
                            
 
 

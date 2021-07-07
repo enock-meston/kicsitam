@@ -19,7 +19,8 @@ if (strlen($_SESSION['tid']) == 0) {
         VALUES ('$toolID','$teacherID','$option','$purpose','$returnDate','$status','$bookstatus')");
 
         if ($query1) {
-            $msg = "Your action of booking tool is Pending";
+            echo "<script>alert('Your action of booking tool is Pending');</script>";
+            echo "<script type='text/javascript'> document.location = 'tool-category.php'; </script>";
         } else {
             $error = "there is samething went wrong!";
         }

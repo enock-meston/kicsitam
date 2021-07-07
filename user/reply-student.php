@@ -2,36 +2,50 @@
 session_start();
 include('includes/config.php');
 error_reporting(0);
+// redirect to other pag
+function redirect($location=Null){
+    if($location!=Null){
+        echo "<script>
+                window.location='{$location}'
+            </script>";	
+    }else{
+        echo 'error location';
+    }
+     
+}
+// 
 if (strlen($_SESSION['id']) == 0) {
     header('location:index.php');
 } else {
 
     if (isset($_GET['action2'])) {
         $stid = intval($_GET['tid2']);
+         // query of making student report
+         $select1 = mysqli_query($con, "SELECT tbltools.id as tid,tblstudent.Firstname as fname,
+         tblstudent.Lastname as lname,tblstudent.class as class,tblstudent.email as email,studentbookingtbl.bid as stboo,studentbookingtbl.studentOption as stuoption,
+         tbltools.Toolname as toolname,studentbookingtbl.purpose as purpose,studentbookingtbl.BookedDate as bookeddate,
+         studentbookingtbl.returnDate FROM tblstudent,tbltools LEFT JOIN studentbookingtbl ON studentbookingtbl.toolID=tbltools.id 
+         WHERE studentbookingtbl.studentID=tblstudent.id AND studentbookingtbl.ActiveStatus=1 AND studentbookingtbl.BookStatus=0");
+         $data = mysqli_fetch_array($select1);
+         $names=$data['fname'] . "  " . $data['lname'];
+         $calss=$data['class'];
+         $option=$data['stuoption']; 
+         $assetname=$data['toolname']; 
+         $pur=$data['purpose']; 
+         $bookDate=$data['bookeddate'];
+         $returnDate=$data['returnDate'];
+         // end of query of making student report
         $query = mysqli_query($con, "UPDATE studentbookingtbl set BookStatus=1 where bid='$stid'");
         
         if ($query) {
             $msg = " You say Yes ,Request was approved";
-            // query of making student report
-        $select1 = mysqli_query($con, "SELECT tbltools.id as tid,tblstudent.Firstname as fname,
-        tblstudent.Lastname as lname,tblstudent.class as class,tblstudent.email as email,studentbookingtbl.bid as stboo,studentbookingtbl.studentOption as stuoption,
-        tbltools.Toolname as toolname,studentbookingtbl.purpose as purpose,studentbookingtbl.BookedDate as bookeddate,
-        studentbookingtbl.returnDate FROM tblstudent,tbltools LEFT JOIN studentbookingtbl ON studentbookingtbl.toolID=tbltools.id 
-        WHERE studentbookingtbl.studentID=tblstudent.id AND studentbookingtbl.ActiveStatus=1 AND studentbookingtbl.BookStatus=0");
-        $data = mysqli_fetch_array($select1);
-        $names=$data['fname'] . "  " . $data['lname'];
-        $calss=$data['class'];
-        $option=$data['stuoption']; 
-        $assetname=$data['toolname']; 
-        $pur=$data['purpose']; 
-        $bookDate=$data['bookeddate'];
-        $returnDate=$data['returnDate'];
-        // end of query of making student report
-        
+           
         // query of insertind data in database inside table called tblstudentreport
         $repotyQuery=mysqli_query($con,"INSERT INTO `tblstudentreport`(`studentnames`, `class`, `stuOption`, `Assetname`,
              `purpose`, `bookedDate`, `returnedDate`) VALUES ('$names','$calss','$option','$assetname','$pur','$bookDate','$returnDate')");
-             header('location:reply-student.php');
+            //  header('location:reply-student.php');
+            redirect('reply-student.php');
+            die();
         } else {
             $error = "Something went wrong . Please try again.";
         }

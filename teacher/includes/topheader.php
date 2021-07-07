@@ -6,16 +6,11 @@ include('includes/config.php');
             <div class="topbar">
 
                 <!-- LOGO -->
-                <div class="topbar-left">
+                <div class="topbar-left" style="background-color: #2d2b7e;color:white;">
                     <a href="dashboard.php" class="logo"><span>kicsi<span>tam</span></span><i class="mdi mdi-layers"></i></a>
                     <!-- Image logo  -->
                     <a href="dashboard.php" class="logo">
-                        <span>
-                            <img src="images1/kmn_App_logo.jpg" alt="" height="20">
-                        </span>
-                        <!-- <i>
-                            <img src="images1/kmn_App_logo.png" alt="" height="28">
-                        </i> -->
+                
                     </a>
                 </div>
 

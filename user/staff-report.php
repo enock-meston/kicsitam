@@ -6,49 +6,7 @@ if (strlen($_SESSION['id']) == 0) {
     header('location:index.php');
 } else {
 
-    if (isset($_GET['action4'])) {
-        $stid = intval($_GET['tid4']);
-         // query of making student report
-         $select2 = mysqli_query($con, "SELECT tbltools.id as tid,teachertbl.Firstname AS fname,
-         teachertbl.Lastname AS lname,teachertbl.phoneNumber AS phone,teachertbl.email AS email,
-         teacherbookingtbl.tbid AS teacboo,teacherbookingtbl.staffOption as teacoption,
-         tbltools.Toolname as toolname,teacherbookingtbl.purpose as purpose,
-         teacherbookingtbl.BookedDate AS bookeddate,teacherbookingtbl.returnDate 
-         FROM teachertbl,tbltools LEFT JOIN teacherbookingtbl ON teacherbookingtbl.toolID=tbltools.id 
-         WHERE teacherbookingtbl.teacherID=teachertbl.tid AND teacherbookingtbl.ActiveStatus =1 AND teacherbookingtbl.BookStatus=0");
-         $data = mysqli_fetch_array($select2);
-         $names=$data['fname'] . "  " . $data['lname'];
-         $email=$data['email']; 
-         $teacoption=$data['teacoption']; 
-         $assetname=$data['toolname']; 
-         $pur=$data['purpose']; 
-         $bookDate=$data['bookeddate'];
-         $returnDate=$data['returnDate'];
-         // end of query of making student report
-         
-        $query = mysqli_query($con, "UPDATE teacherbookingtbl set BookStatus=1 where tbid='$stid'");
-        if ($query) {
-            $msg = " You say Yes ,Request was approved";
-           
-        // query of insertind data in database inside table called tblstudentreport
-        $repotyQuery=mysqli_query($con,"INSERT INTO `tblstaffreport`(`staffnames`, `email`, `staffOption`, 
-        `Assetname`, `purpose`, `bookedDate`, `returnedDate`) VALUES ('$names','$email','$teacoption',
-        '$assetname','$pur','$bookDate','$returnDate')");
-             header('location:reply-staff.php');
-        } else {
-            $error = "Something went wrong . Please try again.";
-        }
-    }
-
-    else if (isset($_GET['action3'])) {
-        $stid = intval($_GET['tid3']);
-        $query = mysqli_query($con, "DELETE FROM `teacherbookingtbl` WHERE `teacherbookingtbl`.`tbid` ='$stid'");
-        if ($query) {
-            $msg = "You say NO, Request was approved";
-        } else {
-            $error = "Something went wrong . Please try again.";
-        }
-    }
+    
 ?>
 
     <!DOCTYPE html>
@@ -117,16 +75,16 @@ if (strlen($_SESSION['id']) == 0) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Manage Tools </h4>
+                                    <h4 class="page-title">Student Report</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="#">Tools</a>
+                                            <a href="#">Assets</a>
                                         </li>
                                         <li>
-                                            <a href="#">Tools</a>
+                                            <a href="#">Assets</a>
                                         </li>
                                         <li class="active">
-                                            Manage Tools
+                                        Student Assets
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -141,32 +99,31 @@ if (strlen($_SESSION['id']) == 0) {
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
-
-
                                     <div class="table-responsive">
+                                        <!-- export to excel -->
+                                            <form method="post" action="excel-staff-report.php">
+                                                <button class="btn btn-success" name="export"> Export to Excel 
+                                                    <i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
+                                            </form>
+                                    
                                         <table class="table table-colored table-centered table-inverse m-0" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>Staff Number</th>
+                                                <th>Staff Number</th>
                                                     <th>Email</th>
                                                     <th>Department</th>
                                                     <th>Booked Asset</th>
                                                     <th>Purpose</th>
                                                     <th>Date of Booking</th>
                                                     <th>Date of Returning</th>
-                                                    <th style="width: 20%;">Action</th>
+                                                    <th>Date</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                                 <?php
-                                                $query = mysqli_query($con, "SELECT tbltools.id as tid,teachertbl.Firstname AS fname,
-                                                teachertbl.Lastname AS lname,teachertbl.phoneNumber AS phone,teachertbl.email AS email,
-                                                teacherbookingtbl.tbid AS teacboo,teacherbookingtbl.staffOption as teacoption,
-                                                tbltools.Toolname as toolname,teacherbookingtbl.purpose as purpose,
-                                                teacherbookingtbl.BookedDate AS bookeddate,teacherbookingtbl.returnDate 
-                                                FROM teachertbl,tbltools LEFT JOIN teacherbookingtbl ON teacherbookingtbl.toolID=tbltools.id 
-                                                WHERE teacherbookingtbl.teacherID=teachertbl.tid AND teacherbookingtbl.ActiveStatus =1 AND teacherbookingtbl.BookStatus=0");
+                                                $query = mysqli_query($con, "SELECT `id`, `staffnames`, `email`, `staffOption`, 
+                                                `Assetname`, `purpose`, `bookedDate`, `returnedDate`, `ReportDate` FROM `tblstaffreport` WHERE 1");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>
@@ -181,22 +138,15 @@ if (strlen($_SESSION['id']) == 0) {
                                                         while ($row = mysqli_fetch_array($query)) {
                                                         ?>
                                                     <tr>
-                                                        <td><b><?php echo $row['fname'] . "  " . $row['lname']; ?></b></td>
+                                                        <td><b><?php echo $row['staffnames']; ?></b></td>
                                                         <td><?php echo $row['email']; ?></td>
-                                                        <td><?php echo $row['teacoption']; ?></td>
-                                                        <td><?php echo $row['toolname']; ?></td>
+                                                        <td><?php echo $row['staffOption']; ?></td>
+                                                        <td><?php echo $row['Assetname']; ?></td>
                                                         <td><?php echo $row['purpose']; ?></td>
 
-                                                        <td style="background-color: #f37020;color:white;"><?php echo $row['bookeddate']; ?></td>
-                                                        <td style="background-color: #f37020;color:white;"><?php echo $row['returnDate']; ?></td>
-                                                        <td>
-                                                            <a href="reply-staff.php?tid4=<?php echo htmlentities($row['teacboo']); ?>&&action4=rep4" onclick="return confirm('Do you realy want to Approve this request ?')" class=" btn btn-success">YES</a>
-                                                            <a href="reply-staff.php?tid3=<?php echo htmlentities($row['teacboo']); ?>&&action3=rep3" onclick="return confirm('Do you realy want to say NO ?')" class="btn btn-danger">NO</a>
-                                                            <form method="POST">
-                                                                <input type="text" name="comment" class="form-control" placeholder="Enter your comment">
-                                                                <input type="submit" name="btncomment" value="Comment" class="btn btn-primary">
-                                                            </form>
-                                                        </td>
+                                                        <td style="background-color: #f37020;color:white;"><?php echo $row['bookedDate']; ?></td>
+                                                        <td style="background-color: #f37020;color:white;"><?php echo $row['returnedDate']; ?></td>
+                                                        <td><?php echo $row['ReportDate']; ?></td>
                                                     </tr>
                                             <?php }
                                                     } ?>

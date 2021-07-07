@@ -65,7 +65,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="reply-staff.php">Asset To Staff</a></li>
                                     <li><a href="asset-from-staff.php">Asset From Staff</a></li>
-                                    <li><a href="#">Student Staff</a></li>
+                                    <li><a href="staff-report.php">Staff Report</a></li>
                                 </ul>
                             </li>
 
