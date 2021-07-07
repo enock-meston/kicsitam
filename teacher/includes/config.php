@@ -9,4 +9,19 @@ if (mysqli_connect_errno())
 {
  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
+
+
+
+// redirect to other pag
+function redirect($location=Null){
+    if($location!=Null){
+        echo "<script>
+                window.location='{$location}'
+            </script>";	
+    }else{
+        echo 'error location';
+    }
+     
+}
+//
 ?>

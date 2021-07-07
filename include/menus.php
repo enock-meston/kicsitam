@@ -12,6 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
                 <a href="index.php" class="nav-item nav-link active">Home</a>
+                <a href="it-suport.php" class="nav-item nav-link active">IT Support</a>
                 <!-- <a href="#" class="nav-item nav-link">Profile</a>
                 <a href="#" class="nav-item nav-link">Messages</a>
                 <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a> -->
