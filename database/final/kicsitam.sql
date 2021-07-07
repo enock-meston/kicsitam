@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jul 03, 2021 at 07:47 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Host: 127.0.0.1
+-- Generation Time: Jul 07, 2021 at 04:06 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -81,7 +81,12 @@ INSERT INTO `qrcodeasset` (`id`, `serialnumber`, `datebooking`, `status`) VALUES
 (1, 'Agfjfj', '2021-07-03 22:10:44', 0),
 (2, 'A001-enock', '2021-07-03 22:11:50', 1),
 (3, 'A002-mushime', '2021-07-03 22:12:15', 1),
-(4, 'A003-Erick', '2021-07-03 22:12:29', 1);
+(4, 'A003-Erick', '2021-07-03 22:12:29', 1),
+(5, '009-SHAD', '2021-07-05 12:17:15', 0),
+(6, '009-SHAD', '2021-07-05 12:19:57', 0),
+(7, '009-SHAD', '2021-07-05 12:20:02', 0),
+(8, '009-SHAD', '2021-07-05 12:20:06', 0),
+(9, '009-SHAD', '2021-07-05 12:20:35', 0);
 
 -- --------------------------------------------------------
 
@@ -100,6 +105,16 @@ CREATE TABLE `studentbookingtbl` (
   `ActiveStatus` int(5) NOT NULL,
   `BookStatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `studentbookingtbl`
+--
+
+INSERT INTO `studentbookingtbl` (`bid`, `toolID`, `studentID`, `studentOption`, `purpose`, `BookedDate`, `returnDate`, `ActiveStatus`, `BookStatus`) VALUES
+(5, 1, 2, 'secondary', 'i need to finish my work', '2021-07-07 12:32:41', '2021-07-07', 1, 1),
+(6, 3, 2, 'secondary', 'me to', '2021-07-07 12:33:00', '2021-07-15', 1, 1),
+(7, 9, 2, 'secondary', 'another one', '2021-07-07 12:33:21', '2021-07-08', 1, 1),
+(8, 7, 2, 'primary', 'hello', '2021-07-07 12:33:52', '2021-07-08', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -124,7 +139,39 @@ INSERT INTO `tblcategory` (`c_id`, `CategoryName`, `Description`, `Is_Active`, `
 (2, 'Laptop', 'all Laptops must be in this category', 1, '2021-06-21 19:24:27'),
 (3, 'iPads', 'all iPads must be in this Category', 1, '2021-06-21 20:35:03'),
 (4, 'Projector', 'all Projector must be in this Categories', 1, '2021-06-23 15:02:46'),
-(5, 'PP pointer laser', 'All PP pointer laser', 1, '2021-06-23 15:18:24');
+(5, 'PP pointer laser', 'All PP pointer laser', 1, '2021-06-23 15:18:24'),
+(6, 'Camera', 'All cameras must be in this Category', 1, '2021-07-05 15:26:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblstaffreport`
+--
+
+CREATE TABLE `tblstaffreport` (
+  `id` int(11) NOT NULL,
+  `staffnames` varchar(60) NOT NULL,
+  `email` varchar(60) NOT NULL,
+  `staffOption` varchar(18) NOT NULL,
+  `Assetname` varchar(45) NOT NULL,
+  `purpose` varchar(100) NOT NULL,
+  `bookedDate` varchar(45) NOT NULL,
+  `returnedDate` varchar(45) NOT NULL,
+  `ReportDate` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblstaffreport`
+--
+
+INSERT INTO `tblstaffreport` (`id`, `staffnames`, `email`, `staffOption`, `Assetname`, `purpose`, `bookedDate`, `returnedDate`, `ReportDate`) VALUES
+(9, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Sony projector', 'hello', '2021-07-07 14:38:36', '2021-07-07', '2021-07-07 12:44:27'),
+(10, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Sony projector', 'hello', '2021-07-07 14:38:36', '2021-07-07', '2021-07-07 12:59:46'),
+(11, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Acer projector', 'i need projector', '2021-07-07 14:38:58', '2021-07-07', '2021-07-07 13:01:33'),
+(12, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Acer projector', 'i need projector', '2021-07-07 14:38:58', '2021-07-07', '2021-07-07 13:02:52'),
+(13, 'enock  meston', 'enock11@gmail.com', 'secondary', '21 pointer', 'jb', '2021-07-07 14:43:21', '2021-07-07', '2021-07-07 13:03:43'),
+(14, 'enock  meston', 'enock11@gmail.com', 'primary', 'Hp probook enock', 'j', '2021-07-07 15:12:10', '2021-07-14', '2021-07-07 13:12:22'),
+(15, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Hp proBook 6470b', 'j', '2021-07-07 15:15:56', '2021-07-07', '2021-07-07 13:59:58');
 
 -- --------------------------------------------------------
 
@@ -156,6 +203,39 @@ INSERT INTO `tblstudent` (`id`, `Firstname`, `Lastname`, `email`, `class`, `depa
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tblstudentreport`
+--
+
+CREATE TABLE `tblstudentreport` (
+  `id` int(11) NOT NULL,
+  `studentnames` varchar(60) NOT NULL,
+  `class` varchar(12) NOT NULL,
+  `stuOption` varchar(18) NOT NULL,
+  `Assetname` varchar(45) NOT NULL,
+  `purpose` varchar(100) NOT NULL,
+  `bookedDate` varchar(45) NOT NULL,
+  `returnedDate` varchar(45) NOT NULL,
+  `ReportDate` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblstudentreport`
+--
+
+INSERT INTO `tblstudentreport` (`id`, `studentnames`, `class`, `stuOption`, `Assetname`, `purpose`, `bookedDate`, `returnedDate`, `ReportDate`) VALUES
+(17, 'claude  gashumba', 'l3', 'primary', 'Hp probook enock', 'nkf', '2021-07-06 22:00:52', '2021-07-07', '2021-07-06 20:02:32'),
+(18, '  ', '', '', '', '', '', '', '2021-07-06 20:03:25'),
+(19, '$names', '$calss', '$option', '$assetname', '$pur', '$bookDate', '$returnDate', '2021-07-07 12:25:13'),
+(20, 'claude  gashumba', 'l3', 'primary', 'Hp proBook 6470b', 'j', '2021-07-07 14:26:31', '2021-07-07', '2021-07-07 12:27:58'),
+(21, 'claude  gashumba', 'l3', 'Select Option', 'windows ipad', 'h', '2021-07-07 14:27:05', '2021-07-08', '2021-07-07 12:29:27'),
+(22, 'claude  gashumba', 'l3', 'secondary', 'Hp probook enock', 'i need to finish my work', '2021-07-07 14:32:41', '2021-07-07', '2021-07-07 12:34:16'),
+(23, 'claude  gashumba', 'l3', 'secondary', 'Hp proBook 6470b', 'me to', '2021-07-07 14:33:00', '2021-07-15', '2021-07-07 12:34:53'),
+(24, 'claude  gashumba', 'l3', 'secondary', 'windows pc', 'another one', '2021-07-07 14:33:21', '2021-07-08', '2021-07-07 12:35:08'),
+(25, 'claude  gashumba', 'l3', 'primary', ' pp pen red laser pointer', 'hello', '2021-07-07 14:33:52', '2021-07-08', '2021-07-07 12:35:26');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbltools`
 --
 
@@ -163,7 +243,6 @@ CREATE TABLE `tbltools` (
   `id` int(11) NOT NULL,
   `Toolname` varchar(45) NOT NULL,
   `ToolImage` varchar(200) NOT NULL,
-  `QRimage` varchar(100) NOT NULL,
   `serial_number` varchar(100) NOT NULL,
   `ToolCategory` varchar(11) NOT NULL,
   `ToolDescription` varchar(100) NOT NULL,
@@ -177,23 +256,18 @@ CREATE TABLE `tbltools` (
 -- Dumping data for table `tbltools`
 --
 
-INSERT INTO `tbltools` (`id`, `Toolname`, `ToolImage`, `QRimage`, `serial_number`, `ToolCategory`, `ToolDescription`, `isAllowedBy`, `ActiveStatus`, `response_status`, `PostedDate`) VALUES
-(1, 'Hp probook enock', '1e6ae4ada992769567b71815f124fac5.jpg', '', 'CNU343C71J', '2', 'HP laptop 6470b has serial number of CNU343C71J', 'student', 1, 0, '2021-06-21 20:31:10'),
-(2, 'windows ipad', 'd6f75c8e536992277cfe22018e8a7d19.jpg', '', '', '3', 'windows iPad', 'student', 1, 0, '2021-06-21 20:35:42'),
-(3, 'Hp proBook 6470b', 'c13471728a554cabc9e56fe42c9b7a52.jpg', '', '', '2', 'HP laptop 6470b has serial number of CNU343C71J', 'student', 1, 0, '2021-06-21 20:36:55'),
-(4, 'Sony projector', '2d99ae9e904f880eef8feb4e61882b79.jpg', '', '', '4', 'Sony 123 projector', 'teacher', 1, 0, '2021-06-23 15:03:32'),
-(5, 'Acer projector', 'b9fb9d37bdf15a699bc071ce49baea53.jpg', '', '', '4', 'Acer 27J projector', 'teacher', 1, 0, '2021-06-23 15:04:08'),
-(6, '21 pointer', '9e6a616dbccf1f65810a30ca594b2f11.jpg', '', '', '5', '21 pointer', 'teacher', 1, 0, '2021-06-23 15:19:35'),
-(7, ' pp pen red laser pointer', 'd08213c436a853e74a3069bb6c9e4968.jpg', '', '', '5', ' pp pen red laser pointer', 'student', 1, 0, '2021-06-23 15:20:23'),
-(8, 'wi-fi pen red laser pointer', '082815eca1dbe251682c73d9b681eaa3.jpg', '', '', '5', 'wi-fi pen red laser pointer', 'student', 1, 0, '2021-06-23 15:20:59'),
-(9, 'windows pc', '55ccf27d26d7b23839986b6ae2e447ab.jpg', '', '', '2', 'windows pc and has windows 10', 'student', 1, 0, '2021-06-23 15:46:40'),
-(10, 'Acer', 'efc1a80c391be252d7d777a437f86870.jpg', '', '', '2', 'acer ', 'student', 1, 0, '2021-06-23 18:24:37'),
-(11, 'HP envy 32', '5af9f260d85e2151c5615d6b6ade9a6b.jpg', '', '', '1', 'HP envy 32', 'student', 1, 0, '2021-06-28 06:52:14'),
-(12, 'iMac', '57a437b26ff01054ca5881d38668511a.jpg', '/qrimgCore i5.png', 'Core i5 - enock ndagijimana', '1', 'The iMac \"Core i5\" 2.7 21.5-Inch Aluminum ', 'student', 1, 0, '2021-07-03 17:37:03'),
-(13, 'iMac', '57a437b26ff01054ca5881d38668511a.jpg', '/qrimgCore i5.png', 'Core i5 - enock ndagijimana', '1', 'The iMac \"Core i5\" 2.7 21.5-Inch Aluminum ', 'student', 1, 0, '2021-07-03 17:40:16'),
-(14, 'iMacc', '57a437b26ff01054ca5881d38668511a.jpg', '/imgCore i55.png', 'Core i55 - enock ndagijimana', '1', 'The iMac \"Core i5\" 2.7 21.5-Inch Aluminum ', 'student', 1, 0, '2021-07-03 17:41:05'),
-(15, 'iMaccjtc', '57a437b26ff01054ca5881d38668511a.jpg', '/toolimagesCore i55hgf.png', 'Core i55hgf - enock ndagijimanahgz', '1', 'The iMac \"Core i5\" 2.7 21.5-Inch Aluminum ', 'student', 1, 0, '2021-07-03 17:42:34'),
-(16, 'iMaccjtc 100', '57a437b26ff01054ca5881d38668511a.jpg', '/imgCore i55hgf 100.png', 'Core i55hgf 100 - enock ndagijimanahgz', '1', 'The iMac \"Core i5\" 2.7 21.5-Inch Aluminum ', 'student', 1, 0, '2021-07-03 17:45:51');
+INSERT INTO `tbltools` (`id`, `Toolname`, `ToolImage`, `serial_number`, `ToolCategory`, `ToolDescription`, `isAllowedBy`, `ActiveStatus`, `response_status`, `PostedDate`) VALUES
+(1, 'Hp probook enock', '1e6ae4ada992769567b71815f124fac5.jpg', 'CNU343C71J', '2', 'HP laptop 6470b has serial number of CNU343C71J', 'student', 1, 0, '2021-06-21 20:31:10'),
+(2, 'windows ipad', 'd6f75c8e536992277cfe22018e8a7d19.jpg', '', '3', 'windows iPad', 'student', 1, 0, '2021-06-21 20:35:42'),
+(3, 'Hp proBook 6470b', 'c13471728a554cabc9e56fe42c9b7a52.jpg', '', '2', 'HP laptop 6470b has serial number of CNU343C71J', 'student', 1, 0, '2021-06-21 20:36:55'),
+(4, 'Sony projector', '2d99ae9e904f880eef8feb4e61882b79.jpg', '', '4', 'Sony 123 projector', 'teacher', 1, 0, '2021-06-23 15:03:32'),
+(5, 'Acer projector', 'b9fb9d37bdf15a699bc071ce49baea53.jpg', '', '4', 'Acer 27J projector', 'teacher', 1, 0, '2021-06-23 15:04:08'),
+(6, '21 pointer', '9e6a616dbccf1f65810a30ca594b2f11.jpg', '', '5', '21 pointer', 'teacher', 1, 0, '2021-06-23 15:19:35'),
+(7, ' pp pen red laser pointer', 'd08213c436a853e74a3069bb6c9e4968.jpg', '', '5', ' pp pen red laser pointer', 'student', 1, 0, '2021-06-23 15:20:23'),
+(8, 'wi-fi pen red laser pointer', '082815eca1dbe251682c73d9b681eaa3.jpg', '', '5', 'wi-fi pen red laser pointer', 'student', 1, 0, '2021-06-23 15:20:59'),
+(9, 'windows pc', '55ccf27d26d7b23839986b6ae2e447ab.jpg', '', '2', 'windows pc and has windows 10', 'student', 1, 0, '2021-06-23 15:46:40'),
+(10, 'Acer', 'efc1a80c391be252d7d777a437f86870.jpg', '', '2', 'acer ', 'student', 1, 0, '2021-06-23 18:24:37'),
+(11, 'HP envy 32', '5af9f260d85e2151c5615d6b6ade9a6b.jpg', '', '1', 'HP envy 32', 'student', 1, 0, '2021-06-28 06:52:14');
 
 -- --------------------------------------------------------
 
@@ -212,6 +286,18 @@ CREATE TABLE `teacherbookingtbl` (
   `ActiveStatus` int(5) NOT NULL,
   `BookStatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teacherbookingtbl`
+--
+
+INSERT INTO `teacherbookingtbl` (`tbid`, `toolID`, `teacherID`, `staffOption`, `purpose`, `BookedDate`, `returnDate`, `ActiveStatus`, `BookStatus`) VALUES
+(12, 4, 1, 'secondary', 'hello', '2021-07-07 12:38:36', '2021-07-07', 1, 1),
+(13, 5, 1, 'secondary', 'i need projector', '2021-07-07 12:38:58', '2021-07-07', 1, 1),
+(14, 6, 1, 'secondary', 'jb', '2021-07-07 12:43:21', '2021-07-07', 1, 1),
+(16, 11, 1, 'primary', 'jl', '2021-07-07 12:46:25', '2021-07-07', 1, 1),
+(17, 1, 1, 'primary', 'j', '2021-07-07 13:12:10', '2021-07-14', 1, 1),
+(18, 3, 1, 'secondary', 'j', '2021-07-07 13:15:56', '2021-07-07', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -327,9 +413,21 @@ ALTER TABLE `tblcategory`
   ADD PRIMARY KEY (`c_id`);
 
 --
+-- Indexes for table `tblstaffreport`
+--
+ALTER TABLE `tblstaffreport`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tblstudent`
 --
 ALTER TABLE `tblstudent`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tblstudentreport`
+--
+ALTER TABLE `tblstudentreport`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -384,19 +482,25 @@ ALTER TABLE `financetbl`
 -- AUTO_INCREMENT for table `qrcodeasset`
 --
 ALTER TABLE `qrcodeasset`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `studentbookingtbl`
 --
 ALTER TABLE `studentbookingtbl`
-  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tblcategory`
 --
 ALTER TABLE `tblcategory`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tblstaffreport`
+--
+ALTER TABLE `tblstaffreport`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tblstudent`
@@ -405,16 +509,22 @@ ALTER TABLE `tblstudent`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tblstudentreport`
+--
+ALTER TABLE `tblstudentreport`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
 -- AUTO_INCREMENT for table `tbltools`
 --
 ALTER TABLE `tbltools`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `teacherbookingtbl`
 --
 ALTER TABLE `teacherbookingtbl`
-  MODIFY `tbid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tbid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `teachertbl`
