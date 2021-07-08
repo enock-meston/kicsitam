@@ -247,7 +247,6 @@ if (strlen($_SESSION['id']) == 0) {
                         <!-- end row -->
  
 
-
                     </div> <!-- container -->
 
                 </div> <!-- content -->
