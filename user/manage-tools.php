@@ -131,7 +131,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                 tbltools.ToolImage as image,tbltools.serial_number as serialnumber,tbltools.QRimage as QRimage,
                                                 tbltools.ToolDescription as ToolDescription,
                                                 tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
-                                                from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory where tbltools.ActiveStatus=1");
+                                                from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>

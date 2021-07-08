@@ -43,14 +43,19 @@ if (strlen($_SESSION['id']) == 0) {
             $respone_status=0;
             // qr method
             Qrcode::png($qrkey,$file);
-            $query = mysqli_query($con, "INSERT INTO `tbltools`(`Toolname`, `ToolImage`,`QRimage`,`serial_number`, `ToolCategory`, `ToolDescription`,`isAllowedBy`,`ActiveStatus`,`response_status`) 
-VALUES ('$posttitle','$imgnewfile','$file','$qrkey','$catid','$tooldetails','$allowedby','$status','$respone_status')");
+            $query = mysqli_query($con, "INSERT INTO `tbltools`(`Toolname`, `ToolImage`,
+            `QRimage`,`serial_number`, `ToolCategory`, `ToolDescription`,`isAllowedBy`,
+            `ActiveStatus`,`response_status`) VALUES ('$posttitle','$imgnewfile','$file',
+            '$qrkey','$catid','$tooldetails','$allowedby','$status','$respone_status')");
             if ($query) {
-                $msg = "Tool successfully added ";
+                $msg = "Asset successfully added ";
+                echo "<script type='text/javascript'> document.location = 'add-tool.php'; </script>";
             } else {
                 $error = "Something went wrong . Please try again.";
             }
         }
+
+        
     }
 ?>
 
@@ -66,7 +71,7 @@ VALUES ('$posttitle','$imgnewfile','$file','$qrkey','$catid','$tooldetails','$al
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
         <!-- App title -->
-        <title><?php echo $_SESSION['fn'] . " " . $_SESSION['ln']; ?>| Add Tool</title>
+        <title><?php echo $_SESSION['fn'] . " " . $_SESSION['ln']; ?>| Add Asset</title>
 
         <!-- Summernote css -->
         <link href="../plugins/summernote/summernote.css" rel="stylesheet" />
@@ -128,16 +133,16 @@ VALUES ('$posttitle','$imgnewfile','$file','$qrkey','$catid','$tooldetails','$al
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Add Tool </h4>
+                                    <h4 class="page-title">Add Asset </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="#">Tool</a>
+                                            <a href="#">Asset</a>
                                         </li>
                                         <li>
-                                            <a href="#">Add Tool </a>
+                                            <a href="#">Add Asset </a>
                                         </li>
                                         <li class="active">
-                                            Add Tool
+                                            Add Asset
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -173,7 +178,7 @@ VALUES ('$posttitle','$imgnewfile','$file','$qrkey','$catid','$tooldetails','$al
                                     <div class="">
                                         <form name="addpost" method="post" enctype="multipart/form-data">
                                             <div class="form-group m-b-20">
-                                                <label for="exampleInputEmail1">Tool Name </label>
+                                                <label for="exampleInputEmail1">Asset Name </label>
                                                 <input type="text" class="form-control" id="posttitle" name="toolname" placeholder="Enter Title" required>
                                             </div>
 
@@ -206,14 +211,14 @@ VALUES ('$posttitle','$imgnewfile','$file','$qrkey','$catid','$tooldetails','$al
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="card-box">
-                                                        <h4 class="m-b-30 m-t-0 header-title"><b>Tool Details</b></h4>
+                                                        <h4 class="m-b-30 m-t-0 header-title"><b>Asset Details</b></h4>
                                                         <textarea class="form-control" rows="5" cols="10" name="description" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group m-b-20">
-                                                <label for="exampleInputEmail1">Tools Accessible by</label>
+                                                <label for="exampleInputEmail1">Asset Accessible by</label>
                                                 <select class="form-control" name="allowed" id="category" onChange="getSubCat(this.value);" required>
                                                     <option value="">Allowed by </option>
                                                     <option value="teacher">Staff</option>
@@ -225,7 +230,7 @@ VALUES ('$posttitle','$imgnewfile','$file','$qrkey','$catid','$tooldetails','$al
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="card-box">
-                                                        <h4 class="m-b-30 m-t-0 header-title"><b>Tool Image</b></h4>
+                                                        <h4 class="m-b-30 m-t-0 header-title"><b>Asset Image</b></h4>
                                                         <input type="file" class="form-control" id="postimage" name="postimage" required>
                                                     </div>
                                                 </div>

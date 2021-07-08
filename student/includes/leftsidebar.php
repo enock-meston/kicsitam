@@ -19,7 +19,7 @@
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="tool-category.php">Category</a></li>
-                                    <li><a href="booking-tool.php">Booking Tool</a></li>
+                                    <!-- <li><a href="booking-tool.php">Booking Tool</a></li> -->
                                 </ul>
                             </li>  
 

@@ -34,24 +34,24 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="imagess/code.jpeg" alt="First slide">
+                        <img style="border-radius: 32px;" class="d-block w-100" src="imagess/IT2.jpg" alt="First slide">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>sdhasja</h5>
-                            <p>.dbjodododf..</p>
+                            <h5 style="color:black;">All IT Assets</h5>
+                            <p style="color:black;">Desktop and Laptop etc</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="imagess/download1.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="imagess/code2.jpg" alt="Second slide"  style="border-radius: 32px;">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>sdhasja</h5>
-                            <p>.dbjodododf..</p>
+                            <h5>MAC BOOK PC</h5>
+                            <p>Desktop and Laptop</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="imagess/it-equipments-services-500x500.png" alt="Third slide">
+                        <img class="d-block w-100" src="imagess/sss2.jpg" alt="Third slide"  style="border-radius: 32px;">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>sdhasja</h5>
-                            <p>.dbjodododf..</p>
+                            <h5 style="color:black;">All IT Assets</h5>
+                            <p style="color:black;">Desktop and Laptop etc</p>
                         </div>
                     </div>
                 </div>

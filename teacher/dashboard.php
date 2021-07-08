@@ -43,7 +43,7 @@ if (strlen($_SESSION['tid']) == 0) {
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="#" class="logo"><span>NP<span>Member</span></span><i class="mdi mdi-layers"></i></a>
+                    <a href="#" class="logo"><span>KICS<span>Member</span></span><i class="mdi mdi-layers"></i></a>
                     <!-- Image logo -->
                     <!--<a href="index.html" class="logo">-->
                     <!--<span>-->
@@ -82,7 +82,7 @@ if (strlen($_SESSION['tid']) == 0) {
                                             <a href="#">KICSITAM</a>
                                         </li>
                                         <li>
-                                            <a href="#">Asset</a>
+                                            <a href="#">Tools</a>
                                         </li>
                                         <li class="active">
                                             Dashboard
@@ -96,22 +96,21 @@ if (strlen($_SESSION['tid']) == 0) {
 
                         <div class="row">
                             <!-- numbers of categories -->
-                            <!-- <a href="manage-categories.php"> -->
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="card-box widget-box-one">
-                                    <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
-                                    <div class="wigdet-one-content">
-                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Categories Listed</p>
-                                        <?php $query = mysqli_query($con, "select * from tblcategory where Is_Active=1");
-                                        $countcat = mysqli_num_rows($query);
-                                        ?>
-                                        <h2><?php echo htmlentities($countcat); ?> <small></small></h2>
+                            <a href="manage-categories.php">
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <div class="card-box widget-box-one">
+                                        <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
+                                        <div class="wigdet-one-content">
+                                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Categories Listed</p>
+                                            <?php $query = mysqli_query($con, "SELECT * from tblcategory where Is_Active=1");
+                                            $countcat = mysqli_num_rows($query);
+                                            ?>
+                                            <h2><?php echo htmlentities($countcat); ?> <small></small></h2>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- </a> -->
-                            <!-- end numbers of categories -->
+                            </a> <!-- end numbers of categories -->
                             <!-- end col -->
 
                         </div>
