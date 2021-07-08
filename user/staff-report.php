@@ -102,7 +102,7 @@ if (strlen($_SESSION['id']) == 0) {
                                     <div class="table-responsive">
                                         <!-- export to excel -->
                                             <form method="post" action="excel-staff-report.php">
-                                                <button class="btn btn-success" name="export"> Export to Excel 
+                                                <button class="btn btn-success" name="export"> Print 
                                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
                                             </form>
                                     

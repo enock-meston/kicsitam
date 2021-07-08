@@ -112,7 +112,8 @@ if (strlen($_SESSION['id']) == 0) {
         </div>
         <!-- export to excel -->
         <form method="post" action="export.php">
-            <input type="submit" name="export" class="btn btn-success pull-right" value="Export" />
+            <input type="submit" name="export" class="btn btn-success pull-right" value="Print" />
+            
         </form>
 
 

@@ -198,7 +198,7 @@ tbltools.ActiveStatus=1 and tbltools.id='$book'");
                                                             <label class="form-group m-b-20">Date to return</label>
                                                             <input type="hidden" value="<?php echo $_SESSION['id']; ?>" name="studentid">
                                                             <input type="hidden" value="<?php echo htmlentities($row['toolid']); ?>" name="toolid">
-                                                            <input type="date" class="form-control" value="" name="returning" required>
+                                                            <input type="datetime-local" class="form-control" value="" name="returning" required>
                                                         </div>
 
 

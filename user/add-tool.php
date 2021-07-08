@@ -49,7 +49,7 @@ if (strlen($_SESSION['id']) == 0) {
             '$qrkey','$catid','$tooldetails','$allowedby','$status','$respone_status')");
             if ($query) {
                 $msg = "Asset successfully added ";
-                echo "<script type='text/javascript'> document.location = 'add-tool.php'; </script>";
+                // echo "<script type='text/javascript'> document.location = 'add-tool.php'; </script>";
             } else {
                 $error = "Something went wrong . Please try again.";
             }
