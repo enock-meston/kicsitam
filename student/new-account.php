@@ -14,12 +14,25 @@ if (isset($_POST['save'])) {
     $rePass = $_POST['repass'];
     $profile = $_FILES['profile']['name'];
     $extension = substr($profile, strlen($profile) - 4, strlen($profile));
-    $allowed_extensions = array(".jpg", "jpeg", ".png");
+    $allowed_extensions = array(".JPG",".jpg", ".jpeg", ".png");
 
 
     $select_chech = mysqli_query($con, "SELECT * FROM tblstudent WHERE email='$email'");
-
-    if (mysqli_num_rows($select_chech) > 0) {
+    if (strpos($password,'@')==false && strpos($password,'%')== false) {
+        $error = "Please use Either a @ or % symbol";
+        // echo "<script>alert('Please use Either a @ or % symbol...');</script>";
+        // return false;
+    }
+    else if (strlen($password) < 8) {
+        // echo "<script>alert('Password must be at least 8 characters long!...');</script>";
+        $error = "Password must be at least 8 characters long!";
+        // return false;
+    }
+    else if ($password !==$rePass) {
+        $error = "Passwords do not match. please try again!";
+    }
+    // 
+    else if (mysqli_num_rows($select_chech) > 0) {
         echo "<script>alert('email is areald used! try again...');</script>";
     } else if (!in_array($extension, $allowed_extensions)) {
         echo "<script>alert('Invalid format. Only jpg / jpeg/ png format allowed');</script>";
@@ -78,7 +91,7 @@ if (isset($_POST['save'])) {
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account to KICSITAM!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account to KICSITAM Student!</h1>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
@@ -113,7 +126,7 @@ if (isset($_POST['save'])) {
 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Class" name="class">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Grade" name="class">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Department" name="dept">

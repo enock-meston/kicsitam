@@ -15,7 +15,7 @@
                             <!--tools -->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="fa fa-desktop"></i> <span>IT Tools</span> <span
+                                        class="fa fa-desktop"></i> <span>IT Asset</span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="tool-category.php">Category</a></li>

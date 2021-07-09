@@ -100,7 +100,7 @@ tichethelptbl.helper=usertbl.uid WHERE tichethelptbl.ActiveStatus=0;");
                 <div class="col-sm-10">
                 <!-- export to excel -->
                 <form method="post" action="help-desk-report.php">
-                   <button class="btn btn-success" name="export"> Print 
+                   <button class="btn btn-success" name="export"> Print Report
                        <i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
                 </form>
 
@@ -166,7 +166,7 @@ tichethelptbl.helper=usertbl.uid WHERE tichethelptbl.ActiveStatus=0;");
 
                     <div class="col-sm-10">
                     <form method="post" action="help-desk-report.php">
-                   <button class="btn btn-success" name="export-done"> Print 
+                   <button class="btn btn-success" name="export-done"> Print Report
                        <i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
                 </form>
                         <table id="example" class="display table table-hover" style="width:100%">

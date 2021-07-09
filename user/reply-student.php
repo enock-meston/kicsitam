@@ -159,7 +159,7 @@ if (strlen($_SESSION['id']) == 0) {
                                             <thead>
                                                 <tr>
                                                     <th>Student Name</th>
-                                                    <th>class</th>
+                                                    <th>Grade</th>
                                                     <th>Department</th>
                                                     <th>Booked Asset</th>
                                                     <th>Purpose</th>

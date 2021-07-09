@@ -24,7 +24,7 @@ if (isset($_POST["export"])) {
                                                     <th>Purpose</th>
                                                     <th>Date of Booking</th>
                                                     <th>Date of Returning</th>
-                                                    <th>Date</th>
+                                                    <th>Confirmation date</th>
                                                 </tr>
                                             </thead>
   ';

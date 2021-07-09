@@ -43,7 +43,7 @@ if (strlen($_SESSION['id']) == 0) {
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="#" class="logo"><span>NP<span>Member</span></span><i class="mdi mdi-layers"></i></a>
+                    <a href="#" class="logo"><span>KICS<span>Member</span></span><i class="mdi mdi-layers"></i></a>
                     <!-- Image logo -->
                     <!--<a href="index.html" class="logo">-->
                     <!--<span>-->
@@ -81,7 +81,7 @@ if (strlen($_SESSION['id']) == 0) {
                                             <a href="#">KICSITAM</a>
                                         </li>
                                         <li>
-                                            <a href="#">Tools</a>
+                                            <a href="#">Assets</a>
                                         </li>
                                         <li class="active">
                                             Dashboard

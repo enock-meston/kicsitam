@@ -115,11 +115,11 @@ if (isset($_POST['save'])) {
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="exampleInputEmail1">Choose Date</label>
-                                        <input type="date" name="date1" class="form-control">
+                                        <input type="datetime-local" name="date1" class="form-control">
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Choose Date</label>
-                                        <input type="date" name="date2" class="form-control">
+                                        <input type="datetime-local" name="date2" class="form-control">
                                     </div>
                                 </div>
 

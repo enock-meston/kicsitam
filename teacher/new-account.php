@@ -8,7 +8,7 @@ if (isset($_POST['save'])) {
     $firstname=$_POST['fn'];
     $lastname=$_POST['ln'];
     $email=$_POST['email'];
-    $phone=$_POST['phone'];
+    // $phone=$_POST['phone'];
     $username=$_POST['username'];
     $password=$_POST['pass'];
     $rePass=$_POST['repass'];
@@ -21,14 +21,30 @@ if (isset($_POST['save'])) {
     $select_chech= mysqli_query($con,"SELECT * FROM tblstudent WHERE email='$email'");
 
     if (mysqli_num_rows($select_chech)>0) {
-        echo "<script>alert('email is areald used! try again...');</script>";
-    }else if (empty($_POST['phone'])) {
-        $error ="Please Enter Mobile Number...";
-    }else if (strlen($_POST['phone'])<10) {
-        $error ="Mobile number Must Be At least 10 digits";
-    }else if (!preg_match("/^\d{10}$/",$phone)) {
-        $error ="Invalid Mobile Number!";
+        $error = "email is areald used! try again...";
+        // echo "<script>alert('email is areald used! try again...');</script>";
     }
+    else if (strpos($password,'@')==false && strpos($password,'%')== false) {
+        $error = "Please use Either a @ or % symbol";
+        // echo "<script>alert('Please use Either a @ or % symbol...');</script>";
+        // return false;
+    }
+    else if (strlen($password) < 8) {
+        // echo "<script>alert('Password must be at least 8 characters long!...');</script>";
+        $error = "Password must be at least 8 characters long!";
+        // return false;
+    }
+    else if ($password !==$rePass) {
+        $error = "Passwords do not match. please try again!";
+    }
+    //
+    // else if (empty($_POST['phone'])) {
+    //     $error ="Please Enter Mobile Number...";
+    // }else if (strlen($_POST['phone'])<10) {
+    //     $error ="Mobile number Must Be At least 10 digits";
+    // }else if (!preg_match("/^\d{10}$/",$phone)) {
+    //     $error ="Invalid Mobile Number!";
+    // }
     // else if(!in_array($extension,$allowed_extensions)){
     // echo "<script>alert('Invalid format. Only jpg / jpeg/ png format allowed');</script>";
     // }
@@ -36,9 +52,9 @@ if (isset($_POST['save'])) {
         // $newprofile = md5($profile).$extension;
         // move_uploaded_file($_FILES['profile']['tmp_name'],"profile/".$newprofile);
 
-        $query= mysqli_query($con,"INSERT INTO `teachertbl`(`Firstname`, `Lastname`, `phoneNumber`,
+        $query= mysqli_query($con,"INSERT INTO `teachertbl`(`Firstname`, `Lastname`,
          `email`, `username`, `password`, `ActiveStatus`) 
-         VALUES ('$firstname','$lastname','$phone','$email','$username','$password',1)");
+         VALUES ('$firstname','$lastname','$email','$username','$password',1)");
 
           if ($query) {
               $msg="Now you are register Check your email!";
@@ -126,10 +142,10 @@ if (isset($_POST['save'])) {
                                 </div> -->
 
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user"
                                             id="exampleInputPassword" placeholder="Phone Number" name="phone">
-                                    </div>
+                                    </div> -->
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user"
                                             id="exampleRepeatPassword" placeholder="Username" name="username">

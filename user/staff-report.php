@@ -102,7 +102,7 @@ if (strlen($_SESSION['id']) == 0) {
                                     <div class="table-responsive">
                                         <!-- export to excel -->
                                             <form method="post" action="excel-staff-report.php">
-                                                <button class="btn btn-success" name="export"> Print 
+                                                <button class="btn btn-success" name="export"> Print Report
                                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
                                             </form>
                                     
@@ -116,7 +116,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                     <th>Purpose</th>
                                                     <th>Date of Booking</th>
                                                     <th>Date of Returning</th>
-                                                    <th>Date</th>
+                                                    <th>Confirmation date</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
