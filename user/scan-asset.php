@@ -10,6 +10,7 @@ if (strlen($_SESSION['id']) == 0) {
 <html>
 
 <head>
+<title><?php echo $_SESSION['fn'] . " " . $_SESSION['ln']; ?>| Scan</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
@@ -19,6 +20,7 @@ if (strlen($_SESSION['id']) == 0) {
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <link rel="shortcut icon" href="../imagess/logo.png" type="image/x-icon" />
 
     <script>
         $(document).ready(function() {

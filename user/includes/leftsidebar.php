@@ -17,7 +17,9 @@
                                         class="mdi mdi-format-list-bulleted"></i> <span>Use QR code</span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="scan-asset.php">Scan Asset</a></li>
+                                    <li><a href="scan-asset.php">Student</a></li>
+                                    <li><a href="te-scan-asset.php">Staff</a></li>
+                                    <li><a href="#">Non I.T Asset</a></li>
                                 </ul>
                             </li> 
 

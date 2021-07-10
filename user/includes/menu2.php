@@ -10,11 +10,11 @@
                 <a class="nav-link" href="dashboard.php" style="color: white; font-size: 16px; ">Dashboard</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="scan-asset.php" style="color: white; font-size: 16px; ">Turned In</a>
+                <a class="nav-link" href="te-scan-asset.php" style="color: white; font-size: 16px; ">Turned In</a>
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="scan-rerecord.php" style="color: white; font-size: 16px; ">Turned Back</a>
+                <a class="nav-link" href="te-scan-rerecord.php" style="color: white; font-size: 16px; ">Turned Back</a>
             </li>
 
             <li class="nav-item">

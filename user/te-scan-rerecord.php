@@ -34,7 +34,7 @@ if (strlen($_SESSION['id']) == 0) {
 <?php include('includes/menu1.php') ?>
 
     <div class="container">
-    <h1>Rerecord Asset</h1>
+    <h1> Staff- Turning Back Asset</h1>
         <div class="row">
        
             <div class="col-md-5">
@@ -60,7 +60,7 @@ if (strlen($_SESSION['id']) == 0) {
                 ?>
             </div>
             <div class="col-md-7">
-                <form action="update1.php" method="POST" class="form-horintal">
+                <form action="te-update1.php" method="POST" class="form-horintal">
                     <label>SCAN QR CODE COMPUTER NAME</label>
                     <input type="text" name="text" id="text" readonly placeholder="Serial Number" class="form-control">
                 </form>
@@ -78,7 +78,7 @@ if (strlen($_SESSION['id']) == 0) {
 
                         <?php
                         include('includes/config.php');
-                        $sql = mysqli_query($con, "SELECT * FROM qrcodeasset WHERE status=0");
+                        $sql = mysqli_query($con, "SELECT * FROM te_qrcodeasset WHERE status=0");
                         while ($row = mysqli_fetch_array($sql)) {
                         ?>
 
