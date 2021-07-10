@@ -35,7 +35,7 @@ $output = '';
 
 if (isset($_POST["export"])) {
     // $query = "SELECT * FROM qrcodeasset WHERE status=1";
-    $query = "SELECT * FROM qrcodeasset";
+    $query = "SELECT * FROM te_qrcodeasset";
     $result = mysqli_query($con, $query);
     if (mysqli_num_rows($result) > 0) {
         $output .= '

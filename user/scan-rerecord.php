@@ -34,7 +34,7 @@ if (strlen($_SESSION['id']) == 0) {
 <?php include('includes/menu1.php') ?>
 
     <div class="container">
-    <h1>Rerecord Asset</h1>
+    <h1>Student - Turning Back Asset</h1>
         <div class="row">
        
             <div class="col-md-5">

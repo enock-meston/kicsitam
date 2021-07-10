@@ -20,6 +20,10 @@
             <li class="nav-item">
                 <a class="nav-link disabled" style="font-size: 16px; "><?php echo $_SESSION['fn'] . "  " . $_SESSION['ln']; ?></a>
             </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="scan-asset.php" style="color: white; font-size: 16px; ">Scan Student</a>
+            </li>
         </ul>
     </nav>
     <!--ends of  navigation menu -->
