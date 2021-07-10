@@ -14,7 +14,7 @@ include('includes/config.php');
         }else {
             $_SESSION['error']=$con->error;
         }
-        header('location: te-scan-rerecord.php');
+        header('location: te-scan-rerecord.php'); 
  }
 
  $con->close();
