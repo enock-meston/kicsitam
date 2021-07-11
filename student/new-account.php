@@ -1,9 +1,10 @@
 <?php
 
 include 'includes/config.php';
+include 'send-email.php';
 $error = "";
 $msg = "";
-
+$subject="Proof of registration";
 if (isset($_POST['save'])) {
     $firstname = $_POST['fn'];
     $lastname = $_POST['ln'];
@@ -46,6 +47,8 @@ if (isset($_POST['save'])) {
 
         if ($query) {
             $msg = "Now you are register Check your email!";
+            
+            sendingEmail($email,$subject,$msg);
         } else {
             $error = "Something went wrong . Please try again.";
         }

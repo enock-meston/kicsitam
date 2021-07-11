@@ -108,9 +108,14 @@ if (strlen($_SESSION['id']) == 0) {
                             <div class="col-sm-12">
                                 <div class="card-box">
 
-
+                <!-- export to excel -->
+                                            <form method="post" action="qrcode-report.php">
+                                                <button class="btn btn-success" name="export"> Print Qr Code
+                                                    <i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
+                                            </form><br>
+                                    
                                     <div class="table-responsive">
-                                        <table class="table table-colored table-centered table-inverse m-0" style="width: 100%;">
+                                        <table class="table table-colored table-centered table-inverse m-0" style="width: 100%;" border="1">
                                             <thead>
                                                 <tr>
 
@@ -148,15 +153,17 @@ if (strlen($_SESSION['id']) == 0) {
                                                     <tr>
                                                         <td><b><?php echo htmlentities($row['name']); ?></b></td>
                                                         <td><?php echo htmlentities($row['category']) ?></td>
-                                                        <td style="width: 30%;"><b>
-                                                                <img src="toolimages/<?php echo $row['image']; ?>" alt="" style="width: 20%;">
+                                                        <td style="width: 20px;"><b>
+                                                                <img src="toolimages/<?php echo $row['image']; ?>" alt="" style="width: 100%;">
                                                             </b></td>
-                                                             <td>
-                                                                <img src="<?php echo $row['QRimage'];?>" alt="" style="width: 200%;">
+                                                             <td style="width: 10%;">
+                                                              <a href="<?php echo $row['QRimage'];?>">
+                                                                <img src="<?php echo $row['QRimage'];?>" alt="" style="width: 50%;">
+                                                              </a>
                                                             </td>
-                                                        <td><?php echo htmlentities($row['serialnumber']) ?></td>
+                                                        <td style="width: 20%;"><?php echo htmlentities($row['serialnumber']); ?></td>
                                                         <td><b><?php echo htmlentities($row['allowed']); ?></b></td>
-                                                        <td><?php echo htmlentities($row['ToolDescription']) ?></td>
+                                                        <td><?php echo htmlentities($row['ToolDescription']) ;?></td>
 
                                                         <td><a href="edit-tool.php?pid=<?php echo htmlentities($row['toolid']); ?>"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a>
                                                             &nbsp;<a href="manage-tools.php?pid=<?php echo htmlentities($row['toolid']); ?>&&action=del" onclick="return confirm('Do you reaaly want to delete ?')">
