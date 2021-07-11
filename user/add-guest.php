@@ -7,14 +7,38 @@ if (strlen($_SESSION['id']) == 0) {
 } else {
 
     if (isset($_POST['submit'])) {
-        $category = $_POST['category'];
-        $description = $_POST['description'];
-        $status = 1;
-        $query = mysqli_query($con, "insert into tblcategory(CategoryName,Description,Is_Active) values('$category','$description','$status')");
-        if ($query) {
-            $msg = "Category created ";
+        $firstname = $_POST['fn'];
+        $lastname = $_POST['ln'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['pass'];
+        $rePass = $_POST['repass'];
+        $status = 2;
+        $select_chech = mysqli_query($con, "SELECT * FROM tblstudent WHERE email='$email'");
+
+        if (mysqli_num_rows($select_chech) > 0) {
+            $error = "email is areald used! try again...";
+            // echo "<script>alert('email is areald used! try again...');</script>";
+        } else if (strpos($password, '@') == false && strpos($password, '%') == false) {
+            $error = "Please use Either a @ or % symbol";
+            // echo "<script>alert('Please use Either a @ or % symbol...');</script>";
+            // return false;
+        } else if (strlen($password) < 8) {
+            // echo "<script>alert('Password must be at least 8 characters long!...');</script>";
+            $error = "Password must be at least 8 characters long!";
+            // return false;
+        } else if ($password !== $rePass) {
+            $error = "Passwords do not match. please try again!";
         } else {
-            $error = "Something went wrong . Please try again.";
+            $query = mysqli_query($con, "INSERT INTO `teachertbl`(`Firstname`, `Lastname`,
+    `email`, `username`, `password`, `ActiveStatus`) 
+    VALUES ('$firstname','$lastname','$email','$username','$password','$status')");
+
+            if ($query) {
+                $msg = "Guest User Added ";
+            } else {
+                $error = "Something went wrong . Please try again.";
+            }
         }
     }
 
@@ -27,7 +51,7 @@ if (strlen($_SESSION['id']) == 0) {
 
     <head>
 
-        <title><?php echo $_SESSION['fn'] . " " . $_SESSION['ln']; ?> | Add Category</title>
+        <title>Add Guest User</title>
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -66,16 +90,16 @@ if (strlen($_SESSION['id']) == 0) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Add Category</h4>
+                                    <h4 class="page-title">Add Guest User</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="#">User</a>
+                                            <a href="#"> Guest User</a>
                                         </li>
                                         <li>
-                                            <a href="#">Category </a>
+                                            <a href="#">Guest </a>
                                         </li>
                                         <li class="active">
-                                            Add Category
+                                            Add Guest User
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -88,7 +112,7 @@ if (strlen($_SESSION['id']) == 0) {
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
-                                    <h4 class="m-t-0 header-title"><b>Add Category </b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Add Guest User </b></h4>
                                     <hr />
 
 
@@ -118,28 +142,33 @@ if (strlen($_SESSION['id']) == 0) {
                                         <div class="col-md-6">
                                             <form class="form-horizontal" name="category" method="post">
                                                 <div class="form-group">
-                                                    <label class="col-md-2 control-label">Category</label>
-                                                    <div class="col-md-10">
-                                                        <input type="text" class="form-control" value="" name="category" required>
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="text" class="form-control" placeholder="First Name" name="fn">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" placeholder="Last Name" name="ln">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="email" class="form-control" placeholder="Email Address" name="email">
+                                                    </div>
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="text" class="form-control " placeholder="Username" name="username">
+
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label class="col-md-2 control-label">Category Description</label>
-                                                    <div class="col-md-10">
-                                                        <textarea class="form-control" rows="5" name="description" required></textarea>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="password" class="form-control " placeholder="Password" name="pass">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="password" class="form-control " placeholder="Repeat Password" name="repass">
                                                     </div>
                                                 </div>
+                                                <input type="submit" name="submit" class="btn btn-user btn-block" style="background-color: #2d2b7e;color:white;" value="Register Now">
 
-                                                <div class="form-group">
-                                                    <label class="col-md-2 control-label">&nbsp;</label>
-                                                    <div class="col-md-10">
-
-                                                        <button type="submit" class="btn btn-custom waves-effect waves-light btn-md" name="submit">
-                                                            Submit
-                                                        </button>
-                                                    </div>
-                                                </div>
 
                                             </form>
                                         </div>

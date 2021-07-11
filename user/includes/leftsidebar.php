@@ -80,6 +80,16 @@
                                     <li><a href="make-help.php">Make Help</a></li>
                                 </ul>
                             </li>
+                            <!--Add Guest-->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Guest </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="add-guest.php"> Add Guest Staff</a></li>
+                                    <li><a href="manage-guest.php"> Manage Guest Staff</a></li>
+                                </ul>
+                            </li>
 
                         </ul>
                     </div>

@@ -91,7 +91,7 @@ if (isset($_POST['login'])) {
                                         <div class="form-group">
                                             <select name="type" class="form-control" id="exampleInputEmail">
                                                 <option>Select User type</option>
-                                                <option value="staff">Staff</option>
+                                                <option value="staff">Staff || Guest</option>
                                                 <option value="student">Student</option>
                                             </select>
                                         </div>

@@ -261,6 +261,30 @@ if (strlen($_SESSION['id']) == 0) {
                                     </div>
                                 </div><!-- end col -->
                             </a> <!-- end Asset to STAFF -->
+
+
+                            <!-- === GUEST USER -->
+                            <!-- =============== -->
+
+
+
+                            <!-- Asset to STAFF -->
+                            <a href="manage-guest.php">
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <div class="card-box widget-box-one">
+                                        <i class="mdi mdi-layers widget-one-icon"></i>
+                                        <div class="wigdet-one-content">
+                                            <p class="m-0 text-uppercase font-600 font-secondary 
+                                            text-overflow" title="User This Month">Guest Staff Listed</p>
+                                            <?php $query = mysqli_query($con, "SELECT * from teachertbl where ActiveStatus=2");
+                                            $countposts = mysqli_num_rows($query);
+                                            ?>
+                                            <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
+
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                            </a> <!-- end Asset to STAFF -->
                         </div>
                         <!-- end row -->
 

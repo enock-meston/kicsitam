@@ -5,17 +5,37 @@ error_reporting(0);
 if (strlen($_SESSION['id']) == 0) {
     header('location:index.php');
 } else {
-
     if (isset($_POST['submit'])) {
-        $category = $_POST['category'];
-        $description = $_POST['description'];
-        $status = 1;
-        $query = mysqli_query($con, "insert into tblcategory(CategoryName,Description,Is_Active) values('$category','$description','$status')");
-        if ($query) {
-            $msg = "Category created ";
+        //Current Password hashing 
+        $password = $_POST['password'];
+        $staffid = $_SESSION['id'];
+        $newpassword=$_POST['newpassword'];
+        
+        $sql = mysqli_query($con, "SELECT * FROM usertbl WHERE uid='".$_SESSION['id']."'");
+        if ($row = mysqli_fetch_array($sql)) {
+            $dbpass=$row['password'];
+            if (strpos($newpassword,'@')==false && strpos($newpassword,'%')== false) {
+                $error = "Please use Either a @ or % symbol";
+                // echo "<script>alert('Please use Either a @ or % symbol...');</script>";
+                // return false;
+            }
+            else if (strlen($newpassword) < 8) {
+                // echo "<script>alert('Password must be at least 8 characters long!...');</script>";
+                $error = "Password must be at least 8 characters long!";
+                // return false;
+            }
+            else if ($password==$dbpass) {
+                $updatePass = mysqli_query($con, "UPDATE usertbl SET password='$newpassword' WHERE uid='$staffid'");
+            $msg = "Password Changed Successfully !!";
+            }else {
+                $error = "Incorect Current Password";
+            }
+            
+            
         } else {
-            $error = "Something went wrong . Please try again.";
+            $error = "Old Password not match !!";
         }
+        
     }
 
 
@@ -27,7 +47,7 @@ if (strlen($_SESSION['id']) == 0) {
 
     <head>
 
-        <title><?php echo $_SESSION['fn'] . " " . $_SESSION['ln']; ?> | Add Category</title>
+        <title>Student Change Password</title>
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -39,6 +59,30 @@ if (strlen($_SESSION['id']) == 0) {
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
         <script src="assets/js/modernizr.min.js"></script>
+        <link rel="shortcut icon" href="../imagess/logo.png" type="image/x-icon" />
+        <script type="text/javascript">
+            function valid() {
+                if (document.chngpwd.password.value == "") {
+                    alert("Current Password Filed is Empty !!");
+                    document.chngpwd.password.focus();
+                    return false;
+                } else if (document.chngpwd.newpassword.value == "") {
+                    alert("New Password Filed is Empty !!");
+                    document.chngpwd.newpassword.focus();
+                    return false;
+                } else if (document.chngpwd.confirmpassword.value == "") {
+                    alert("Confirm Password Filed is Empty !!");
+                    document.chngpwd.confirmpassword.focus();
+                    return false;
+                } else if (document.chngpwd.newpassword.value != document.chngpwd.confirmpassword.value) {
+                    alert("Password and Confirm Password Field do not match  !!");
+                    document.chngpwd.confirmpassword.focus();
+                    return false;
+                }
+                return true;
+            }
+        </script>
+
 
     </head>
 
@@ -66,16 +110,14 @@ if (strlen($_SESSION['id']) == 0) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Add Category</h4>
+                                    <h4 class="page-title">Change Password</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="#">User</a>
+                                            <a href="#">Student</a>
                                         </li>
-                                        <li>
-                                            <a href="#">Category </a>
-                                        </li>
+
                                         <li class="active">
-                                            Add Category
+                                            Change Password
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -88,7 +130,7 @@ if (strlen($_SESSION['id']) == 0) {
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
-                                    <h4 class="m-t-0 header-title"><b>Add Category </b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Change Password </b></h4>
                                     <hr />
 
 
@@ -114,26 +156,39 @@ if (strlen($_SESSION['id']) == 0) {
                                     </div>
 
 
+
+
+
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <form class="form-horizontal" name="category" method="post">
+                                        <div class="col-md-10">
+                                            <form class="form-horizontal" name="chngpwd" method="post" onSubmit="return valid();">
+
                                                 <div class="form-group">
-                                                    <label class="col-md-2 control-label">Category</label>
-                                                    <div class="col-md-10">
-                                                        <input type="text" class="form-control" value="" name="category" required>
+                                                    <label class="col-md-4 control-label">Current Password</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" value="" name="password" required>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">New Password</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" value="" name="newpassword" required>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">Confirm Password</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" value="" name="confirmpassword" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-md-2 control-label">Category Description</label>
-                                                    <div class="col-md-10">
-                                                        <textarea class="form-control" rows="5" name="description" required></textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-md-2 control-label">&nbsp;</label>
-                                                    <div class="col-md-10">
+                                                    <label class="col-md-4 control-label">&nbsp;</label>
+                                                    <div class="col-md-8">
 
                                                         <button type="submit" class="btn btn-custom waves-effect waves-light btn-md" name="submit">
                                                             Submit
