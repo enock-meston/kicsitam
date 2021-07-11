@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2021 at 04:06 PM
+-- Generation Time: Jul 11, 2021 at 12:13 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -101,7 +101,7 @@ CREATE TABLE `studentbookingtbl` (
   `studentOption` varchar(18) NOT NULL,
   `purpose` varchar(150) NOT NULL,
   `BookedDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `returnDate` date NOT NULL,
+  `returnDate` datetime NOT NULL,
   `ActiveStatus` int(5) NOT NULL,
   `BookStatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -111,10 +111,12 @@ CREATE TABLE `studentbookingtbl` (
 --
 
 INSERT INTO `studentbookingtbl` (`bid`, `toolID`, `studentID`, `studentOption`, `purpose`, `BookedDate`, `returnDate`, `ActiveStatus`, `BookStatus`) VALUES
-(5, 1, 2, 'secondary', 'i need to finish my work', '2021-07-07 12:32:41', '2021-07-07', 1, 1),
-(6, 3, 2, 'secondary', 'me to', '2021-07-07 12:33:00', '2021-07-15', 1, 1),
-(7, 9, 2, 'secondary', 'another one', '2021-07-07 12:33:21', '2021-07-08', 1, 1),
-(8, 7, 2, 'primary', 'hello', '2021-07-07 12:33:52', '2021-07-08', 1, 1);
+(5, 1, 2, 'secondary', 'i need to finish my work', '2021-07-07 12:32:41', '2021-07-07 00:00:00', 1, 1),
+(6, 3, 2, 'secondary', 'me to', '2021-07-07 12:33:00', '2021-07-15 00:00:00', 1, 1),
+(7, 9, 2, 'secondary', 'another one', '2021-07-07 12:33:21', '2021-07-08 00:00:00', 1, 1),
+(8, 7, 2, 'primary', 'hello', '2021-07-07 12:33:52', '2021-07-08 00:00:00', 1, 1),
+(9, 10, 2, 'secondary', 'i need to finish work', '2021-07-07 18:05:39', '2021-07-09 00:00:00', 1, 1),
+(10, 8, 2, 'secondary', 'ntiza', '2021-07-07 18:06:35', '2021-07-08 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -171,7 +173,8 @@ INSERT INTO `tblstaffreport` (`id`, `staffnames`, `email`, `staffOption`, `Asset
 (12, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Acer projector', 'i need projector', '2021-07-07 14:38:58', '2021-07-07', '2021-07-07 13:02:52'),
 (13, 'enock  meston', 'enock11@gmail.com', 'secondary', '21 pointer', 'jb', '2021-07-07 14:43:21', '2021-07-07', '2021-07-07 13:03:43'),
 (14, 'enock  meston', 'enock11@gmail.com', 'primary', 'Hp probook enock', 'j', '2021-07-07 15:12:10', '2021-07-14', '2021-07-07 13:12:22'),
-(15, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Hp proBook 6470b', 'j', '2021-07-07 15:15:56', '2021-07-07', '2021-07-07 13:59:58');
+(15, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Hp proBook 6470b', 'j', '2021-07-07 15:15:56', '2021-07-07', '2021-07-07 13:59:58'),
+(16, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Sony projector', 'i need to finish my course', '2021-07-08 16:52:50', '2021-07-09 20:53:00', '2021-07-08 14:53:22');
 
 -- --------------------------------------------------------
 
@@ -197,8 +200,12 @@ CREATE TABLE `tblstudent` (
 --
 
 INSERT INTO `tblstudent` (`id`, `Firstname`, `Lastname`, `email`, `class`, `department`, `profilePicture`, `password`, `AddedDate`, `Active_Status`) VALUES
-(1, 'gatare', 'emm', 'gatare@gmail.com', 'l2', 'IT', '0eb07b9d0c1a9a542ec5a567db66416b.jpg', '123', '2021-06-23 11:10:37', 1),
-(2, 'claude', 'gashumba', 'gashumba@gmail.com', 'l3', 'RRE', '650580b75c0e03d3f6a13689899fe6d1.png', '123', '2021-06-23 11:26:44', 1);
+(1, 'gatare', 'emm', 'gatare@gmail.com', 'l2', 'IT', '0eb07b9d0c1a9a542ec5a567db66416b.jpg', 'gatare@gmail.com', '2021-06-23 11:10:37', 1),
+(2, 'claude', 'gashumba', 'gashumba@gmail.com', 'l3', 'RRE', '650580b75c0e03d3f6a13689899fe6d1.png', '123', '2021-06-23 11:26:44', 1),
+(3, '$firstname', '$lastname', '$email', '$class', '$department', '$newprofile', '$password', '2021-07-09 13:09:47', 1),
+(4, 'muhora', 'david', 'david@gmail.com', 'l2', 'IT', '519ec7a4a11bdec22b4177e905eb97b3.jpg', '123@123123', '2021-07-09 13:24:42', 1),
+(5, 'manzi', 'dawid', 'manzi@gmail.com', 'Grade ', 'RRE', '8eea2779082255cc79940394ef31b76c.JPG', '1234@1234', '2021-07-09 13:33:10', 1),
+(6, 'rene', 'uzamukunda', 'rene@gmail.com', 'g3', 'IT', '8eea2779082255cc79940394ef31b76c.JPG', '1234@1234', '2021-07-09 13:42:11', 1);
 
 -- --------------------------------------------------------
 
@@ -231,7 +238,9 @@ INSERT INTO `tblstudentreport` (`id`, `studentnames`, `class`, `stuOption`, `Ass
 (22, 'claude  gashumba', 'l3', 'secondary', 'Hp probook enock', 'i need to finish my work', '2021-07-07 14:32:41', '2021-07-07', '2021-07-07 12:34:16'),
 (23, 'claude  gashumba', 'l3', 'secondary', 'Hp proBook 6470b', 'me to', '2021-07-07 14:33:00', '2021-07-15', '2021-07-07 12:34:53'),
 (24, 'claude  gashumba', 'l3', 'secondary', 'windows pc', 'another one', '2021-07-07 14:33:21', '2021-07-08', '2021-07-07 12:35:08'),
-(25, 'claude  gashumba', 'l3', 'primary', ' pp pen red laser pointer', 'hello', '2021-07-07 14:33:52', '2021-07-08', '2021-07-07 12:35:26');
+(25, 'claude  gashumba', 'l3', 'primary', ' pp pen red laser pointer', 'hello', '2021-07-07 14:33:52', '2021-07-08', '2021-07-07 12:35:26'),
+(26, 'claude  gashumba', 'l3', 'secondary', 'Acer', 'i need to finish work', '2021-07-07 20:05:39', '2021-07-09', '2021-07-07 18:08:45'),
+(27, 'claude  gashumba', 'l3', 'secondary', 'wi-fi pen red laser pointer', 'ntiza', '2021-07-07 20:06:35', '2021-07-08', '2021-07-07 18:09:45');
 
 -- --------------------------------------------------------
 
@@ -243,6 +252,7 @@ CREATE TABLE `tbltools` (
   `id` int(11) NOT NULL,
   `Toolname` varchar(45) NOT NULL,
   `ToolImage` varchar(200) NOT NULL,
+  `QRimage` varchar(100) NOT NULL,
   `serial_number` varchar(100) NOT NULL,
   `ToolCategory` varchar(11) NOT NULL,
   `ToolDescription` varchar(100) NOT NULL,
@@ -256,18 +266,18 @@ CREATE TABLE `tbltools` (
 -- Dumping data for table `tbltools`
 --
 
-INSERT INTO `tbltools` (`id`, `Toolname`, `ToolImage`, `serial_number`, `ToolCategory`, `ToolDescription`, `isAllowedBy`, `ActiveStatus`, `response_status`, `PostedDate`) VALUES
-(1, 'Hp probook enock', '1e6ae4ada992769567b71815f124fac5.jpg', 'CNU343C71J', '2', 'HP laptop 6470b has serial number of CNU343C71J', 'student', 1, 0, '2021-06-21 20:31:10'),
-(2, 'windows ipad', 'd6f75c8e536992277cfe22018e8a7d19.jpg', '', '3', 'windows iPad', 'student', 1, 0, '2021-06-21 20:35:42'),
-(3, 'Hp proBook 6470b', 'c13471728a554cabc9e56fe42c9b7a52.jpg', '', '2', 'HP laptop 6470b has serial number of CNU343C71J', 'student', 1, 0, '2021-06-21 20:36:55'),
-(4, 'Sony projector', '2d99ae9e904f880eef8feb4e61882b79.jpg', '', '4', 'Sony 123 projector', 'teacher', 1, 0, '2021-06-23 15:03:32'),
-(5, 'Acer projector', 'b9fb9d37bdf15a699bc071ce49baea53.jpg', '', '4', 'Acer 27J projector', 'teacher', 1, 0, '2021-06-23 15:04:08'),
-(6, '21 pointer', '9e6a616dbccf1f65810a30ca594b2f11.jpg', '', '5', '21 pointer', 'teacher', 1, 0, '2021-06-23 15:19:35'),
-(7, ' pp pen red laser pointer', 'd08213c436a853e74a3069bb6c9e4968.jpg', '', '5', ' pp pen red laser pointer', 'student', 1, 0, '2021-06-23 15:20:23'),
-(8, 'wi-fi pen red laser pointer', '082815eca1dbe251682c73d9b681eaa3.jpg', '', '5', 'wi-fi pen red laser pointer', 'student', 1, 0, '2021-06-23 15:20:59'),
-(9, 'windows pc', '55ccf27d26d7b23839986b6ae2e447ab.jpg', '', '2', 'windows pc and has windows 10', 'student', 1, 0, '2021-06-23 15:46:40'),
-(10, 'Acer', 'efc1a80c391be252d7d777a437f86870.jpg', '', '2', 'acer ', 'student', 1, 0, '2021-06-23 18:24:37'),
-(11, 'HP envy 32', '5af9f260d85e2151c5615d6b6ade9a6b.jpg', '', '1', 'HP envy 32', 'student', 1, 0, '2021-06-28 06:52:14');
+INSERT INTO `tbltools` (`id`, `Toolname`, `ToolImage`, `QRimage`, `serial_number`, `ToolCategory`, `ToolDescription`, `isAllowedBy`, `ActiveStatus`, `response_status`, `PostedDate`) VALUES
+(1, 'Hp probook enock', '1e6ae4ada992769567b71815f124fac5.jpg', '', 'CNU343C71J', '2', 'HP laptop 6470b has serial number of CNU343C71J', 'student', 1, 0, '2021-06-21 20:31:10'),
+(2, 'windows ipad', 'd6f75c8e536992277cfe22018e8a7d19.jpg', '', '', '3', 'windows iPad', 'student', 1, 0, '2021-06-21 20:35:42'),
+(3, 'Hp proBook 6470b', 'c13471728a554cabc9e56fe42c9b7a52.jpg', '', '', '2', 'HP laptop 6470b has serial number of CNU343C71J', 'student', 1, 0, '2021-06-21 20:36:55'),
+(4, 'Sony projector', '2d99ae9e904f880eef8feb4e61882b79.jpg', '', '', '4', 'Sony 123 projector', 'teacher', 1, 0, '2021-06-23 15:03:32'),
+(5, 'Acer projector', 'b9fb9d37bdf15a699bc071ce49baea53.jpg', '', '', '4', 'Acer 27J projector', 'teacher', 1, 0, '2021-06-23 15:04:08'),
+(6, '21 pointer', '9e6a616dbccf1f65810a30ca594b2f11.jpg', '', '', '5', '21 pointer', 'teacher', 1, 0, '2021-06-23 15:19:35'),
+(7, ' pp pen red laser pointer', 'd08213c436a853e74a3069bb6c9e4968.jpg', '', '', '5', ' pp pen red laser pointer', 'student', 1, 0, '2021-06-23 15:20:23'),
+(8, 'wi-fi pen red laser pointer', '082815eca1dbe251682c73d9b681eaa3.jpg', '', '', '5', 'wi-fi pen red laser pointer', 'student', 1, 0, '2021-06-23 15:20:59'),
+(9, 'windows pc', '55ccf27d26d7b23839986b6ae2e447ab.jpg', '', '', '2', 'windows pc and has windows 10', 'student', 1, 0, '2021-06-23 15:46:40'),
+(10, 'Acer', 'efc1a80c391be252d7d777a437f86870.jpg', '', '', '2', 'acer ', 'student', 1, 0, '2021-06-23 18:24:37'),
+(11, 'HP envy 32', '5af9f260d85e2151c5615d6b6ade9a6b.jpg', '', '', '1', 'HP envy 32', 'student', 1, 0, '2021-06-28 06:52:14');
 
 -- --------------------------------------------------------
 
@@ -282,7 +292,7 @@ CREATE TABLE `teacherbookingtbl` (
   `staffOption` varchar(18) NOT NULL,
   `purpose` varchar(150) NOT NULL,
   `BookedDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `returnDate` date NOT NULL,
+  `returnDate` datetime NOT NULL,
   `ActiveStatus` int(5) NOT NULL,
   `BookStatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -292,12 +302,7 @@ CREATE TABLE `teacherbookingtbl` (
 --
 
 INSERT INTO `teacherbookingtbl` (`tbid`, `toolID`, `teacherID`, `staffOption`, `purpose`, `BookedDate`, `returnDate`, `ActiveStatus`, `BookStatus`) VALUES
-(12, 4, 1, 'secondary', 'hello', '2021-07-07 12:38:36', '2021-07-07', 1, 1),
-(13, 5, 1, 'secondary', 'i need projector', '2021-07-07 12:38:58', '2021-07-07', 1, 1),
-(14, 6, 1, 'secondary', 'jb', '2021-07-07 12:43:21', '2021-07-07', 1, 1),
-(16, 11, 1, 'primary', 'jl', '2021-07-07 12:46:25', '2021-07-07', 1, 1),
-(17, 1, 1, 'primary', 'j', '2021-07-07 13:12:10', '2021-07-14', 1, 1),
-(18, 3, 1, 'secondary', 'j', '2021-07-07 13:15:56', '2021-07-07', 1, 1);
+(20, 5, 5, 'secondary', 'i need to finish my work', '2021-07-10 18:47:49', '2021-07-10 21:47:00', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -322,7 +327,34 @@ CREATE TABLE `teachertbl` (
 --
 
 INSERT INTO `teachertbl` (`tid`, `Firstname`, `Lastname`, `phoneNumber`, `email`, `username`, `password`, `ActiveStatus`, `AddedDate`) VALUES
-(1, 'enock', 'meston', '0783982872', 'enock11@gmail.com', 'enock', '123', 1, '2021-06-23 12:02:20');
+(1, 'enock', 'meston', '0783982872', 'enock11@gmail.com', 'enock', '123@1234', 1, '2021-06-23 12:02:20'),
+(2, 'muhire', 'jean luc', '', 'muhirej@gmail.com', 'muhire', '123', 1, '2021-07-09 13:13:38'),
+(3, 'Ndayisaba', 'clarise', '', 'nda@gmail.com', 'clarise', '123@12345', 1, '2021-07-09 13:37:27'),
+(4, 'mucyo', 'JMV', '', 'mucyo@gmail.com', 'mucyo', '123@1234', 1, '2021-07-09 13:40:37'),
+(5, 'muhirwa', 'Allen', '', 'allen@gmail.com', 'allen', 'allen@123', 1, '2021-07-09 13:45:20'),
+(6, 'Uwimana', 'Chantal', '', 'uwimana@gmail.com', 'uwimana', '1234@1234', 2, '2021-07-11 09:46:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `te_qrcodeasset`
+--
+
+CREATE TABLE `te_qrcodeasset` (
+  `id` int(11) NOT NULL,
+  `serialnumber` varchar(50) NOT NULL,
+  `datebooking` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `te_qrcodeasset`
+--
+
+INSERT INTO `te_qrcodeasset` (`id`, `serialnumber`, `datebooking`, `status`) VALUES
+(1, 'IT-001-Muhire', '2021-07-10 17:32:35', 1),
+(2, 'IT-002-Muhire 22', '2021-07-10 17:33:40', 0),
+(3, 'IT-002-Muhire 22', '2021-07-10 17:43:43', 0);
 
 -- --------------------------------------------------------
 
@@ -337,7 +369,7 @@ CREATE TABLE `tichethelptbl` (
   `priority` varchar(15) NOT NULL,
   `category` varchar(15) NOT NULL,
   `description` varchar(200) NOT NULL,
-  `ChoosedDate` date NOT NULL,
+  `ChoosedDate` varchar(100) NOT NULL,
   `PostedDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `ActiveStatus` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -348,7 +380,11 @@ CREATE TABLE `tichethelptbl` (
 
 INSERT INTO `tichethelptbl` (`id`, `persontohelp`, `helper`, `priority`, `category`, `description`, `ChoosedDate`, `PostedDate`, `ActiveStatus`) VALUES
 (4, 'claude gashumba', '2', 'medium', 'software', 'j', '2021-07-03', '2021-07-03 17:34:18', 0),
-(5, 'enock meston', '1', 'low', 'email', 'hlp', '2021-07-10', '2021-07-03 17:46:51', 1);
+(5, 'enock meston', '1', 'low', 'email', 'hlp', '2021-07-10', '2021-07-03 17:46:51', 1),
+(6, '$names', '', '$priority', '$category', '$description', '$date', '2021-07-07 16:55:17', 0),
+(7, 'ug  ugo', '', 'low', '', 'jh', '2021-07-07 to 2021-07-08', '2021-07-07 16:56:33', 1),
+(8, 'nks  w', '', 'medium', 'network', 'jpds', '2021-07-08 to 2021-07-08', '2021-07-07 16:58:33', 1),
+(9, 'ga  ga', '', 'medium', 'hardware', 'hello', '2021-07-08T19:24 to 2021-07-09T19:24', '2021-07-08 17:24:32', 1);
 
 -- --------------------------------------------------------
 
@@ -373,7 +409,7 @@ CREATE TABLE `usertbl` (
 --
 
 INSERT INTO `usertbl` (`uid`, `Firstname`, `Lastname`, `phoneNumber`, `email`, `username`, `password`, `ActiveStatus`, `AddedDate`) VALUES
-(1, 'enock', 'ndagijimana', '0783982872', 'ndagijimanaenock11@gmail.com', 'enock', '123', 1, '2021-06-21 15:57:25'),
+(1, 'enock', 'ndagijimana', '0783982872', 'ndagijimanaenock11@gmail.com', 'enock', '1234@1234', 1, '2021-06-21 15:57:25'),
 (2, 'emanuel', 'Gatare', '0783982873', 'gatare11@gmail.com', 'gatare', '123', 1, '2021-06-21 17:30:38');
 
 --
@@ -451,6 +487,12 @@ ALTER TABLE `teachertbl`
   ADD PRIMARY KEY (`tid`);
 
 --
+-- Indexes for table `te_qrcodeasset`
+--
+ALTER TABLE `te_qrcodeasset`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tichethelptbl`
 --
 ALTER TABLE `tichethelptbl`
@@ -488,7 +530,7 @@ ALTER TABLE `qrcodeasset`
 -- AUTO_INCREMENT for table `studentbookingtbl`
 --
 ALTER TABLE `studentbookingtbl`
-  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tblcategory`
@@ -500,19 +542,19 @@ ALTER TABLE `tblcategory`
 -- AUTO_INCREMENT for table `tblstaffreport`
 --
 ALTER TABLE `tblstaffreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tblstudent`
 --
 ALTER TABLE `tblstudent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tblstudentreport`
 --
 ALTER TABLE `tblstudentreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tbltools`
@@ -524,19 +566,25 @@ ALTER TABLE `tbltools`
 -- AUTO_INCREMENT for table `teacherbookingtbl`
 --
 ALTER TABLE `teacherbookingtbl`
-  MODIFY `tbid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `tbid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `teachertbl`
 --
 ALTER TABLE `teachertbl`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `te_qrcodeasset`
+--
+ALTER TABLE `te_qrcodeasset`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tichethelptbl`
 --
 ALTER TABLE `tichethelptbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `usertbl`
