@@ -148,8 +148,8 @@ if($_GET['presid'])
 <tbody>
 
 <?php
-$query=mysqli_query($con,"select tbltools.id as toolid,tbltools.Toolname as name,tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,tblcategory.CategoryName as category,tblcategory.c_id as cid
-from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory where tbltools.ActiveStatus=0");
+$query=mysqli_query($con,"SELECT tbltools.id as toolid,tbltools.Toolname as name,tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,tblcategory.CategoryName as category,tblcategory.c_id as cid
+from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory where tbltools.ActiveStatus=0 OR tbltools.ActiveStatus=3");
 $rowcount=mysqli_num_rows($query);
 if($rowcount==0)
 {

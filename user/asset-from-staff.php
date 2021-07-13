@@ -15,16 +15,17 @@ if (strlen($_SESSION['id']) == 0) {
             $error = "Something went wrong . Please try again.";
         }
     }
-
-    // if ($_GET['action1'] = 'rep') {
-    //     $stid = intval($_GET['tid1']);
-    //     $query = mysqli_query($con, "DELETE FROM `studentbookingtbl` WHERE `studentbookingtbl`.`bid` ='$stid'");
-    //     if ($query) {
-    //         $msg = "You say NO, Request was approved";
-    //     } else {
-    //         $error = "Something went wrong . Please try again.";
-    //     }
-    // }
+ 
+    if ($_GET['tid1']) {
+        $toolid = intval($_GET['tid1']);
+        $query1 = mysqli_query($con, "UPDATE tbltools SET ActiveStatus=3 WHERE id='$toolid'");
+        if ($query1) {
+            $msg = "You say NO, Request was approved";
+            header('location:asset-from-staff.php');
+        } else {
+            $error = "Something went wrong . Please try again.";
+        }
+    }
 ?>
 
     <!DOCTYPE html>
@@ -142,7 +143,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                 tbltools.Toolname as toolname,teacherbookingtbl.purpose as purpose,
                                                 teacherbookingtbl.BookedDate AS bookeddate,teacherbookingtbl.returnDate 
                                                 FROM teachertbl,tbltools LEFT JOIN teacherbookingtbl ON teacherbookingtbl.toolID=tbltools.id 
-                                                WHERE teacherbookingtbl.teacherID=teachertbl.tid AND teacherbookingtbl.ActiveStatus =1 AND teacherbookingtbl.BookStatus=1");
+                                                WHERE teacherbookingtbl.teacherID=teachertbl.tid AND tbltools.ActiveStatus=1 AND teacherbookingtbl.ActiveStatus =1 AND teacherbookingtbl.BookStatus=1");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>
@@ -167,7 +168,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                         <td style="background-color: #f37020;color:white;"><?php echo $row['returnDate']; ?></td>
                                                         <td>
                                                             <a href="asset-from-staff.php?rid=<?php echo htmlentities($row['teacboo']); ?>&&action=rep" onclick="return confirm('Do you realy Recieve An Asset ?')" class=" btn btn-success">Recieved</a>
-                                                            <a href="asset-from-staff.php?rid1=<?php echo htmlentities($row['teacboo']); ?>&&action1=rep" onclick="return confirm('Ohh No This asset was Crashed ?')" class="btn btn-danger">Crashed</a>
+                                                            <a href="asset-from-staff.php?tid1=<?php echo htmlentities($row['tid']); ?>" class="btn btn-danger">Crashed</a>
                                                         </td>
                                                     </tr>
                                             <?php }

@@ -14,7 +14,7 @@ if (strlen($_SESSION['fid']) == 0) {
 
     $query = mysqli_query($con, "SELECT tbltools.id as toolid,tbltools.Toolname as name, 
     tbltools.ToolImage as image,tbltools.serial_number as serialnumber,tbltools.PostedDate AS postedDate,
-     tbltools.ToolDescription as ToolDescription,crashedassettbl.Status as crastatus, 
+     tbltools.ToolDescription as ToolDescription,tbltools.ActiveStatus as status,crashedassettbl.Status as crastatus, 
      tbltools.isAllowedBy as allowed from tbltools left join crashedassettbl on crashedassettbl.toolID=tbltools.id");
 
 ?>
@@ -115,10 +115,12 @@ if (strlen($_SESSION['fid']) == 0) {
                                     </td>
                                     <td>
                                         <?php 
-                                            if ($row['crastatus']==1) {
+                                            if ($row['status']==0) {
                                                 echo "Under Maintenance";
-                                            }else {
+                                            }else if($row['status']==1){
                                                 echo "Good Condition";
+                                            }else {
+                                                echo "Was Crashed";
                                             }
                                         ?>
                                     </td>

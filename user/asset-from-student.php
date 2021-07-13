@@ -16,15 +16,16 @@ if (strlen($_SESSION['id']) == 0) {
         }
     }
 
-    // if ($_GET['action1'] = 'rep') {
-    //     $stid = intval($_GET['tid1']);
-    //     $query = mysqli_query($con, "DELETE FROM `studentbookingtbl` WHERE `studentbookingtbl`.`bid` ='$stid'");
-    //     if ($query) {
-    //         $msg = "You say NO, Request was approved";
-    //     } else {
-    //         $error = "Something went wrong . Please try again.";
-    //     }
-    // }
+   if ($_GET['rid1']) {
+        $toolid = intval($_GET['rid1']);
+        $query1 = mysqli_query($con, "UPDATE tbltools SET ActiveStatus=3 WHERE id='$toolid'");
+        if ($query1) {
+            $msg = "You say NO, Request was approved";
+            header('location:asset-from-student.php');
+        } else {
+            $error = "Something went wrong . Please try again.";
+        }
+    }
 ?>
 
     <!DOCTYPE html>
@@ -165,7 +166,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                         <td style="background-color: #f37020;color:white;"><?php echo $row['returnDate']; ?></td>
                                                         <td>
                                                             <a href="asset-from-student.php?rid=<?php echo htmlentities($row['stboo']); ?>&&action=rep" onclick="return confirm('Do you realy Recieve An Asset ?')" class=" btn btn-success">Recieved</a>
-                                                            <a href="asset-from-student.php?rid1=<?php echo htmlentities($row['stboo']); ?>&&action1=rep" onclick="return confirm('Ohh No This asset was Crashed ?')" class="btn btn-danger">Crashed</a>
+                                                            <a href="asset-from-student.php?rid1=<?php echo htmlentities($row['tid']); ?>" class="btn btn-danger">Crashed</a>
                                                         </td>
                                                     </tr>
                                             <?php }

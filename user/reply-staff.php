@@ -6,7 +6,7 @@ if (strlen($_SESSION['id']) == 0) {
     header('location:index.php');
 } else {
 
-    if (isset($_GET['action4'])) {
+   if (isset($_GET['action4'])) {
         $stid = intval($_GET['tid4']);
          // query of making student report
          $select2 = mysqli_query($con, "SELECT tbltools.id as tid,teachertbl.Firstname AS fname,
@@ -166,7 +166,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                 tbltools.Toolname as toolname,teacherbookingtbl.purpose as purpose,
                                                 teacherbookingtbl.BookedDate AS bookeddate,teacherbookingtbl.returnDate 
                                                 FROM teachertbl,tbltools LEFT JOIN teacherbookingtbl ON teacherbookingtbl.toolID=tbltools.id 
-                                                WHERE teacherbookingtbl.teacherID=teachertbl.tid AND teacherbookingtbl.ActiveStatus =1 AND teacherbookingtbl.BookStatus=0");
+                                                WHERE teacherbookingtbl.teacherID=teachertbl.tid AND teacherbookingtbl.ActiveStatus =1 AND tbltools.ActiveStatus=1 AND teacherbookingtbl.BookStatus=0");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>
@@ -192,10 +192,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                         <td>
                                                             <a href="reply-staff.php?tid4=<?php echo htmlentities($row['teacboo']); ?>&&action4=rep4" onclick="return confirm('Do you realy want to Approve this request ?')" class=" btn btn-success">YES</a>
                                                             <a href="reply-staff.php?tid3=<?php echo htmlentities($row['teacboo']); ?>&&action3=rep3" onclick="return confirm('Do you realy want to say NO ?')" class="btn btn-danger">NO</a>
-                                                            <form method="POST">
-                                                                <input type="text" name="comment" class="form-control" placeholder="Enter your comment">
-                                                                <input type="submit" name="btncomment" value="Comment" class="btn btn-primary">
-                                                            </form>
+                                                            
                                                         </td>
                                                     </tr>
                                             <?php }

@@ -25,7 +25,7 @@ if (strlen($_SESSION['id']) == 0) {
          tblstudent.Lastname as lname,tblstudent.class as class,tblstudent.email as email,studentbookingtbl.bid as stboo,studentbookingtbl.studentOption as stuoption,
          tbltools.Toolname as toolname,studentbookingtbl.purpose as purpose,studentbookingtbl.BookedDate as bookeddate,
          studentbookingtbl.returnDate FROM tblstudent,tbltools LEFT JOIN studentbookingtbl ON studentbookingtbl.toolID=tbltools.id 
-         WHERE studentbookingtbl.studentID=tblstudent.id AND studentbookingtbl.ActiveStatus=1 AND studentbookingtbl.BookStatus=0");
+         WHERE studentbookingtbl.studentID=tblstudent.id AND studentbookingtbl.ActiveStatus=1 AND tbltools.ActiveStatus=1 AND studentbookingtbl.BookStatus=0");
          $data = mysqli_fetch_array($select1);
          $names=$data['fname'] . "  " . $data['lname'];
          $calss=$data['class'];

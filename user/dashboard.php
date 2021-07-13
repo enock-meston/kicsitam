@@ -136,7 +136,7 @@ if (strlen($_SESSION['id']) == 0) {
                                         <i class="mdi mdi-layers widget-one-icon"></i>
                                         <div class="wigdet-one-content">
                                             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Trash Asset Listed</p>
-                                            <?php $query = mysqli_query($con, "select * from tbltools where ActiveStatus=0");
+                                            <?php $query = mysqli_query($con, "SELECT * from tbltools where ActiveStatus=0 OR ActiveStatus=3");
                                             $countposts = mysqli_num_rows($query);
                                             ?>
                                             <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
