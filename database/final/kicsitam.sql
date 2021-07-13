@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 11, 2021 at 12:13 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.7
+-- Host: localhost
+-- Generation Time: Jul 13, 2021 at 09:10 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,35 @@ SET time_zone = "+00:00";
 --
 -- Database: `kicsitam`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `commenttbl`
+--
+
+CREATE TABLE `commenttbl` (
+  `cid` int(11) NOT NULL,
+  `staffreporttbl` varchar(11) NOT NULL,
+  `studentreporttbl` varchar(11) NOT NULL,
+  `comment` varchar(150) NOT NULL,
+  `postedDate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ActiveStatus` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `commenttbl`
+--
+
+INSERT INTO `commenttbl` (`cid`, `staffreporttbl`, `studentreporttbl`, `comment`, `postedDate`, `ActiveStatus`) VALUES
+(5, '20', '', 'i give you all', '2021-07-12 08:18:21', 1),
+(6, '', '', '', '2021-07-12 08:28:27', 1),
+(7, '', '', '', '2021-07-12 08:28:42', 1),
+(8, '', '', '', '2021-07-12 08:28:45', 1),
+(9, '', '', '', '2021-07-12 08:28:48', 1),
+(10, '', '', '', '2021-07-12 08:28:51', 1),
+(11, '', '', '', '2021-07-12 08:28:59', 1),
+(12, '', '', '', '2021-07-12 08:29:03', 1);
 
 -- --------------------------------------------------------
 
@@ -174,7 +203,8 @@ INSERT INTO `tblstaffreport` (`id`, `staffnames`, `email`, `staffOption`, `Asset
 (13, 'enock  meston', 'enock11@gmail.com', 'secondary', '21 pointer', 'jb', '2021-07-07 14:43:21', '2021-07-07', '2021-07-07 13:03:43'),
 (14, 'enock  meston', 'enock11@gmail.com', 'primary', 'Hp probook enock', 'j', '2021-07-07 15:12:10', '2021-07-14', '2021-07-07 13:12:22'),
 (15, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Hp proBook 6470b', 'j', '2021-07-07 15:15:56', '2021-07-07', '2021-07-07 13:59:58'),
-(16, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Sony projector', 'i need to finish my course', '2021-07-08 16:52:50', '2021-07-09 20:53:00', '2021-07-08 14:53:22');
+(16, 'enock  meston', 'enock11@gmail.com', 'secondary', 'Sony projector', 'i need to finish my course', '2021-07-08 16:52:50', '2021-07-09 20:53:00', '2021-07-08 14:53:22'),
+(17, 'muhirwa  Allen', 'allen@gmail.com', 'secondary', 'Acer projector', 'i need to finish my work', '2021-07-10 20:47:49', '2021-07-10 21:47:00', '2021-07-12 08:29:36');
 
 -- --------------------------------------------------------
 
@@ -271,13 +301,14 @@ INSERT INTO `tbltools` (`id`, `Toolname`, `ToolImage`, `QRimage`, `serial_number
 (2, 'windows ipad', 'd6f75c8e536992277cfe22018e8a7d19.jpg', '', '', '3', 'windows iPad', 'student', 1, 0, '2021-06-21 20:35:42'),
 (3, 'Hp proBook 6470b', 'c13471728a554cabc9e56fe42c9b7a52.jpg', '', '', '2', 'HP laptop 6470b has serial number of CNU343C71J', 'student', 1, 0, '2021-06-21 20:36:55'),
 (4, 'Sony projector', '2d99ae9e904f880eef8feb4e61882b79.jpg', '', '', '4', 'Sony 123 projector', 'teacher', 1, 0, '2021-06-23 15:03:32'),
-(5, 'Acer projector', 'b9fb9d37bdf15a699bc071ce49baea53.jpg', '', '', '4', 'Acer 27J projector', 'teacher', 1, 0, '2021-06-23 15:04:08'),
+(5, 'Acer projector', 'b9fb9d37bdf15a699bc071ce49baea53.jpg', '', '', '4', 'Acer 27J projector', 'teacher', 3, 0, '2021-06-23 15:04:08'),
 (6, '21 pointer', '9e6a616dbccf1f65810a30ca594b2f11.jpg', '', '', '5', '21 pointer', 'teacher', 1, 0, '2021-06-23 15:19:35'),
 (7, ' pp pen red laser pointer', 'd08213c436a853e74a3069bb6c9e4968.jpg', '', '', '5', ' pp pen red laser pointer', 'student', 1, 0, '2021-06-23 15:20:23'),
 (8, 'wi-fi pen red laser pointer', '082815eca1dbe251682c73d9b681eaa3.jpg', '', '', '5', 'wi-fi pen red laser pointer', 'student', 1, 0, '2021-06-23 15:20:59'),
 (9, 'windows pc', '55ccf27d26d7b23839986b6ae2e447ab.jpg', '', '', '2', 'windows pc and has windows 10', 'student', 1, 0, '2021-06-23 15:46:40'),
 (10, 'Acer', 'efc1a80c391be252d7d777a437f86870.jpg', '', '', '2', 'acer ', 'student', 1, 0, '2021-06-23 18:24:37'),
-(11, 'HP envy 32', '5af9f260d85e2151c5615d6b6ade9a6b.jpg', '', '', '1', 'HP envy 32', 'student', 1, 0, '2021-06-28 06:52:14');
+(11, 'HP envy 32', '5af9f260d85e2151c5615d6b6ade9a6b.jpg', '', '', '1', 'HP envy 32', 'student', 1, 0, '2021-06-28 06:52:14'),
+(12, 'Doc Camera', 'df601d474e74986abf79d0774bd05ace.jpg', 'img/Doc Camera 1234.png', 'Doc Camera 1234 - enock ndagijimana', '6', 'Doc Camera 1234', 'teacher', 1, 0, '2021-07-11 05:04:27');
 
 -- --------------------------------------------------------
 
@@ -302,7 +333,7 @@ CREATE TABLE `teacherbookingtbl` (
 --
 
 INSERT INTO `teacherbookingtbl` (`tbid`, `toolID`, `teacherID`, `staffOption`, `purpose`, `BookedDate`, `returnDate`, `ActiveStatus`, `BookStatus`) VALUES
-(20, 5, 5, 'secondary', 'i need to finish my work', '2021-07-10 18:47:49', '2021-07-10 21:47:00', 1, 0);
+(20, 5, 5, 'secondary', 'i need to finish my work', '2021-07-10 18:47:49', '2021-07-10 21:47:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -417,6 +448,14 @@ INSERT INTO `usertbl` (`uid`, `Firstname`, `Lastname`, `phoneNumber`, `email`, `
 --
 
 --
+-- Indexes for table `commenttbl`
+--
+ALTER TABLE `commenttbl`
+  ADD PRIMARY KEY (`cid`),
+  ADD KEY `staffreporttbl` (`staffreporttbl`),
+  ADD KEY `studentreporttbl` (`studentreporttbl`);
+
+--
 -- Indexes for table `crashedassettbl`
 --
 ALTER TABLE `crashedassettbl`
@@ -509,6 +548,12 @@ ALTER TABLE `usertbl`
 --
 
 --
+-- AUTO_INCREMENT for table `commenttbl`
+--
+ALTER TABLE `commenttbl`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `crashedassettbl`
 --
 ALTER TABLE `crashedassettbl`
@@ -542,7 +587,7 @@ ALTER TABLE `tblcategory`
 -- AUTO_INCREMENT for table `tblstaffreport`
 --
 ALTER TABLE `tblstaffreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tblstudent`
@@ -560,7 +605,7 @@ ALTER TABLE `tblstudentreport`
 -- AUTO_INCREMENT for table `tbltools`
 --
 ALTER TABLE `tbltools`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `teacherbookingtbl`
