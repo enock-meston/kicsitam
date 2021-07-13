@@ -8,6 +8,7 @@ if (strlen($_SESSION['id']) == 0) {
 } else {
 
     if (isset($_POST['submit'])) {
+        $subject="Proof of registration";
         $firstname = $_POST['fn'];
         $lastname = $_POST['ln'];
         $email = $_POST['email'];
@@ -36,7 +37,8 @@ if (strlen($_SESSION['id']) == 0) {
     VALUES ('$firstname','$lastname','$email','$username','$password','$status')");
 
             if ($query) {
-                $msg = "Guest User Added ";
+                $msg = $firstname." ".$lastname." Registred to Be Guest and access Kics Stock";
+                sendingEmail($email,$subject,$msg);
             } else {
                 $error = "Something went wrong . Please try again.";
             }
