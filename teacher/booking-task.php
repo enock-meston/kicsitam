@@ -13,12 +13,23 @@ if (strlen($_SESSION['tid']) == 0) {
         $purpose = addslashes($_POST['purpose']);
         $status = 1;
         $bookstatus = 0;
+// paramenters to sendingEmail method
+        $staffID=$_SESSION['id'];
+        $datafromStaff=mysqli_query($con,"SELECT * FROM teachertbl WHERE id='$staffID'");
+        $row1=mysqli_fetch_array($datafromStaff);
+        $subject="Proof of Requesting";
+        $email1=$rwo1['email'];
+        $message="Hello".$rwo1['Firstname']."  ".$rwo1['Lastname']." 
+        with this email: ".$rwo1['email']." you have booking ".$toolname." from KICS IT ASSET STOCK,
+        And you need to Return it back at".$returnDate."  . Thank you!";
+        //end  paramenters to sendingEmail method
 
         $query1 = mysqli_query($con, "INSERT INTO `teacherbookingtbl`(`toolID`, `teacherID`,`staffOption`,
          `purpose`,`returnDate`, `ActiveStatus`,`BookStatus`) 
         VALUES ('$toolID','$teacherID','$option','$purpose','$returnDate','$status','$bookstatus')");
 
         if ($query1) {
+            sendingEmail($email1,$subject,$message);
             echo "<script>alert('Your action of booking tool is Pending');</script>";
             echo "<script type='text/javascript'> document.location = 'tool-category.php'; </script>";
         } else {

@@ -1,24 +1,37 @@
 <?php
 session_start();
 include('includes/config.php');
+include 'send-email.php';
 error_reporting(0);
 if (strlen($_SESSION['id']) == 0) {
     header('location:../login.php');
 } else {
     if (isset($_POST['submit'])) {
         $toolID = $_POST['toolid'];
+        $toolname=$_POST['toolname'];
         $studentID = $_POST['studentid'];
         $returnDate = $_POST['returning'];
         $option = $_POST['option'];
         $purpose = addslashes($_POST['purpose']);
         $status = 1;
         $bookstatus = 0;
+        // paramenters to sendingEmail method
+        $studentID=$_SESSION['id'];
+        $datafromStudent=mysqli_query($con,"SELECT * FROM tblstudent WHERE id='$studentID'");
+        $row1=mysqli_fetch_array($datafromStudent);
+        $subject="Proof of Requesting";
+        $email1=$rwo1['email'];
+        $message="Hello".$rwo1['Firstname']."  ".$rwo1['Lastname']." 
+        with this email: ".$rwo1['email']." you have booking ".$toolname." from KICS IT ASSET STOCK,
+        And you need to Return it back at".$returnDate."  . Thank you!";
+        //end  paramenters to sendingEmail method
 
         $query1 = mysqli_query($con, "INSERT INTO `studentbookingtbl`(`toolID`, `studentID`,`studentOption`,
          `purpose`,`returnDate`, `ActiveStatus`,`BookStatus`) 
         VALUES ('$toolID','$studentID','$option','$purpose','$returnDate','$status','$bookstatus')");
-
+        
         if ($query1) {
+            sendingEmail($email1,$subject,$message);
             echo "<script>alert('Your action of booking tool is Pending');</script>";
             echo "<script type='text/javascript'> document.location = 'tool-category.php'; </script>";
         } else {
@@ -197,6 +210,7 @@ tbltools.ActiveStatus=1 and tbltools.id='$book'");
                                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                                             <label class="form-group m-b-20">Date to return</label>
                                                             <input type="hidden" value="<?php echo $_SESSION['id']; ?>" name="studentid">
+                                                            <input type="hidden" value="<?php echo htmlentities($row['name']); ?>" name="toolname">
                                                             <input type="hidden" value="<?php echo htmlentities($row['toolid']); ?>" name="toolid">
                                                             <input type="datetime-local" class="form-control" value="" name="returning" required>
                                                         </div>

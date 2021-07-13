@@ -96,7 +96,7 @@ if (strlen($_SESSION['id']) == 0) {
 
                         <div class="row">
                             <!-- numbers of categories -->
-                            <a href="manage-categories.php">
+                            
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="card-box widget-box-one">
                                         <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
@@ -110,7 +110,7 @@ if (strlen($_SESSION['id']) == 0) {
                                         </div>
                                     </div>
                                 </div>
-                            </a> <!-- end numbers of categories -->
+                            <!-- end numbers of categories -->
                             <!-- end col -->
 
                         </div>

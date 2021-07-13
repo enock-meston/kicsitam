@@ -16,7 +16,9 @@ if (isset($_POST['save'])) {
     $priority=$_POST['priority'];
     $description = addslashes($_POST['description']);
     $status = 1;
-
+    $message ="Hello ".$names." now your New Ticket was been Sent to The IT Support,
+    you Choose ".$date.". Thank you so much!";
+    $subject="New Ticket Submitted";
     $Date_chech = mysqli_query($con,"SELECT * FROM tichethelptbl WHERE ChoosedDate='$date'");
 
     if (mysqli_num_rows($Date_chech) > 0) {
@@ -27,7 +29,8 @@ if (isset($_POST['save'])) {
          `description`, `ChoosedDate`, `ActiveStatus`) 
     VALUES ('$names','$priority','$category','$description','$date','$status')");
         if ($query) {
-            $msg = "New Ticket Submitted";
+            $msg = "New Ticket Submitted Check your Email";
+            sendingEmail($email1,$subject,$message);
         } else {
             $error = "Something went wrong . Please try again.";
         }
