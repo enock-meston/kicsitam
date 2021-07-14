@@ -1,6 +1,7 @@
 <?php
 
 include 'includes/config.php';
+include 'send-email.php';
 $error = "";
 $msg = "";
 
@@ -8,7 +9,7 @@ if (isset($_POST['save'])) {
     $firstname = $_POST['fn'];
     $lastname = $_POST['ln'];
     $names=$firstname."  ".$lastname;
-    $email = $_POST['email'];
+    $email1 = $_POST['email'];
     $date1=$_POST['date1'];
     $date2=$_POST['date2'];
     $date=$date1." to ".$date2;
