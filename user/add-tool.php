@@ -17,14 +17,10 @@ if (strlen($_SESSION['id']) == 0) {
         $assigned =$_POST['assigned'];
         //qrpath
         $qrpath='img/';
-        $file=$qrpath.$_POST['serial'].'.png';
-        // qrname
-        $qrkey=$serial." - ".$assigned;
-        // $subcatid=$_POST['subcategory'];
-        // $postdetails=$_POST['postdescription'];
+        $file=$qrpath.$_POST['serial'].'.png';  // is path and name of qr code in the database
+        // qrname`
+        $qrkey=$serial." - ".$assigned;  // is serial_number in database
         $tooldetails = addslashes($_POST['description']);
-        // $arr = explode(" ",$posttitle);
-        // $url=implode("-",$arr);
         $imgfile = $_FILES["postimage"]["name"];
         // get the image extension
         $extension = substr($imgfile, strlen($imgfile) - 4, strlen($imgfile));

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("phpqrcode/qrlib.php");
 include('includes/config.php');
 error_reporting(0);
 if (strlen($_SESSION['id']) == 0) {
@@ -10,14 +11,23 @@ if (strlen($_SESSION['id']) == 0) {
         $serial=$_POST['serial'];
         $catid = $_POST['category'];
         $postdetails = $_POST['description'];
-        // $arr = explode(" ",$posttitle);
-        // $url=implode("-",$arr);
+        $assigned =$_POST['assigned'];
+        // qrcode update 
+        //qrpath
+        $qrpath='img/';
+        $file=$qrpath.$_POST['serial'].'.png';    // is path and name of qr code in the database
+        // qrname`
+        $qrkey=$serial." - ".$assigned;   // is serial_number in database
+        Qrcode::png($qrkey,$file);
+        // end of qrcode update
         $status = 1;
         $postid = intval($_GET['pid']);
-        $query = mysqli_query($con, "UPDATE tbltools set Toolname='$posttitle',serial_number='$serial',ToolCategory='$catid',
-        ToolDescription='$postdetails',ActiveStatus='$status' where id='$postid'");
+        $query = mysqli_query($con, "UPDATE tbltools set Toolname='$posttitle',QRimage='$file',
+        serial_number='$qrkey',ToolCategory='$catid',ToolDescription='$postdetails',
+        ActiveStatus='$status' where id='$postid'");
         if ($query) {
             $msg = "Tool updated ";
+            
         } else {
             $error = "Something went wrong . Please try again.";
         }
@@ -149,12 +159,17 @@ if (strlen($_SESSION['id']) == 0) {
                                             <form name="addpost" method="post">
                                                 <div class="form-group m-b-20">
                                                     <label for="exampleInputEmail1">Tool Name</label>
-                                                    <input type="text" class="form-control" id="posttitle" value="<?php echo htmlentities($row['name']); ?>" name="toolname" placeholder="Enter title" required>
+                                                    <input type="text" class="form-control" id="posttitle" value="<?php echo htmlentities($row['name']); ?>" name="toolname" placeholder="Enter title">
                                                 </div>
 
                                                 <div class="form-group m-b-20">
                                                     <label for="exampleInputEmail1">Serial Number</label>
-                                                    <input type="text" class="form-control" id="posttitle" value="<?php echo htmlentities($row['serialnumber']); ?>" name="serial" placeholder="Enter Serial Number" required>
+                                                    <input type="text" class="form-control" id="posttitle" value="<?php echo htmlentities($row['serialnumber']); ?>" name="serial" placeholder="Enter Serial Number">
+                                                </div>
+
+                                                <div class="form-group m-b-20">
+                                                    <label for="exampleInputEmail1">Assigned To if there is</label>
+                                                    <input type="text" class="form-control" id="posttitle" name="assigned">
                                                 </div>
 
                                                 <div class="form-group m-b-20">
