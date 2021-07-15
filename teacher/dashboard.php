@@ -95,14 +95,16 @@ if (strlen($_SESSION['tid']) == 0) {
                         <!-- end row -->
 
                         <div class="row">
-                            <!-- numbers of categories -->
-                           
+                            <!-- Asset i Booked-->
+                            
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="card-box widget-box-one">
                                         <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
                                         <div class="wigdet-one-content">
-                                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Categories Listed</p>
-                                            <?php $query = mysqli_query($con, "SELECT * from tblcategory where Is_Active=1");
+                                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Asset i Booked</p>
+                                            <?php 
+                                            $stuID=$_SESSION['id'];
+                                            $query = mysqli_query($con, "SELECT * from teacherbookingtbl where teacherID ='$stuID'");
                                             $countcat = mysqli_num_rows($query);
                                             ?>
                                             <h2><?php echo htmlentities($countcat); ?> <small></small></h2>
@@ -110,8 +112,56 @@ if (strlen($_SESSION['tid']) == 0) {
                                         </div>
                                     </div>
                                 </div>
-                             <!-- end numbers of categories -->
+                            <!-- end Asset i Booked -->
                             <!-- end col -->
+
+
+
+                              <!-- Asset i Recieved-->
+                            
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <div class="card-box widget-box-one">
+                                        <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
+                                        <div class="wigdet-one-content">
+                                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics"> Recieved Asset</p>
+                                            <?php 
+                                            $stuID=$_SESSION['id'];
+                                            $query = mysqli_query($con, "SELECT * from teacherbookingtbl where teacherID ='$stuID' AND ActiveStatus=1 AND BookStatus=1");
+                                            $countcat = mysqli_num_rows($query);
+                                            ?>
+                                            <h2><?php echo htmlentities($countcat); ?> <small></small></h2>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- end Asset i BookRecieveded -->
+                            <!-- end col -->
+
+
+
+
+                            <!-- Asset i Recieved-->
+                            
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <div class="card-box widget-box-one">
+                                        <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
+                                        <div class="wigdet-one-content">
+                                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics"> Pending Asset</p>
+                                            <?php 
+                                            $stuID=$_SESSION['id'];
+                                            $query = mysqli_query($con, "SELECT * from teacherbookingtbl where teacherID ='$stuID' AND ActiveStatus=1 AND BookStatus=0");
+                                            $countcat = mysqli_num_rows($query);
+                                            ?>
+                                            <h2><?php echo htmlentities($countcat); ?> <small></small></h2>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- end Asset i BookRecieveded -->
+                            <!-- end col -->
+
+                        </div>
+                        <!-- end row -->
 
                         </div>
                         <!-- end row -->
