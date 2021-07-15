@@ -85,7 +85,7 @@ if (strlen($_SESSION['tid']) == 0) {
                         <!-- end row -->
                         <div class="row">
                             <?php
-                                $query= mysqli_query($con,"SELECT * FROM tblcategory");
+                                $query= mysqli_query($con,"SELECT * FROM tblcategory WHERE isAllowedBy='staff'");
                                 while ($row= mysqli_fetch_array($query)) {
                                     ?>
                             <div class="col-lg-3 col-md-4 col-sm-6">
