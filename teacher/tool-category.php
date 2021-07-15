@@ -165,6 +165,9 @@ if (strlen($_SESSION['tid']) == 0) {
 
 
 
+<!-- Footer -->
+      <?php include('includes/footer.php');?>
+
 
     </body>
 

@@ -121,6 +121,8 @@ if (strlen($_SESSION['id']) == 0) {
 
 
 
+<!-- Footer -->
+      <?php include('includes/footer.php');?>
 
 
 
