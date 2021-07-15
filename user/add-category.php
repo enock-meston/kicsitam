@@ -8,9 +8,11 @@ if (strlen($_SESSION['id']) == 0) {
 
     if (isset($_POST['submit'])) {
         $category = $_POST['category'];
+        $allowed=$_POST['allowed'];
         $description = $_POST['description'];
         $status = 1;
-        $query = mysqli_query($con, "insert into tblcategory(CategoryName,Description,Is_Active) values('$category','$description','$status')");
+        $query = mysqli_query($con, "INSERT into tblcategory(CategoryName,isAllowedBy,Description,Is_Active) 
+        values('$category','$allowed','$description','$status')");
         if ($query) {
             $msg = "Category created ";
         } else {
@@ -123,6 +125,17 @@ if (strlen($_SESSION['id']) == 0) {
                                                         <input type="text" class="form-control" value="" name="category" required>
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                <label class="col-md-2 control-label">Category Accessible by</label>
+                                                <div class="col-md-10">
+                                                    <select class="form-control" name="allowed" id="category" onChange="getSubCat(this.value);" required>
+                                                        <option value="">Allowed by </option>
+                                                        <option value="staff">Staff</option>
+                                                        <option value="student">Student</option>
+                                                     </select>
+                                                </div>
+                                            </div>
 
                                                 <div class="form-group">
                                                     <label class="col-md-2 control-label">Category Description</label>

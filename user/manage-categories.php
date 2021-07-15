@@ -129,8 +129,8 @@ if (strlen($_SESSION['id']) == 0) {
                                                     <tr>
                                                         <th>#</th>
                                                         <th> Category</th>
+                                                        <th> Allowed By</th>
                                                         <th>Description</th>
-
                                                         <th>Posting Date</th>
                                                         <!-- <th>Last updation Date</th> -->
                                                         <th>Action</th>
@@ -138,7 +138,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $query = mysqli_query($con, "Select c_id,CategoryName,Description,PostDate from tblcategory where Is_Active=1");
+                                                    $query = mysqli_query($con, "Select c_id,CategoryName,isAllowedBy,Description,PostDate from tblcategory where Is_Active=1");
                                                     $cnt = 1;
                                                     while ($row = mysqli_fetch_array($query)) {
                                                     ?>
@@ -146,6 +146,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                         <tr>
                                                             <th scope="row"><?php echo htmlentities($cnt); ?></th>
                                                             <td><?php echo htmlentities($row['CategoryName']); ?></td>
+                                                            <td><?php echo htmlentities($row['isAllowedBy']); ?></td>
                                                             <td><?php echo htmlentities($row['Description']); ?></td>
                                                             <td><?php echo htmlentities($row['PostDate']); ?></td>
                                                             <td><a href="edit-category.php?cid=<?php echo htmlentities($row['c_id']); ?>"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a>
@@ -187,8 +188,8 @@ if (strlen($_SESSION['id']) == 0) {
                                                     <tr>
                                                         <th>#</th>
                                                         <th> Category</th>
+                                                        <th> Allowed By</th>
                                                         <th>Description</th>
-
                                                         <th>Posting Date</th>
                                                         <th>Last updation Date</th>
                                                         <th>Action</th>
@@ -196,7 +197,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $query = mysqli_query($con, "Select c_id,CategoryName,Description,PostDate from tblcategory where Is_Active=0");
+                                                    $query = mysqli_query($con, "Select c_id,CategoryName,isAllowedBy,Description,PostDate from tblcategory where Is_Active=0");
                                                     $cnt = 1;
                                                     while ($row = mysqli_fetch_array($query)) {
                                                     ?>
@@ -204,6 +205,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                         <tr>
                                                             <th scope="row"><?php echo htmlentities($cnt); ?></th>
                                                             <td><?php echo htmlentities($row['CategoryName']); ?></td>
+                                                            <td><?php echo htmlentities($row['isAllowedBy']); ?></td>
                                                             <td><?php echo htmlentities($row['Description']); ?></td>
                                                             <td><?php echo htmlentities($row['PostDate']); ?></td>
                                                             <td><a href="manage-categories.php?resid=<?php echo htmlentities($row['c_id']); ?>"><i class="ion-arrow-return-right" title="Restore this category"></i></a>

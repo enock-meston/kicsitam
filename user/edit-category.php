@@ -11,8 +11,9 @@ if(isset($_POST['submit']))
 {
 $catid=intval($_GET['cid']);
 $category=$_POST['category'];
+$allowed=$_POST['allowed'];
 $description=$_POST['description'];
-$query=mysqli_query($con,"Update  tblcategory set CategoryName='$category',Description='$description' where c_id='$catid'");
+$query=mysqli_query($con,"Update  tblcategory set CategoryName='$category',isAllowedBy='$allowed',Description='$description' where c_id='$catid'");
 if($query)
 {
 $msg="Category Updated successfully ";
@@ -134,11 +135,22 @@ while($row=mysqli_fetch_array($query))
 	                                                    <input type="text" class="form-control" value="<?php echo htmlentities($row['CategoryName']);?>" name="category" required>
 	                                                </div>
 	                                            </div>
-	                                     
+
+                                                 <div class="form-group">
+                                                <label class="col-md-2 control-label">Category Accessible by</label>
+                                                <div class="col-md-10">
+                                                    <select class="form-control" name="allowed" id="category" onChange="getSubCat(this.value);" required>
+                                                        <option value="">Allowed by </option>
+                                                        <option value="staff">Staff</option>
+                                                        <option value="student">Student</option>
+                                                     </select>
+                                                </div>
+	                                        </div>
 	                                            <div class="form-group">
 	                                                <label class="col-md-2 control-label">Category Description</label>
 	                                                <div class="col-md-10">
- <textarea class="form-control" rows="5" name="description" required><?php echo htmlentities($row['Description']);?></textarea>
+                                                        <textarea class="form-control" rows="5" name="description" required>
+                                                        <?php echo htmlentities($row['Description']);?></textarea>
 	                                                </div>
 	                                            </div>
 <?php } ?>
