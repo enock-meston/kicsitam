@@ -132,11 +132,19 @@ if (strlen($_SESSION['id']) == 0) {
                                             <tbody>
 
                                                 <?php
+
+                                                $page = $_GET['page'];
+                                                if ($page=="" || $page=="1") {
+                                                    $page1=0;
+                                                }else {
+                                                    $page1= ($page*7)-7;
+                                                }
                                                 $query = mysqli_query($con, "SELECT tbltools.id as toolid,tbltools.Toolname as name,
                                                 tbltools.ToolImage as image,tbltools.serial_number as serialnumber,tbltools.QRimage as QRimage,
                                                 tbltools.ToolDescription as ToolDescription,
                                                 tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
-                                                from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory WHERE tbltools.ActiveStatus=1");
+                                                from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory 
+                                                WHERE tbltools.ActiveStatus=1 LIMIT $page1,5");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>
@@ -174,6 +182,26 @@ if (strlen($_SESSION['id']) == 0) {
 
                                             </tbody>
                                         </table>
+                                        <!-- this is for counting number of page -->
+                                    <?php
+                                        $query1 = mysqli_query($con, "SELECT tbltools.id as toolid,tbltools.Toolname as name,
+                                                tbltools.ToolImage as image,tbltools.serial_number as serialnumber,tbltools.QRimage as QRimage,
+                                                tbltools.ToolDescription as ToolDescription,
+                                                tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
+                                                from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory WHERE tbltools.ActiveStatus=1");
+                                                $cou = mysqli_num_rows($query1);
+
+                                                $a = $cou/7;
+                                                $a=ceil($a);
+
+                                                for ($b=1;$b<=$a;$b++) { 
+                                                    ?>
+                                                        <a href="manage-tools.php?page=<?php echo $b;?>" class="btn btn-primary"
+                                                        style="text-decoration:none;"><?php echo $b."  ";?></a>
+                                                    <?php
+                                                }
+
+                                    ?>
                                     </div>
                                 </div>
                             </div>
