@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('includes/config.php');
+include 'send-email.php';  
 error_reporting(0);
 // redirect to other pag
 function redirect($location=Null){
@@ -28,18 +29,22 @@ if (strlen($_SESSION['id']) == 0) {
          WHERE studentbookingtbl.studentID=tblstudent.id AND studentbookingtbl.ActiveStatus=1 AND tbltools.ActiveStatus=1 AND studentbookingtbl.BookStatus=0");
          $data = mysqli_fetch_array($select1);
          $names=$data['fname'] . "  " . $data['lname'];
+         $email=$data['email'];
          $calss=$data['class'];
          $option=$data['stuoption']; 
          $assetname=$data['toolname']; 
          $pur=$data['purpose']; 
          $bookDate=$data['bookeddate'];
          $returnDate=$data['returnDate'];
+         $subject="Proof of Recieving Asset";
+         $message = $names." You have recieved ".$assetname." and you need 
+         to return it back at ".$returnDate."  Thank you!";
          // end of query of making student report
         $query = mysqli_query($con, "UPDATE studentbookingtbl set BookStatus=1 where bid='$stid'");
         
         if ($query) {
             $msg = " You say Yes ,Request was approved";
-           
+           sendingEmail($email,$subject,$message);
         // query of insertind data in database inside table called tblstudentreport
         $repotyQuery=mysqli_query($con,"INSERT INTO `tblstudentreport`(`studentnames`, `class`, `stuOption`, `Assetname`,
              `purpose`, `bookedDate`, `returnedDate`) VALUES ('$names','$calss','$option','$assetname','$pur','$bookDate','$returnDate')");

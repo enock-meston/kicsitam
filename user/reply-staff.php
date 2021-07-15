@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('includes/config.php');
+include 'send-email.php';
 error_reporting(0);
 if (strlen($_SESSION['id']) == 0) {
     header('location:index.php');
@@ -25,11 +26,14 @@ if (strlen($_SESSION['id']) == 0) {
          $bookDate=$data['bookeddate'];
          $returnDate=$data['returnDate'];
          // end of query of making student report
-         
+         $subject="Proof of Recieving Asset";
+         $message = $names." You have recieved ".$assetname." and you need 
+         to return it back at ".$returnDate."  Thank you!";
+        
         $query = mysqli_query($con, "UPDATE teacherbookingtbl set BookStatus=1 where tbid='$stid'");
         if ($query) {
             $msg = " You say Yes ,Request was approved";
-           
+           sendingEmail($email,$subject,$message);
         // query of insertind data in database inside table called tblstudentreport
         $repotyQuery=mysqli_query($con,"INSERT INTO `tblstaffreport`(`staffnames`, `email`, `staffOption`, 
         `Assetname`, `purpose`, `bookedDate`, `returnedDate`) VALUES ('$names','$email','$teacoption',
