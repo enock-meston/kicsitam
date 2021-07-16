@@ -122,8 +122,15 @@ if (strlen($_SESSION['id']) == 0) {
                                             <tbody>
 
                                                 <?php
+                                                $page = $_GET['page'];
+                                                if ($page=="" || $page=="1") {
+                                                    $page1=0;
+                                                }else {
+                                                    $page1= ($page*7)-7;
+                                                }
                                                 $query = mysqli_query($con, "SELECT `id`, `staffnames`, `email`, `staffOption`, 
-                                                `Assetname`, `purpose`, `bookedDate`, `returnedDate`, `ReportDate` FROM `tblstaffreport` WHERE 1");
+                                                `Assetname`, `purpose`, `bookedDate`, `returnedDate`, `ReportDate` 
+                                                FROM `tblstaffreport` WHERE 1 LIMIT $page1,7");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>
@@ -153,6 +160,24 @@ if (strlen($_SESSION['id']) == 0) {
 
                                             </tbody>
                                         </table>
+
+                                        <?php
+                                            $query1 = mysqli_query($con, "SELECT `id`, `staffnames`, `email`, `staffOption`, 
+                                                `Assetname`, `purpose`, `bookedDate`, `returnedDate`, `ReportDate` 
+                                                FROM `tblstaffreport` WHERE 1");
+                                                $cou = mysqli_num_rows($query1);
+
+                                                $a = $cou/7;
+                                                $a=ceil($a);
+
+                                                for ($b=1;$b<=$a;$b++) { 
+                                                    ?>
+                                                        <a href="staff-report.php?page=<?php echo $b;?>" class="btn btn-primary"
+                                                        style="text-decoration:none;"><?php echo $b."  ";?></a>
+                                                    <?php
+                                                }
+                                        
+                                        ?>
                                     </div>
                                 </div>
                             </div>
