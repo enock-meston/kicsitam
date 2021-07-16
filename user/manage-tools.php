@@ -144,7 +144,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                 tbltools.ToolDescription as ToolDescription,
                                                 tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
                                                 from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory 
-                                                WHERE tbltools.ActiveStatus=1 LIMIT $page1,5");
+                                                WHERE tbltools.ActiveStatus=1 LIMIT $page1,7");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>

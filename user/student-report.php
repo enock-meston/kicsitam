@@ -161,9 +161,16 @@ if (strlen($_SESSION['id']) == 0) {
                                             <tbody>
 
                                                 <?php
+                                                    $page = $_GET['page2'];
+                                                if ($page=="" || $page=="1") {
+                                                    $page1=0;
+                                                }else {
+                                                    $page1= ($page*10)-10;
+                                                }
+                                                
                                                 $query = mysqli_query($con, "SELECT `id`, `studentnames`, `class`,
                                                  `stuOption`, `Assetname`, `purpose`, `bookedDate`, `returnedDate`,
-                                                  `ReportDate` FROM `tblstudentreport` WHERE 1");
+                                                  `ReportDate` FROM `tblstudentreport` LIMIT $page1,10");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>
@@ -193,6 +200,23 @@ if (strlen($_SESSION['id']) == 0) {
 
                                             </tbody>
                                         </table>
+                                        <?php 
+                                            $query1 = mysqli_query($con, "SELECT `id`, `studentnames`, `class`,
+                                                 `stuOption`, `Assetname`, `purpose`, `bookedDate`, `returnedDate`,
+                                                  `ReportDate` FROM `tblstudentreport`");
+                                                $cou = mysqli_num_rows($query1);
+
+
+                                                $a = $cou/10;
+                                                $a=ceil($a);
+
+                                                for ($b=1;$b<=$a;$b++) { 
+                                                    ?>
+                                                        <a href="student-report.php?page2=<?php echo $b;?>" class="btn btn-primary"
+                                                        style="text-decoration:none;"><?php echo $b."  ";?></a>
+                                                    <?php
+                                                }
+                                        ?>
                                     </div>
                                 </div>
                             </div>

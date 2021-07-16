@@ -34,7 +34,7 @@ if (isset($_POST["export"])) {
         
         $output .= '</table></center>';
         header('Content-Type: application/xls');
-        header('Content-Disposition: attachment; filename=Qr_code_report-'.date('Y.m.d').'.docx');
+        header('Content-Disposition: attachment; filename=Qr_code_report-'.date('Y.m.d').'.xls');
         echo $output;
     }
 }
