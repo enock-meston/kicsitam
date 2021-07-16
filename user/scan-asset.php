@@ -22,6 +22,22 @@ if (strlen($_SESSION['id']) == 0) {
         <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
         <link rel="shortcut icon" href="../imagess/logo.png" type="image/x-icon" />
 
+
+        <link rel="stylesheet" href="plugins/morris/morris.css">
+
+        <!-- App css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="plugins/switchery/switchery.min.css">
+        <script src="assets/js/modernizr.min.js"></script>
+        <link rel="shortcut icon" href="../imagess/logo.png" type="image/x-icon" />
+
+
         <script>
             $(document).ready(function() {
                 $('#example').DataTable();
@@ -33,7 +49,8 @@ if (strlen($_SESSION['id']) == 0) {
     <body>
 
         <?php include('includes/menu1.php') ?>
-
+        
+    <div class="col-md-19">
         <div class="container">
             <h1> Student - Record Asset</h1>
             <div class="row">
@@ -121,6 +138,7 @@ if (strlen($_SESSION['id']) == 0) {
 
             <!--end export to excel -->
         </div>
+        </div>
 
         <!-- script of excel file -->
         <script>
@@ -152,6 +170,37 @@ if (strlen($_SESSION['id']) == 0) {
                 document.forms[0].submit();
             });
         </script>
+
+
+         <script>
+                            var resizefunc = [];
+                        </script>
+
+                        <!-- jQuery  -->
+                        <script src="assets/js/jquery.min.js"></script>
+                        <script src="assets/js/bootstrap.min.js"></script>
+                        <script src="assets/js/detect.js"></script>
+                        <script src="assets/js/fastclick.js"></script>
+                        <script src="assets/js/jquery.blockUI.js"></script>
+                        <script src="assets/js/waves.js"></script>
+                        <script src="assets/js/jquery.slimscroll.js"></script>
+                        <script src="assets/js/jquery.scrollTo.min.js"></script>
+                        <script src="plugins/switchery/switchery.min.js"></script>
+
+                        <!-- Counter js  -->
+                        <script src="plugins/waypoints/jquery.waypoints.min.js"></script>
+                        <script src="plugins/counterup/jquery.counterup.min.js"></script>
+
+                        <!--Morris Chart-->
+                        <script src="plugins/morris/morris.min.js"></script>
+                        <script src="plugins/raphael/raphael-min.js"></script>
+
+                        <!-- Dashboard init -->
+                        <script src="assets/pages/jquery.dashboard.js"></script>
+
+                        <!-- App js -->
+                        <script src="assets/js/jquery.core.js"></script>
+                        <script src="assets/js/jquery.app.js"></script>
     </body>
 
     </html>

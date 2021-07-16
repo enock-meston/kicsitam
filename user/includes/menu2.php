@@ -24,6 +24,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="scan-asset.php" style="color: white; font-size: 16px; ">Scan Student</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="logout.php" style="color: white; font-size: 16px; ">Logout </a>
+            </li>
         </ul>
     </nav>
     <!--ends of  navigation menu -->
