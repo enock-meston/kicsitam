@@ -1,4 +1,4 @@
-    <!--  navigation menu -->
+    <!--      navigation menu -->
     <nav class="navbar navbar-expand-sm" style="background-color: #2d2b7e;color:white;">
         <ul class="navbar-nav" >
 
@@ -29,5 +29,7 @@
                 <a class="nav-link" href="logout.php" style="color: white; font-size: 16px; ">Logout </a>
             </li>
         </ul>
+
+
     </nav>
     <!--ends of  navigation menu -->

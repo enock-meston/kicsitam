@@ -73,7 +73,7 @@ if (isset($_POST['save'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create new Account to kicsitam</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <!-- sb-admin links -->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
@@ -100,7 +100,7 @@ if (isset($_POST['save'])) {
                 <div class="row">
                     <div id="login-image" class="col-lg-5 d-none d-lg-block"></div>
                     <div class="col-lg-7">
-                        <div class="p-5">
+                        <div class="p-5" style="background-color: rgba(255, 255, 128, .2);">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account to KICSITAM As Teacher!</h1>
                             </div>

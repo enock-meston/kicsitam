@@ -101,7 +101,7 @@ if (isset($_POST['save'])) {
 
   #login-image{
         /* The image used */
-        background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("imagess/tlclogin.png");
+        background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("imagess/ll.png");
         /* Center and scale the image nicely */
         background-position: center;
       background-repeat: no-repeat;
@@ -123,10 +123,10 @@ if (isset($_POST['save'])) {
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div id="login-image" class="col-lg-5 d-none d-lg-block"></div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
+                    <div class="col-lg-7" >
+                        <div class="p-5" style="background-color: rgba(255, 255, 128, .2);">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account to KICSITAM As Teacher!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Make New Tichet </h1>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">

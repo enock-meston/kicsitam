@@ -105,7 +105,7 @@ if (isset($_POST['login'])) {
 
   #login-image{
         /* The image used */
-        background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("imagess/tlclogin.png");
+        background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("imagess/ll.png");
         /* Center and scale the image nicely */
         background-position: center;
       background-repeat: no-repeat;
@@ -129,7 +129,7 @@ if (isset($_POST['login'])) {
                         <div class="row">
                             <div id="login-image" class="col-lg-6 d-none d-lg-block"></div>
                             <div class="col-lg-6">
-                                <div class="p-5">
+                                <div class="p-5" style="background-color: rgba(255, 255, 128, .2);">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login as kicsitam User</h1>
                                     </div>
