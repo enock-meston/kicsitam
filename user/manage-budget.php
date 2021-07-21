@@ -4,23 +4,24 @@ include('includes/config.php');
 error_reporting(0);
 if (strlen($_SESSION['id']) == 0) {
     header('location:index.php');
-} else {
+} 
+else {
     if ($_GET['action'] == 'del' && $_GET['rid']) {
         $id = intval($_GET['rid']);
-        $query = mysqli_query($con, "update tblcategory set Is_Active='0' where c_id='$id'");
+        $query = mysqli_query($con, "UPDATE budgetAsset set ActiveStatus='0' where id='$id'");
         $msg = "Category deleted ";
     }
     // Code for restore
     if ($_GET['resid']) {
         $id = intval($_GET['resid']);
-        $query = mysqli_query($con, "update tblcategory set Is_Active='1' where c_id='$id'");
+        $query = mysqli_query($con, "UPDATE budgetAsset set ActiveStatus='1' where id='$id'");
         $msg = "Category restored successfully";
     }
 
     // Code for Forever deletionparmdel
     if ($_GET['action'] == 'parmdel' && $_GET['rid']) {
         $id = intval($_GET['rid']);
-        $query = mysqli_query($con, "delete from  tblcategory  where c_id='$id'");
+        $query = mysqli_query($con, "DELETE from  budgetAsset  where id='$id'");
         $delmsg = "Category deleted forever";
     }
 
@@ -70,16 +71,16 @@ if (strlen($_SESSION['id']) == 0) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Manage Categories</h4>
+                                    <h4 class="page-title">Manage Budget</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="#">Assets</a>
+                                            <a href="#">Budget</a>
                                         </li>
                                         <li>
-                                            <a href="#">Category </a>
+                                            <a href="#">Budget </a>
                                         </li>
                                         <li class="active">
-                                            Manage Categories
+                                            Manage Budget
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -128,9 +129,10 @@ if (strlen($_SESSION['id']) == 0) {
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th> Category</th>
-                                                        <th> Allowed By</th>
-                                                        <th>Description</th>
+                                                        <th> Asset Name</th>
+                                                        <th> Quantiy</th>
+                                                        <th>Amount (rwF)</th>
+                                                        <th>Asset Type</th>
                                                         <th>Posting Date</th>
                                                         <!-- <th>Last updation Date</th> -->
                                                         <th>Action</th>
@@ -138,19 +140,22 @@ if (strlen($_SESSION['id']) == 0) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $query = mysqli_query($con, "Select c_id,CategoryName,isAllowedBy,Description,PostDate from tblcategory where Is_Active=1");
+                                                    $query = mysqli_query($con, "SELECT * FROM `budgetAsset` WHERE ActiveStatus=1");
                                                     $cnt = 1;
                                                     while ($row = mysqli_fetch_array($query)) {
                                                     ?>
 
                                                         <tr>
                                                             <th scope="row"><?php echo htmlentities($cnt); ?></th>
-                                                            <td><?php echo htmlentities($row['CategoryName']); ?></td>
-                                                            <td><?php echo htmlentities($row['isAllowedBy']); ?></td>
-                                                            <td><?php echo htmlentities($row['Description']); ?></td>
-                                                            <td><?php echo htmlentities($row['PostDate']); ?></td>
-                                                            <td><a href="edit-category.php?cid=<?php echo htmlentities($row['c_id']); ?>"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a>
-                                                                &nbsp;<a href="manage-categories.php?rid=<?php echo htmlentities($row['c_id']); ?>&&action=del"> <i class="fa fa-trash-o" style="color: #f05050"></i></a> </td>
+                                                            <td><?php echo htmlentities($row['assetname']); ?></td>
+                                                            <td><?php echo htmlentities($row['quantity']); ?></td>
+                                                            <td><?php echo htmlentities($row['Amount']); ?></td>
+                                                            <td><?php echo htmlentities($row['AssetType']); ?></td>
+                                                            <td><?php echo htmlentities($row['postedDate']); ?></td>
+                                                            <td>
+                                                            <!-- <a href="edit-category.php?cid=<?php echo htmlentities($row['id']); ?>"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a> -->
+                                                                &nbsp;
+                                                                <a href="manage-budget.php?rid=<?php echo htmlentities($row['id']); ?>&&action=del"> <i class="fa fa-trash-o" style="color: #f05050"></i></a> </td>
                                                         </tr>
                                                     <?php
                                                         $cnt++;
@@ -187,29 +192,31 @@ if (strlen($_SESSION['id']) == 0) {
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th> Category</th>
-                                                        <th> Allowed By</th>
-                                                        <th>Description</th>
+                                                        <th> Asset Name</th>
+                                                        <th> Quantiy</th>
+                                                        <th>Amount (rwF)</th>
+                                                        <th>Asset Type</th>
                                                         <th>Posting Date</th>
-                                                        <th>Last updation Date</th>
+                                                        <!-- <th>Last updation Date</th> -->
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $query = mysqli_query($con, "Select c_id,CategoryName,isAllowedBy,Description,PostDate from tblcategory where Is_Active=0");
+                                                    $query = mysqli_query($con, "SELECT * FROM `budgetAsset` WHERE ActiveStatus=0");
                                                     $cnt = 1;
                                                     while ($row = mysqli_fetch_array($query)) {
                                                     ?>
 
                                                         <tr>
                                                             <th scope="row"><?php echo htmlentities($cnt); ?></th>
-                                                            <td><?php echo htmlentities($row['CategoryName']); ?></td>
-                                                            <td><?php echo htmlentities($row['isAllowedBy']); ?></td>
-                                                            <td><?php echo htmlentities($row['Description']); ?></td>
-                                                            <td><?php echo htmlentities($row['PostDate']); ?></td>
-                                                            <td><a href="manage-categories.php?resid=<?php echo htmlentities($row['c_id']); ?>"><i class="ion-arrow-return-right" title="Restore this category"></i></a>
-                                                                &nbsp;<a href="manage-categories.php?rid=<?php echo htmlentities($row['c_id']); ?>&&action=parmdel" title="Delete forever"> <i class="fa fa-trash-o" style="color: #f05050"></i> </td>
+                                                         <td><?php echo htmlentities($row['assetname']); ?></td>
+                                                            <td><?php echo htmlentities($row['quantity']); ?></td>
+                                                            <td><?php echo htmlentities($row['Amount']); ?></td>
+                                                            <td><?php echo htmlentities($row['AssetType']); ?></td>
+                                                            <td><?php echo htmlentities($row['postedDate']); ?></td>
+                                                            <td><a href="manage-budget.php?resid=<?php echo htmlentities($row['id']); ?>"><i class="ion-arrow-return-right" title="Restore this category"></i></a>
+                                                                &nbsp;<a href="manage-budget.php?rid=<?php echo htmlentities($row['id']); ?>&&action=parmdel" title="Delete forever"> <i class="fa fa-trash-o" style="color: #f05050"></i> </td>
                                                         </tr>
                                                     <?php
                                                         $cnt++;

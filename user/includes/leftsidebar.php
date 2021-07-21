@@ -91,6 +91,29 @@
                                 </ul>
                             </li>
 
+
+                            <!--Add Primary Student-->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Primary Student </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="add-primary.php"> Add Primary Student</a></li>
+                                    <!-- <li><a href="manage-guest.php"> Manage Guest Staff</a></li> -->
+                                </ul>
+                            </li>
+
+
+                            <!--Add Budget Plan-->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Budget Plan </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="add-budget.php"> Add Budget</a></li>
+                                    <li><a href="manage-budget.php"> Manage Budget</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <!-- Sidebar -->
