@@ -34,6 +34,29 @@
                                 </ul>
                             </li>  
 
+                             <!--Durable Student Asset  -->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Durable Stu-Asset </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="add-st-durable-asset.php">Add Durable Asset</a></li>
+                                    <li><a href="manage-st-durable-asset.php">Manage Durable Assets</a></li>
+                                    <li><a href="trash-st-durable-asset.php">Trash Durable Asset</a></li>
+                                </ul>
+                            </li>
+
+                             <!-- Durable Staff Asset  -->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Durable Staff Asset </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="add-staff-durable.php">Add Staff Durable Asset</a></li>
+                                    <li><a href="manage-staff-durable.php">Manage Staff Durable Assets</a></li>
+                                    <li><a href="trash-staff-durable.php">Trash Staff Durable Asset</a></li>
+                                </ul>
+                            </li>
 
                             <!--tools management  -->
                             <li class="has_sub">
