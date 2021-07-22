@@ -38,8 +38,8 @@ if (strlen($_SESSION['id']) == 0) {
             // $respone_status=0;
             // qr method
             Qrcode::png($qrkey,$file);
-            $query = mysqli_query($con, "INSERT INTO `durable-student-Asset`(`assetname`, 
-            `serialNumber`, `ToolImage`, `studentID`, `MAC Adress`, `QR-Code`, `QR-CodeImage`, 
+            $query = mysqli_query($con, "INSERT INTO `durable_student_Asset`(`assetname`, 
+            `serialNumber`, `ToolImage`, `studentID`, `MAC_Adress`, `QRCode`, `QRCodeImage`, 
             `returningDate`, `Active_Status`) VALUES ('$posttitle','$serial','$imgnewfile','$studentid','$MacAddress','$qrkey','$file','$returingdate','$status')");
             if ($query) {
                 $msg = "Asset successfully added ";
