@@ -119,6 +119,7 @@ if (strlen($_SESSION['id']) == 0) {
                                             <thead>
                                                 <tr>
 
+
                                                     <th>Name</th>
                                                     <th>Serial Number</th>
                                                     <th>Image</th>
