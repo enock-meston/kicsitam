@@ -11,7 +11,7 @@ else{
 if($_GET['action']='restore')
 {
 $postid=intval($_GET['pid']);
-$query=mysqli_query($con,"UPDATE durable_student_Asset set Active_Status=1 where did='$postid'");
+$query=mysqli_query($con,"UPDATE durable_staff_Asset set Active_Status=1 where dsid='$postid'");
 if($query)
 {
 $msg="Post restored successfully ";
@@ -26,7 +26,7 @@ $error="Something went wrong . Please try again.";
 if($_GET['presid'])
 {
     $id=intval($_GET['presid']);
-    $query=mysqli_query($con,"DELETE from durable_student_Asset where did='$id'");
+    $query=mysqli_query($con,"DELETE from  durable_staff_Asset  where dsid='$id'");
     $delmsg="Post deleted forever";
 }
 
@@ -141,27 +141,28 @@ if($_GET['presid'])
 <tr>
                                            
     <th>Name</th>
-    <th>Serial Number</th>
-    <th>Image</th>
-    <th>QR Code</th>
-    <th>Student Name</th>
-    <th>Mac Address</th>
-    <th>Action Date</th>
-    <th>Returning Date</th>
-    <th>Action</th>
+                                                    <th>Serial Number</th>
+                                                    <th>Image</th>
+                                                    <th>QR Code</th>
+                                                    <th>Staff Name</th>
+                                                    <th>Mac Address</th>
+                                                    <th>Action Date</th>
+                                                    <th>Returning Date</th>
+                                                    <th>Action</th>
 </tr>
 </thead>
 <tbody>
 
 <?php
-$query=mysqli_query($con,"SELECT durable_student_Asset.did as did,durable_student_Asset.assetname 
-                                                AS assetname,durable_student_Asset.ToolImage as ToolImage,durable_student_Asset.serialNumber AS serialNumber,
-                                                durable_student_Asset.studentID as studentID,durable_student_Asset.MAC_adress as MAC_Adress,
-                                                durable_student_Asset.QRCode as QRCode,durable_student_Asset.QRCodeImage AS QRCodeImage,
-                                                durable_student_Asset.PostedDate as PostedDate,durable_student_Asset.returningDate as returningDate,
-                                                tblstudent.Firstname as FirstName,tblstudent.Lastname as LastNmae FROM
-                                                 durable_student_Asset LEFT JOIN tblstudent on tblstudent.id=durable_student_Asset.studentID 
-                                                 WHERE durable_student_Asset.Active_Status=0");
+$query=mysqli_query($con,"SELECT durable_staff_Asset.dsid as dsid, 
+                                                durable_staff_Asset.assetname as assetname,durable_staff_Asset.serialNumber as serialNumber,
+                                                durable_staff_Asset.ToolImage as ToolImage,durable_staff_Asset.staffID as staffID,
+                                                durable_staff_Asset.MAC_Adress as MAC_Adress,durable_staff_Asset.HotSport as HotSport,
+                                                durable_staff_Asset.Room as Room,durable_staff_Asset.QRCode as QRCode,
+                                                durable_staff_Asset.QRCodeImage as QRCodeImage,durable_staff_Asset.PostedDate as PostedDate,
+                                                durable_staff_Asset.returningDate as returningDate,teachertbl.Firstname as Firstname,
+                                                teachertbl.Lastname FROM durable_staff_Asset LEFT JOIN teachertbl on 
+                                                teachertbl.tid=durable_staff_Asset.staffID WHERE durable_staff_Asset.Active_Status=0");
 $rowcount=mysqli_num_rows($query);
 if($rowcount==0)
 {
@@ -192,9 +193,9 @@ while($row=mysqli_fetch_array($query))
                                                         <td><?php echo htmlentities($row['returningDate']) ;?></td>
 
 <td>
-<a href="trash-st-durable-asset.php?pid=<?php echo htmlentities($row['did']);?>&&action=restore" onclick="return confirm('Do you really want to restore ?')"> <i class="ion-arrow-return-right" title="Restore this Post"></i></a>
+<a href="trash-staff-durable.php?pid=<?php echo htmlentities($row['dsid']);?>&&action=restore" onclick="return confirm('Do you really want to restore ?')"> <i class="ion-arrow-return-right" title="Restore this Post"></i></a>
     &nbsp;
-    <a href="trash-st-durable-asset.php?presid=<?php echo htmlentities($row['did']);?>&&action=perdel" onclick="return confirm('Do you really want to delete ?')"><i class="fa fa-trash-o" style="color: #f05050" title="Permanently delete this post"></i></a> 
+    <a href="trash-staff-durable.php?presid=<?php echo htmlentities($row['dsid']);?>&&action=perdel" onclick="return confirm('Do you really want to delete ?')"><i class="fa fa-trash-o" style="color: #f05050" title="Permanently delete this post"></i></a> 
  </td>
  </tr>
 <?php } }?>

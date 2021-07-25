@@ -8,7 +8,7 @@ if (strlen($_SESSION['id']) == 0) {
 
     if ($_GET['action'] = 'del') {
         $postid = intval($_GET['pid']);
-        $query = mysqli_query($con, "UPDATE durable_student_Asset set Active_Status=0 where did='$postid'");
+        $query = mysqli_query($con, "UPDATE durable_staff_Asset set Active_Status=0 where dsid='$postid'");
         if ($query) {
             $msg = "Tool deleted ";
         } else {
@@ -179,8 +179,8 @@ if (strlen($_SESSION['id']) == 0) {
                                                         <td><b><?php echo htmlentities($row['PostedDate']); ?></b></td>
                                                         <td><?php echo htmlentities($row['returningDate']) ;?></td>
 
-                                                        <td><a href="edit-durable-student.php?pid=<?php echo htmlentities($row['did']); ?>"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a>
-                                                            &nbsp;<a href="manage-st-durable-asset.php?pid=<?php echo htmlentities($row['did']); ?>&&action=del" onclick="return confirm('Do you reaaly want to delete ?')">
+                                                        <td><a href="edit-durable-staff.php?pid=<?php echo htmlentities($row['dsid']); ?>"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a>
+                                                            &nbsp;<a href="manage-staff-durable.php?pid=<?php echo htmlentities($row['dsid']); ?>&&action=del" onclick="return confirm('Do you reaaly want to delete ?')">
                                                                 <i class="fa fa-trash-o" style="color: #f05050"></i></a> </td>
                                                     </tr>
                                             <?php }
