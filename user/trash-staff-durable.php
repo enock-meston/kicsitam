@@ -146,6 +146,8 @@ if($_GET['presid'])
                                                     <th>QR Code</th>
                                                     <th>Staff Name</th>
                                                     <th>Mac Address</th>
+                                                    <th>HotSport </th>
+                                                    <th>Room</th>
                                                     <th>Action Date</th>
                                                     <th>Returning Date</th>
                                                     <th>Action</th>
@@ -189,6 +191,8 @@ while($row=mysqli_fetch_array($query))
                                                             </td>
                                                         <td style="width: 20%;"><?php echo htmlentities($row['FirstName'])." ".htmlentities($row['LastNmae']); ?></td>
                                                          <td style="width: 20%;"><?php echo htmlentities($row['MAC_Adress']); ?></td>
+                                                         <td style="width: 20%;"><?php echo htmlentities($row['HotSport']); ?></td>
+                                                         <td style="width: 20%;"><?php echo htmlentities($row['Room']); ?></td>
                                                         <td><b><?php echo htmlentities($row['PostedDate']); ?></b></td>
                                                         <td><?php echo htmlentities($row['returningDate']) ;?></td>
 

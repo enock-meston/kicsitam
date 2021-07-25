@@ -119,13 +119,14 @@ if (strlen($_SESSION['id']) == 0) {
                                             <thead>
                                                 <tr>
 
-
                                                     <th>Name</th>
                                                     <th>Serial Number</th>
                                                     <th>Image</th>
                                                     <th>QR Code</th>
                                                     <th>Staff Name</th>
                                                     <th>Mac Address</th>
+                                                    <th>HotSport </th>
+                                                    <th>Room</th>
                                                     <th>Action Date</th>
                                                     <th>Returning Date</th>
                                                     <th>Action</th>
@@ -148,7 +149,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                 durable_staff_Asset.Room as Room,durable_staff_Asset.QRCode as QRCode,
                                                 durable_staff_Asset.QRCodeImage as QRCodeImage,durable_staff_Asset.PostedDate as PostedDate,
                                                 durable_staff_Asset.returningDate as returningDate,teachertbl.Firstname as Firstname,
-                                                teachertbl.Lastname FROM durable_staff_Asset LEFT JOIN teachertbl on 
+                                                teachertbl.Lastname as Lastname FROM durable_staff_Asset LEFT JOIN teachertbl on 
                                                 teachertbl.tid=durable_staff_Asset.staffID WHERE durable_staff_Asset.Active_Status=1 LIMIT $page1,7");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
@@ -174,8 +175,11 @@ if (strlen($_SESSION['id']) == 0) {
                                                                 <img src="<?php echo $row['QRCodeImage'];?>" alt="" style="width: 50%;">
                                                               </a>
                                                             </td>
-                                                        <td style="width: 20%;"><?php echo htmlentities($row['FirstName'])." ".htmlentities($row['LastNmae']); ?></td>
+                                                        <td style="width: 20%;"><?php echo htmlentities($row['Firstname'])." ".htmlentities($row['Lastname']); ?></td>
                                                          <td style="width: 20%;"><?php echo htmlentities($row['MAC_Adress']); ?></td>
+                                                         <td style="width: 20%;"><?php echo htmlentities($row['HotSport']); ?></td>
+                                                         <td style="width: 20%;"><?php echo htmlentities($row['Room']); ?></td>
+                                                         
                                                         <td><b><?php echo htmlentities($row['PostedDate']); ?></b></td>
                                                         <td><?php echo htmlentities($row['returningDate']) ;?></td>
 
