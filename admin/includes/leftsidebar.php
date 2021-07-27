@@ -11,83 +11,36 @@
                                     <span> Dashboard </span> </a>
 
                             </li>
-                                 <!--Asset QR Code  -->
+                                
+
+                            <!--Add USER-->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span>Use QR code</span> <span
+                                        class="mdi mdi-format-list-bulleted"></i> <span> USER </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="scan-asset.php">Student</a></li>
-                                    <li><a href="te-scan-asset.php">Staff</a></li>
-                                    <li><a href="#">Non I.T Asset</a></li>
-                                </ul>
-                            </li> 
-
-                            <!--tools category  -->
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span>Assets Category </span> <span
-                                        class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="add-category.php">Add Asset Category</a></li>
-                                    <li><a href="manage-categories.php">Manage Categories</a></li>
-                                </ul>
-                            </li>  
-
-
-                            <!--tools management  -->
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span> Assets </span> <span
-                                        class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="add-tool.php">Add Asset</a></li>
-                                    <li><a href="manage-tools.php">Manage Assets</a></li>
-                                    <li><a href="trash-tools.php">Trash Asset</a></li>
+                                    <li><a href="add-user.php"> Add user </a></li>
+                                    <li><a href="manage-user.php"> Manage user</a></li>
                                 </ul>
                             </li>
 
-                            <!--tools reply  -->
+                             <!--Add USER-->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span>Student </span> <span
+                                        class="mdi mdi-format-list-bulleted"></i> <span> STUDENT </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="reply-student.php">Student Reply</a></li>
-                                    <li><a href="asset-from-student.php">From Student</a></li>
-                                    <li><a href="student-report.php">Student Report</a></li>
+                                    <li><a href="manage-primary-student.php"> Student</a></li>
                                 </ul>
                             </li>
 
-                            <!--Recieve  Asset from student-->
+                            <!--Add USER-->
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span> Staff </span> <span
+                                        class="mdi mdi-format-list-bulleted"></i> <span> STAFF </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="reply-staff.php">Asset To Staff</a></li>
-                                    <li><a href="asset-from-staff.php">Asset From Staff</a></li>
-                                    <li><a href="staff-report.php">Staff Report</a></li>
-                                </ul>
-                            </li>
-
-                            <!--Help  Desk-->
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span> Help Desk </span> <span
-                                        class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="make-help.php">Make Help</a></li>
-                                </ul>
-                            </li>
-                            <!--Add Guest-->
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i
-                                        class="mdi mdi-format-list-bulleted"></i> <span> Guest </span> <span
-                                        class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="add-guest.php"> Add Guest Staff</a></li>
-                                    <li><a href="manage-guest.php"> Manage Guest Staff</a></li>
+                                    <li><a href="manage-staff.php"> Staff</a></li>
                                 </ul>
                             </li>
 

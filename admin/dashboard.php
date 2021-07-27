@@ -2,7 +2,7 @@
 session_start();
 include('includes/config.php');
 error_reporting(0);
-if (strlen($_SESSION['id']) == 0) {
+if (strlen($_SESSION['SID']) == 0) {
     header('location:index.php');
 } else {
 ?>
@@ -16,7 +16,7 @@ if (strlen($_SESSION['id']) == 0) {
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
         <!-- App title -->
-        <title><?php echo $_SESSION['fn'] . " " . $_SESSION['ln']; ?>| Dashboard</title>
+        <title><?php echo $_SESSION['fname'] . " " . $_SESSION['lname']; ?>| Dashboard</title>
         <link rel="stylesheet" href="plugins/morris/morris.css">
 
         <!-- App css -->
@@ -75,7 +75,7 @@ if (strlen($_SESSION['id']) == 0) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Dashboard</h4>
+                                    <h4 class="page-title">Admin Dashboard</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="#">KICSITAM</a>
@@ -95,13 +95,13 @@ if (strlen($_SESSION['id']) == 0) {
                         <!-- style="background-color: #f37020;color:white;" -->
                         <div class="row">
                             <!-- numbers of categories -->
-                            <a href="manage-categories.php">
+                           
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="card-box widget-box-one">
                                         <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
                                         <div class="wigdet-one-content">
                                             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Categories Listed</p>
-                                            <?php $query = mysqli_query($con, "select * from tblcategory where Is_Active=1");
+                                            <?php $query = mysqli_query($con, "SELECT * from tblcategory where Is_Active=1");
                                             $countcat = mysqli_num_rows($query);
                                             ?>
                                             <h2 style="color: #f37020;"><?php echo htmlentities($countcat); ?> <small></small></h2>
@@ -109,17 +109,17 @@ if (strlen($_SESSION['id']) == 0) {
                                         </div>
                                     </div>
                                 </div>
-                            </a> <!-- end numbers of categories -->
+                            <!-- end numbers of categories -->
                             <!-- end col -->
 
                             <!-- numbers of tools -->
-                            <a href="manage-tools.php">
+                           
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="card-box widget-box-one">
                                         <i class="mdi mdi-layers widget-one-icon"></i>
                                         <div class="wigdet-one-content">
                                             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Asset Listed</p>
-                                            <?php $query = mysqli_query($con, "select * from tbltools where ActiveStatus=1");
+                                            <?php $query = mysqli_query($con, "SELECT * from tbltools where ActiveStatus=1");
                                             $countposts = mysqli_num_rows($query);
                                             ?>
                                             <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
@@ -127,10 +127,10 @@ if (strlen($_SESSION['id']) == 0) {
                                         </div>
                                     </div>
                                 </div><!-- end col -->
-                            </a> <!-- end numbers of tools -->
+                           <!-- end numbers of tools -->
 
                             <!-- trash tools -->
-                            <a href="trash-tools.php">
+                          
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="card-box widget-box-one">
                                         <i class="mdi mdi-layers widget-one-icon"></i>
@@ -144,139 +144,22 @@ if (strlen($_SESSION['id']) == 0) {
                                         </div>
                                     </div>
                                 </div><!-- end col -->
-                            </a> <!-- end trash tools -->
+                            <!-- end trash tools -->
 
-
-
-                            <!-- Student Pendind Request  -->
-                            
-                                <div class="col-lg-4 col-md-4 col-sm-6">
-                                    <div class="card-box widget-box-one">
-                                        <i class="mdi mdi-layers widget-one-icon"></i>
-                                        <div class="wigdet-one-content">
-                                            <p class="m-0 text-uppercase font-600 font-secondary 
-                                            text-overflow" title="User This Month">Student Pendind Request</p>
-                                            <?php $query = mysqli_query($con, "select * from studentbookingtbl where ActiveStatus=1");
-                                            $countposts = mysqli_num_rows($query);
-                                            ?>
-                                            <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
-
-                                        </div>
-                                    </div>
-                                </div><!-- end col -->
-                             <!-- end Student Pendind Request -->
-
-                            <!-- Booking request -->
-                            <a href="reply-student.php">
-                                <div class="col-lg-4 col-md-4 col-sm-6">
-                                    <div class="card-box widget-box-one">
-                                        <i class="mdi mdi-layers widget-one-icon"></i>
-                                        <div class="wigdet-one-content">
-                                            <p class="m-0 text-uppercase font-600 font-secondary 
-                                            text-overflow" title="User This Month"> Booking Request From Student</p>
-                                            <?php $query = mysqli_query($con, "SELECT * from studentbookingtbl where studentbookingtbl.BookStatus=0 AND ActiveStatus=1");
-                                            $countposts = mysqli_num_rows($query);
-                                            ?>
-                                            <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
-
-                                        </div>
-                                    </div>
-                                </div><!-- end col -->
-                            </a> <!-- end Booking request -->
-
-
-                            <!-- Asset to student -->
-                            <a href="asset-from-student.php">
-                                <div class="col-lg-4 col-md-4 col-sm-6">
-                                    <div class="card-box widget-box-one">
-                                        <i class="mdi mdi-layers widget-one-icon"></i>
-                                        <div class="wigdet-one-content">
-                                            <p class="m-0 text-uppercase font-600 font-secondary 
-                                            text-overflow" title="User This Month">Asset Taken by Student</p>
-                                            <?php $query = mysqli_query($con, "SELECT * from studentbookingtbl where studentbookingtbl.BookStatus=1 AND ActiveStatus=1");
-                                            $countposts = mysqli_num_rows($query);
-                                            ?>
-                                            <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
-
-                                        </div>
-                                    </div>
-                                </div><!-- end col -->
-                            </a> <!-- end Asset to student -->
-
-                            <!-- ========== -->
-                            <!--    STAFF -->
-                            <!-- ========== -->
-
-                            <!-- STAFF Pendind Request  -->
-                            
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                    <div class="card-box widget-box-one">
-                                        <i class="mdi mdi-layers widget-one-icon"></i>
-                                        <div class="wigdet-one-content">
-                                            <p class="m-0 text-uppercase font-600 font-secondary 
-                                            text-overflow" title="User This Month">Staff Pendind Request</p>
-                                            <?php $query = mysqli_query($con, "select * from teacherbookingtbl where ActiveStatus=1");
-                                            $countposts = mysqli_num_rows($query);
-                                            ?>
-                                            <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
-
-                                        </div>
-                                    </div>
-                                </div><!-- end col -->
-                             <!-- end STAFF Pendind Request -->
-
-                            <!-- Booking request -->
-                            <a href="reply-staff.php">
-                                <div class="col-lg-4 col-md-4 col-sm-6">
-                                    <div class="card-box widget-box-one">
-                                        <i class="mdi mdi-layers widget-one-icon"></i>
-                                        <div class="wigdet-one-content">
-                                            <p class="m-0 text-uppercase font-600 font-secondary 
-                                            text-overflow" title="User This Month"> Booking Request From Staff</p>
-                                            <?php $query = mysqli_query($con, "SELECT * from teacherbookingtbl where teacherbookingtbl.BookStatus=0 AND ActiveStatus=1");
-                                            $countposts = mysqli_num_rows($query);
-                                            ?>
-                                            <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
-
-                                        </div>
-                                    </div>
-                                </div><!-- end col -->
-                            </a> <!-- end Booking request -->
-
-
-                            <!-- Asset to STAFF -->
-                            <a href="asset-from-staff.php">
-                                <div class="col-lg-4 col-md-4 col-sm-6">
-                                    <div class="card-box widget-box-one">
-                                        <i class="mdi mdi-layers widget-one-icon"></i>
-                                        <div class="wigdet-one-content">
-                                            <p class="m-0 text-uppercase font-600 font-secondary 
-                                            text-overflow" title="User This Month">Asset Taken by Staff</p>
-                                            <?php $query = mysqli_query($con, "SELECT * from teacherbookingtbl where teacherbookingtbl.BookStatus=1 AND ActiveStatus=1");
-                                            $countposts = mysqli_num_rows($query);
-                                            ?>
-                                            <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
-
-                                        </div>
-                                    </div>
-                                </div><!-- end col -->
-                            </a> <!-- end Asset to STAFF -->
-
-
-                            <!-- === GUEST USER -->
+                            <!-- ===  USER -->
                             <!-- =============== -->
 
 
 
-                            <!-- Asset to STAFF -->
-                            <a href="manage-guest.php">
+                            <!-- User -->
+                            <a href="manage-user.php">
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="card-box widget-box-one">
                                         <i class="mdi mdi-layers widget-one-icon"></i>
                                         <div class="wigdet-one-content">
                                             <p class="m-0 text-uppercase font-600 font-secondary 
-                                            text-overflow" title="User This Month">Guest Staff Listed</p>
-                                            <?php $query = mysqli_query($con, "SELECT * from teachertbl where ActiveStatus=2");
+                                            text-overflow" title="User This Month"> User Listed</p>
+                                            <?php $query = mysqli_query($con, "SELECT * from usertbl where ActiveStatus=1");
                                             $countposts = mysqli_num_rows($query);
                                             ?>
                                             <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
@@ -284,7 +167,27 @@ if (strlen($_SESSION['id']) == 0) {
                                         </div>
                                     </div>
                                 </div><!-- end col -->
-                            </a> <!-- end Asset to STAFF -->
+                            </a> <!-- end user-->
+
+
+
+                                <!-- student -->
+                            <a href="manage-primary-student.php">
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <div class="card-box widget-box-one">
+                                        <i class="mdi mdi-layers widget-one-icon"></i>
+                                        <div class="wigdet-one-content">
+                                            <p class="m-0 text-uppercase font-600 font-secondary 
+                                            text-overflow" title="User This Month"> Student Listed</p>
+                                            <?php $query = mysqli_query($con, "SELECT * from tblstudent where Active_Status=1");
+                                            $countposts = mysqli_num_rows($query);
+                                            ?>
+                                            <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
+
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                            </a> <!-- end student-->
                         </div>
                         <!-- end row -->
 

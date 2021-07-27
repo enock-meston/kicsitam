@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("includes/config.php");
-$_SESSION['id']=="";
+$_SESSION['SID']=="";
 session_unset();
 session_destroy();
 

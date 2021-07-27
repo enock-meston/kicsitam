@@ -7,13 +7,13 @@ if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     // User login side
-        $query = mysqli_query($con, "SELECT * FROM usertbl WHERE email='$email' AND password='$password'");
+        $query = mysqli_query($con, "SELECT * FROM Admintbl WHERE email='$email' AND password='$password'");
         $num = mysqli_fetch_array($query);
 
         if ($num > 0) {
-            $_SESSION['id'] = $num['uid'];
-            $_SESSION['fn'] = $num['Firstname'];
-            $_SESSION['ln'] = $num['Lastname'];
+            $_SESSION['SID'] = $num['SID'];
+            $_SESSION['fname'] = $num['Firstname'];
+            $_SESSION['lname'] = $num['Lastname'];
             echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
         } else {
             echo "<script>alert('User not registered with us');</script>";
@@ -111,7 +111,7 @@ if (isset($_POST['login'])) {
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login as kicsitam User</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Super Admin Login Form</h1>
                                     </div>
 
 

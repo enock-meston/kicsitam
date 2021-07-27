@@ -2,7 +2,7 @@
 session_start();
 include('includes/config.php');
 error_reporting(0);
-if (strlen($_SESSION['id']) == 0) {
+if (strlen($_SESSION['SID']) == 0) {
     header('location:index.php');
 } else {
     if (isset($_POST['submit'])) {
@@ -11,7 +11,7 @@ if (strlen($_SESSION['id']) == 0) {
         $staffid = $_SESSION['id'];
         $newpassword=$_POST['newpassword'];
         
-        $sql = mysqli_query($con, "SELECT * FROM usertbl WHERE uid='".$_SESSION['id']."'");
+        $sql = mysqli_query($con, "SELECT * FROM Admintbl WHERE SID='".$_SESSION['SID']."'");
         if ($row = mysqli_fetch_array($sql)) {
             $dbpass=$row['password'];
             if (strpos($newpassword,'@')==false && strpos($newpassword,'%')== false) {
@@ -25,7 +25,7 @@ if (strlen($_SESSION['id']) == 0) {
                 // return false;
             }
             else if ($password==$dbpass) {
-                $updatePass = mysqli_query($con, "UPDATE usertbl SET password='$newpassword' WHERE uid='$staffid'");
+                $updatePass = mysqli_query($con, "UPDATE Admintbl SET password='$newpassword' WHERE SID='$staffid'");
             $msg = "Password Changed Successfully !!";
             }else {
                 $error = "Incorect Current Password";
