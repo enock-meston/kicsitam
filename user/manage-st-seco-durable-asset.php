@@ -148,7 +148,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                 durable_student_Asset.PostedDate as PostedDate,durable_student_Asset.returningDate as returningDate,
                                                 tblstudent.Firstname as FirstName,tblstudent.Lastname as LastNmae FROM
                                                  durable_student_Asset LEFT JOIN tblstudent on tblstudent.id=durable_student_Asset.studentID 
-                                                 WHERE durable_student_Asset.Active_Status=1 AND durable_student_Asset.AssetType='iPad' LIMIT $page1,7");
+                                                 WHERE durable_student_Asset.Active_Status=1 AND durable_student_Asset.AssetType='Laptop' LIMIT $page1,7");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>
@@ -197,7 +197,7 @@ if (strlen($_SESSION['id']) == 0) {
                                                 durable_student_Asset.PostedDate as PostedDate,durable_student_Asset.returningDate as returningDate,
                                                 tblstudent.Firstname as FirstName,tblstudent.Lastname as LastNmae FROM
                                                  durable_student_Asset LEFT JOIN tblstudent on tblstudent.id=durable_student_Asset.studentID 
-                                                 WHERE durable_student_Asset.Active_Status=1 AND durable_student_Asset.AssetType='iPad'");
+                                                 WHERE durable_student_Asset.Active_Status=1 AND durable_student_Asset.AssetType='Laptop'");
                                                 $cou = mysqli_num_rows($query1);
 
                                                 $a = $cou/7;

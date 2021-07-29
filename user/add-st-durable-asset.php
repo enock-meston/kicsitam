@@ -11,9 +11,11 @@ if (strlen($_SESSION['id']) == 0) {
     if (isset($_POST['submit'])) {
 
         $posttitle = addslashes($_POST['toolname']);
+        $assettype=$_POST['assettype'];
         $studentid = $_POST['studentID'];
         $serial=$_POST['serial'];
         $MacAddress =$_POST['MacAddress'];
+        $comment = addslashes($_POST['comment']);
         //qrpath
         $qrpath='img/';
         $file=$qrpath.$_POST['serial'].'.png';  // is path and name of qr code in the database
@@ -38,9 +40,10 @@ if (strlen($_SESSION['id']) == 0) {
             // $respone_status=0;
             // qr method
             Qrcode::png($qrkey,$file);
-            $query = mysqli_query($con, "INSERT INTO `durable_student_Asset`(`assetname`, 
-            `serialNumber`, `ToolImage`, `studentID`, `MAC_Adress`, `QRCode`, `QRCodeImage`, 
-            `returningDate`, `Active_Status`) VALUES ('$posttitle','$serial','$imgnewfile','$studentid','$MacAddress','$qrkey','$file','$returingdate','$status')");
+            $query = mysqli_query($con, "INSERT INTO `durable_student_Asset`(`assetname`,`AssetType`, 
+            `serialNumber`, `ToolImage`, `studentID`, `MAC_Adress`,`Comment1`,`QRCode`, `QRCodeImage`, 
+            `returningDate`, `Active_Status`) VALUES ('$posttitle','$assettype','$serial','$imgnewfile',
+            '$studentid','$MacAddress','$comment','$qrkey','$file','$returingdate','$status')");
             if ($query) {
                 $msg = "Asset successfully added ";
                 // echo "<script type='text/javascript'> document.location = 'add-tool.php'; </script>";
@@ -175,7 +178,14 @@ if (strlen($_SESSION['id']) == 0) {
                                                 <label for="exampleInputEmail1">Asset Name </label>
                                                 <input type="text" class="form-control" id="posttitle" name="toolname" placeholder="Enter Asset Name" required>
                                             </div>
-
+                                            <div class="form-group m-b-20">
+                                                <label for="exampleInputEmail1"> Asset Type</label>
+                                                <select class="form-control" name="assettype" id="posttitle">
+                                                    <option>Select Asset Type</option>
+                                                    <option value="iPad">iPad</option>
+                                                    <option value="Laptop">Laptop</option>
+                                                </select>
+                                            </div>
                                             <div class="form-group m-b-20">
                                                 <label for="exampleInputEmail1">Serial Number</label>
                                                 <input type="text" class="form-control" id="posttitle" name="serial" placeholder="Enter Serial Number" required>
@@ -209,7 +219,14 @@ if (strlen($_SESSION['id']) == 0) {
                                             </div>
 
                                             
-
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="card-box">
+                                                        <h4 class="m-b-30 m-t-0 header-title"><b>Comment</b></h4>
+                                                        <textarea class="form-control" rows="5" cols="10" name="comment" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <div class="row">
                                                 <div class="col-sm-12">

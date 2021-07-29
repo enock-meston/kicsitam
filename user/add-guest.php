@@ -32,9 +32,9 @@ if (strlen($_SESSION['id']) == 0) {
         } else if ($password !== $rePass) {
             $error = "Passwords do not match. please try again!";
         } else {
-            $query = mysqli_query($con, "INSERT INTO `teachertbl`(`Firstname`, `Lastname`,
+            $query = mysqli_query($con, "INSERT INTO `teachertbl`(`Firstname`, `Lastname`,`phoneNumber`,
     `email`, `username`, `password`, `ActiveStatus`) 
-    VALUES ('$firstname','$lastname','$email','$username','$password','$status')");
+    VALUES ('$firstname','$lastname','','$email','$username','$password','$status')");
 
             if ($query) {
                 $msg = $firstname." ".$lastname." Registred to Be Guest and access Kics Stock";

@@ -10,7 +10,7 @@ if (isset($_POST['save'])) {
     $lastname = $_POST['ln'];
     $email = $_POST['email'];
     $class = $_POST['class'];
-    $department = $_POST['dept'];
+    $department = "Secondary";
     $password = $_POST['pass'];
     $rePass = $_POST['repass'];
     $profile = $_FILES['profile']['name'];
@@ -131,9 +131,7 @@ if (isset($_POST['save'])) {
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Grade" name="class">
                                     </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Department" name="dept">
-                                    </div>
+                    
                                 </div>
 
                                 <div class="form-group row">

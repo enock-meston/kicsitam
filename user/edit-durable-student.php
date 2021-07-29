@@ -11,6 +11,8 @@ if (strlen($_SESSION['id']) == 0) {
         $studentid = $_POST['studentID'];
         $serial=$_POST['serial'];
         $MacAddress =$_POST['MacAddress'];
+        $comment=addslashes($_POST['comment']);
+        $AssetType=$_POST['assettype'];
         $returingdate = addslashes($_POST['returingdate']);
         // qrcode update 
         //qrpath
@@ -22,8 +24,8 @@ if (strlen($_SESSION['id']) == 0) {
         // end of qrcode update
         $status = 1;
         $postid = intval($_GET['pid']);
-        $query = mysqli_query($con, "UPDATE `durable_student_Asset` SET `assetname`='$posttitle ',
-        `serialNumber`='$serial',`studentID`='$studentid ',`MAC_Adress`='$MacAddress',`QRCode`='$qrkey',
+        $query = mysqli_query($con, "UPDATE `durable_student_Asset` SET `assetname`='$posttitle ',`AssetType`='$AssetType',
+        `serialNumber`='$serial',`studentID`='$studentid ',`MAC_Adress`='$MacAddress',`Comment1`='$comment',`QRCode`='$qrkey',
         `QRCodeImage`='$file',`returningDate`='$returingdate' WHERE did='$postid'");
         if ($query) {
             $msg = "Tool updated ";
@@ -149,12 +151,12 @@ if (strlen($_SESSION['id']) == 0) {
                         $postid = intval($_GET['pid']);
                         $query = mysqli_query($con, "SELECT durable_student_Asset.did as did,durable_student_Asset.assetname 
                                                 AS assetname,durable_student_Asset.ToolImage as ToolImage,durable_student_Asset.serialNumber AS serialNumber,
-                                                durable_student_Asset.studentID as studentID,durable_student_Asset.MAC_adress as MAC_Adress,
+                                                durable_student_Asset.studentID as studentID,durable_student_Asset.MAC_adress as MAC_Adress,durable_student_Asset.Comment1 as comment,
                                                 durable_student_Asset.QRCode as QRCode,durable_student_Asset.QRCodeImage AS QRCodeImage,
                                                 durable_student_Asset.PostedDate as PostedDate,durable_student_Asset.returningDate as returningDate,
                                                 tblstudent.Firstname as FirstName,tblstudent.Lastname as LastNmae FROM
                                                  durable_student_Asset LEFT JOIN tblstudent on tblstudent.id=durable_student_Asset.studentID 
-                                                 WHERE durable_student_Asset.Active_Status=1 and durable_student_Asset.Active_Status='$postid'");
+                                                 WHERE durable_student_Asset.Active_Status=1 AND durable_student_Asset.did='$postid'");
                         while ($row = mysqli_fetch_array($query)) {
                         ?>
                             <div class="row">
@@ -170,6 +172,15 @@ if (strlen($_SESSION['id']) == 0) {
                                             <div class="form-group m-b-20">
                                                 <label for="exampleInputEmail1">Serial Number</label>
                                                 <input type="text" class="form-control" id="posttitle" name="serial" value="<?php echo htmlentities($row['serialNumber']); ?>">
+                                            </div>
+                                            
+                                            <div class="form-group m-b-20">
+                                                <label for="exampleInputEmail1"> Asset Type</label>
+                                                <select class="form-control" name="assettype" id="posttitle">
+                                                    <option>Select Asset Type</option>
+                                                    <option value="iPad">iPad</option>
+                                                    <option value="Laptop">Laptop</option>
+                                                </select>
                                             </div>
 
                                             <div class="form-group m-b-20">
@@ -197,6 +208,14 @@ if (strlen($_SESSION['id']) == 0) {
                                             <div class="form-group m-b-20">
                                                 <label for="exampleInputEmail1">Returning Date</label>
                                                 <input type="Date" class="form-control" id="posttitle" value="<?php echo htmlentities($row['returningDate']); ?>" name="returingdate">
+                                            </div>
+                                            
+                                               <div class="col-sm-12">
+                                                    <div class="card-box">
+                                                        <h4 class="m-b-30 m-t-0 header-title"><b>Comment</b></h4>
+                                                        <input class="form-control" type="text" name="comment" value="<?php echo htmlentities($row['comment']); ?>">
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         

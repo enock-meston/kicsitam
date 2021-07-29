@@ -15,7 +15,7 @@ if (strlen($_SESSION['SID']) == 0) {
         $username = $_POST['username'];
         $password = $_POST['pass'];
         $rePass = $_POST['repass'];
-        $status = 2;
+        $status = 1;
         $select_chech = mysqli_query($con, "SELECT * FROM usertbl WHERE email='$email'");
 
         if (mysqli_num_rows($select_chech) > 0) {

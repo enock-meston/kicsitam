@@ -137,7 +137,7 @@ if (strlen($_SESSION['SID']) == 0) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $query = mysqli_query($con, "SELECT * FROM tblstudent where Active_Status=1 AND department='Primary'");
+                                                    $query = mysqli_query($con, "SELECT * FROM tblstudent where Active_Status=1 AND department='Secondary'");
                                                     $cnt = 1;
                                                     while ($row = mysqli_fetch_array($query)) {
                                                     ?>
@@ -148,7 +148,7 @@ if (strlen($_SESSION['SID']) == 0) {
                                                             <td><?php echo htmlentities($row['email']); ?></td>
                                                             <td><?php echo htmlentities($row['AddedDate']); ?></td>
                                                             <td>
-                                                                <a href="manage-primary-student.php?rid=<?php echo htmlentities($row['id']); ?>&&action=del"> 
+                                                                <a href="manage-secondary-student.php?rid=<?php echo htmlentities($row['id']); ?>&&action=del"> 
                                                                     <i class="fa fa-trash-o" style="color: #f05050"></i>
                                                                 </a> 
                                                             </td>
@@ -196,7 +196,7 @@ if (strlen($_SESSION['SID']) == 0) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $query = mysqli_query($con, "SELECT * FROM tblstudent where Active_Status=0 AND department='Primary'");
+                                                    $query = mysqli_query($con, "SELECT * FROM tblstudent where Active_Status=0 AND department='Secondary'");
                                                     $cnt = 1;
                                                     while ($row = mysqli_fetch_array($query)) {
                                                     ?>
@@ -206,8 +206,8 @@ if (strlen($_SESSION['SID']) == 0) {
                                                             <td><?php echo htmlentities($row['Firstname'])." ". htmlentities($row['Lastname']); ?></td>
                                                             <td><?php echo htmlentities($row['email']); ?></td>
                                                             <td><?php echo htmlentities($row['AddedDate']); ?></td>
-                                                            <td><a href="manage-primary-student.php?resid=<?php echo htmlentities($row['id']); ?>"><i class="ion-arrow-return-right" title="Restore this category"></i></a>
-                                                                &nbsp;<a href="manage-primary-student.php?rid=<?php echo htmlentities($row['id']); ?>&&action=parmdel" title="Delete forever"> <i class="fa fa-trash-o" style="color: #f05050"></i> </td>
+                                                            <td><a href="manage-secondary-student.php?resid=<?php echo htmlentities($row['id']); ?>"><i class="ion-arrow-return-right" title="Restore this category"></i></a>
+                                                                &nbsp;<a href="manage-secondary-student.php?rid=<?php echo htmlentities($row['id']); ?>&&action=parmdel" title="Delete forever"> <i class="fa fa-trash-o" style="color: #f05050"></i> </td>
                                                         </tr>
                                                     <?php
                                                         $cnt++;

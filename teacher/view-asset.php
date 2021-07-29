@@ -91,7 +91,7 @@ if (strlen($_SESSION['tid']) == 0) {
                             teacherbookingtbl.returnDate AS redate,tbltools.id as toolid,tbltools.Toolname as toolname,
                             tbltools.ToolImage as image,tbltools.ActiveStatus AS toolsta, tbltools.isAllowedBy as allow FROM tbltools
                              LEFT JOIN teacherbookingtbl ON teacherbookingtbl.toolID=tbltools.id WHERE tbltools.isAllowedBy='teacher' 
-                             AND tbltools.response_status=0 AND tbltools.ToolCategory ='$categoryID'");
+                             AND tbltools.response_status=0 AND tbltools.ActiveStatus=1 AND tbltools.ToolCategory ='$categoryID'");
                             while ($row = mysqli_fetch_array($query)) {
                             ?>
                                 <div class="col-lg-3 col-md-4 col-sm-6">

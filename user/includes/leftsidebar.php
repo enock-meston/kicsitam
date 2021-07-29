@@ -41,7 +41,8 @@
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="add-st-durable-asset.php">Add Durable Asset</a></li>
-                                    <li><a href="manage-st-durable-asset.php">Manage Durable Assets</a></li>
+                                    <li><a href="manage-st-durable-asset.php">Manage Primary</a></li>
+                                     <li><a href="manage-st-seco-durable-asset.php">Manage Secondary</a></li>
                                     <li><a href="trash-st-durable-asset.php">Trash Durable Asset</a></li>
                                 </ul>
                             </li>
@@ -127,7 +128,7 @@
 
 
                             <!--Add Budget Plan-->
-                            <li class="has_sub">
+                            <!-- <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i
                                         class="mdi mdi-format-list-bulleted"></i> <span> Budget Plan </span> <span
                                         class="menu-arrow"></span></a>
@@ -135,7 +136,7 @@
                                     <li><a href="add-budget.php"> Add Budget</a></li>
                                     <li><a href="manage-budget.php"> Manage Budget</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <!-- Sidebar -->

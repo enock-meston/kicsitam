@@ -30,7 +30,8 @@
                                         class="mdi mdi-format-list-bulleted"></i> <span> STUDENT </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="manage-primary-student.php"> Student</a></li>
+                                    <li><a href="manage-primary-student.php">Primary</a></li>
+                                    <li><a href="manage-secondary-student.php"> Secondary</a></li>
                                 </ul>
                             </li>
 
@@ -41,6 +42,17 @@
                                         class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="manage-staff.php"> Staff</a></li>
+                                </ul>
+                            </li>
+
+                            <!--Add Budget Plan-->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span> Budget Plan </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="add-budget.php"> Add Budget</a></li>
+                                    <li><a href="manage-budget.php"> Manage Budget</a></li>
                                 </ul>
                             </li>
 

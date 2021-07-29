@@ -11,6 +11,10 @@ if (strlen($_SESSION['id']) == 0) {
         $staffid = $_POST['staffID'];
         $serial=$_POST['serial'];
         $MacAddress =$_POST['MacAddress'];
+        // ss
+        $comment=$_POST['comment'];
+        $copiercode=$_POST['copiercode'];
+        $hostname=$_POST['hostname'];
         $hotsport=$_POST['hotsport'];
         $room=$_POST['room'];
         $returingdate = addslashes($_POST['returingdate']);
@@ -25,7 +29,8 @@ if (strlen($_SESSION['id']) == 0) {
         $status = 1;
         $postid = intval($_GET['pid']);
         $query = mysqli_query($con, "UPDATE `durable_staff_Asset` SET `assetname`='$posttitle ',
-        `serialNumber`='$serial',`staffID`='$staffid ',`MAC_Adress`='$MacAddress',`HotSport`='$hotsport',
+        `serialNumber`='$serial',`staffID`='$staffid ',`MAC_Adress`='$MacAddress',`CopierCode`='$copiercode',
+        `HostName`='$hostname',`Comment1`='$comment',`HotSport`='$hotsport',
         `Room`='$room',`QRCode`='$qrkey',`QRCodeImage`='$file',`returningDate`='$returingdate' 
         WHERE dsid='$postid'");
         if ($query) {
@@ -153,13 +158,13 @@ if (strlen($_SESSION['id']) == 0) {
                         $query = mysqli_query($con, "SELECT durable_staff_Asset.dsid as dsid, 
                                                 durable_staff_Asset.assetname as assetname,durable_staff_Asset.serialNumber as serialNumber,
                                                 durable_staff_Asset.ToolImage as ToolImage,durable_staff_Asset.staffID as staffID,
-                                                durable_staff_Asset.MAC_Adress as MAC_Adress,durable_staff_Asset.HotSport as HotSport,
+                                                durable_staff_Asset.MAC_Adress as MAC_Adress,durable_staff_Asset.CopierCode as copiercode,
+                                                durable_staff_Asset.HostName as hostname,durable_staff_Asset.Comment1 as comment,durable_staff_Asset.HotSport as HotSport,
                                                 durable_staff_Asset.Room as Room,durable_staff_Asset.QRCode as QRCode,
                                                 durable_staff_Asset.QRCodeImage as QRCodeImage,durable_staff_Asset.PostedDate as PostedDate,
                                                 durable_staff_Asset.returningDate as returningDate,teachertbl.Firstname as Firstname,
                                                 teachertbl.Lastname FROM durable_staff_Asset LEFT JOIN teachertbl on 
-                                                teachertbl.tid=durable_staff_Asset.staffID WHERE durable_staff_Asset.Active_Status=1 
-                                                and durable_staff_Asset.Active_Status='$postid'");
+                                                teachertbl.tid=durable_staff_Asset.staffID WHERE durable_staff_Asset.Active_Status=1 and durable_staff_Asset.dsid='$postid'");
                         while ($row = mysqli_fetch_array($query)) {
                         ?>
                             <div class="row">
@@ -175,6 +180,16 @@ if (strlen($_SESSION['id']) == 0) {
                                             <div class="form-group m-b-20">
                                                 <label for="exampleInputEmail1">Serial Number</label>
                                                 <input type="text" class="form-control" id="posttitle" name="serial" value="<?php echo htmlentities($row['serialNumber']); ?>">
+                                            </div>
+                                            
+                                            <div class="form-group m-b-20">
+                                                <label for="exampleInputEmail1">Copier Code</label>
+                                                <input type="text" class="form-control" id="posttitle" name="copiercode" value="<?php echo htmlentities($row['copiercode']); ?>">
+                                            </div>
+
+                                            <div class="form-group m-b-20">
+                                                <label for="exampleInputEmail1">HostName</label>
+                                                <input type="text" class="form-control" id="posttitle" name="hostname" value="<?php echo htmlentities($row['hostname']); ?>">
                                             </div>
 
                                             <div class="form-group m-b-20">
@@ -210,6 +225,11 @@ if (strlen($_SESSION['id']) == 0) {
                                             <div class="form-group m-b-20">
                                                 <label for="exampleInputEmail1">Returning Date</label>
                                                 <input type="Date" class="form-control" id="posttitle" value="<?php echo htmlentities($row['returningDate']); ?>" name="returingdate">
+                                            </div>
+                                            
+                                            <div class="form-group m-b-20">
+                                                <label for="exampleInputEmail1">Comment</label>
+                                                <input type="text" class="form-control" id="posttitle" name="comment" value="<?php echo htmlentities($row['comment']); ?>">
                                             </div>
 
                                         

@@ -16,6 +16,9 @@ if (strlen($_SESSION['id']) == 0) {
         $MacAddress =$_POST['MacAddress'];
         $hotsport=$_POST['hotsport'];
         $room=$_POST['room'];
+        $comment=$_POST['comment'];
+        $copiercode=$_POST['copiercode'];
+        $hostname=$_POST['hostname'];
         //qrpath
         $qrpath='img/';
         $file=$qrpath.$_POST['serial'].'.png';  // is path and name of qr code in the database
@@ -41,9 +44,9 @@ if (strlen($_SESSION['id']) == 0) {
             // qr method
             Qrcode::png($qrkey,$file);
             $query = mysqli_query($con, "INSERT INTO `durable_staff_Asset`(`assetname`, `serialNumber`, 
-            `ToolImage`, `staffID`, `MAC_Adress`, `HotSport`, `Room`, `QRCode`, `QRCodeImage`,
+            `ToolImage`, `staffID`, `MAC_Adress`,`CopierCode`, `HostName`, `Comment1`,`HotSport`, `Room`, `QRCode`, `QRCodeImage`,
             `returningDate`, `Active_Status`) VALUES ('$posttitle','$serial','$imgnewfile','$staffid',
-            '$MacAddress','$hotsport','$room','$qrkey','$file','$returingdate','$status')");
+            '$MacAddress','$copiercode','$hostname','$comment','$hotsport','$room','$qrkey','$file','$returingdate','$status')");
             if ($query) {
                 $msg = "Asset successfully added ";
                 // echo "<script type='text/javascript'> document.location = 'add-tool.php'; </script>";
@@ -182,6 +185,25 @@ if (strlen($_SESSION['id']) == 0) {
                                             <div class="form-group m-b-20">
                                                 <label for="exampleInputEmail1">Serial Number</label>
                                                 <input type="text" class="form-control" id="posttitle" name="serial" placeholder="Enter Serial Number" required>
+                                            </div>
+
+                                            <div class="form-group m-b-20">
+                                                <label for="exampleInputEmail1">Copier Code</label>
+                                                <input type="text" class="form-control" id="posttitle" name="copiercode" placeholder="Enter Copier Code" required>
+                                            </div>
+
+                                            <div class="form-group m-b-20">
+                                                <label for="exampleInputEmail1">HostName</label>
+                                                <input type="text" class="form-control" id="posttitle" name="hostname" placeholder="Enter Serial Number" required>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="card-box">
+                                                        <h4 class="m-b-30 m-t-0 header-title"><b>Comment</b></h4>
+                                                        <textarea class="form-control" rows="5" cols="10" name="comment" required></textarea>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="form-group m-b-20">
