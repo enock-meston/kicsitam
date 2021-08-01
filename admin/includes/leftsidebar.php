@@ -55,7 +55,16 @@
                                     <li><a href="manage-budget.php"> Manage Budget</a></li>
                                 </ul>
                             </li>
-
+                             <!--Add Enventory -->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span>  Inventory </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="add-inventory.php"> Add Inventory</a></li>
+                                    <li><a href="manage-inventory.php"> Manage Inventory</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <!-- Sidebar -->

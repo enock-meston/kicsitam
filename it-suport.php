@@ -4,15 +4,27 @@ include 'includes/config.php';
 include 'send-email.php';
 $error = "";
 $msg = "";
+// function for calcurating time
 
+// function Timing($From,$to){
+// 		$secs = strtotime($to)-strtotime("00:00:00");
+// 		$result = date("H:i:s",strtotime($From)+$secs);
+// 		echo $result;
+// }
+
+//  end of calcurating time
 if (isset($_POST['save'])) {
     $firstname = $_POST['fn'];
     $lastname = $_POST['ln'];
     $names=$firstname."  ".$lastname;
     $email1 = $_POST['email'];
     $date1=$_POST['date1'];
-    $date2=$_POST['date2'];
-    $date=$date1." to ".$date2;
+    $time=$_POST['time'];
+    $time2 = "00:30:00";
+    $secs = strtotime($time2)-strtotime("00:00:00");
+    $result = date("H:i:s",strtotime($time)+$secs);
+    $date=$date1." time at ".$result;
+
     $category=$_POST['category'];
     $priority=$_POST['priority'];
     $description = addslashes($_POST['description']);
@@ -26,9 +38,9 @@ if (isset($_POST['save'])) {
         $error = "Date is areald Taken.";
     } 
     else {
-        $query = mysqli_query($con, "INSERT INTO `tichethelptbl`(`persontohelp`,`priority`, `category`,
+        $query = mysqli_query($con, "INSERT INTO `tichethelptbl`(`persontohelp`,`email`,`priority`, `category`,
          `description`, `ChoosedDate`, `ActiveStatus`) 
-    VALUES ('$names','$priority','$category','$description','$date','$status')");
+    VALUES ('$names','$email1','$priority','$category','$description','$date','$status')");
         if ($query) {
             $msg = "New Ticket Submitted Check your Email";
             sendingEmail($email1,$subject,$message);
@@ -167,11 +179,11 @@ if (isset($_POST['save'])) {
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="exampleInputEmail1">Choose Date</label>
-                                        <input type="datetime-local" name="date1" class="form-control">
+                                        <input type="date" name="date1" class="form-control">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="exampleInputEmail1">Choose Date</label>
-                                        <input type="datetime-local" name="date2" class="form-control">
+                                        <label for="exampleInputEmail1">Choose Time</label>
+                                        <input type="time" name="time" class="form-control">
                                     </div>
                                 </div>
 

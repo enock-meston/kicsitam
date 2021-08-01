@@ -1,28 +1,34 @@
 <?php
 session_start();
 include('includes/config.php');
+include 'send-email.php';
 error_reporting(0);
 if (strlen($_SESSION['id']) == 0) {
     header('location:index.php');
 } else {
     if ($_GET['ttid']) {
         $id = intval($_GET['ttid']);
+        $sel= mysqli_query($con,"SELECT * from tichethelptbl where id='$id'");
+         $data=mysqli_fetch_array($sel);
+        $email=$data['email'];
+        $names=$data['persontohelp'];
+
+        $subject="Tichet was Been Approved";
+         $message = $names." Thank you for asking help from Kics Lab";
+         sendingEmail($email,$subject,$message);
+         
         $query = mysqli_query($con, "UPDATE tichethelptbl set ActiveStatus='0' where id='$id'");
         echo "<script>alert('now request has been approved');</script>";
         header('location:make-help.php');
     }
 
-    $query = mysqli_query($con, "SELECT usertbl.Firstname as fn,usertbl.Lastname as ln,tichethelptbl.id as ttid,
-    tichethelptbl.persontohelp as pname,tichethelptbl.helper as helper, tichethelptbl.priority as priority,
-    tichethelptbl.category as category,tichethelptbl.description as description,tichethelptbl.ChoosedDate as ChoosedDate,
-    tichethelptbl.PostedDate as PostedDate FROM tichethelptbl LEFT JOIN usertbl ON 
-    tichethelptbl.helper=usertbl.uid WHERE tichethelptbl.ActiveStatus=1;");
+    $query = mysqli_query($con, "SELECT `id`, `persontohelp`, `email`, `priority`, 
+    `category`, `description`, `ChoosedDate`, `PostedDate`, `ActiveStatus` 
+    FROM `tichethelptbl` WHERE ActiveStatus=1");
 
-    $querydone = mysqli_query($con, "SELECT usertbl.Firstname as fn,usertbl.Lastname as ln,tichethelptbl.id as ttid,
-tichethelptbl.persontohelp as pname,tichethelptbl.helper as helper, tichethelptbl.priority as priority,
-tichethelptbl.category as category,tichethelptbl.description as description,tichethelptbl.ChoosedDate as ChoosedDate,
-tichethelptbl.PostedDate as PostedDate FROM tichethelptbl LEFT JOIN usertbl ON 
-tichethelptbl.helper=usertbl.uid WHERE tichethelptbl.ActiveStatus=0;");
+    $querydone = mysqli_query($con, "SELECT `id`, `persontohelp`, `email`, `priority`, 
+    `category`, `description`, `ChoosedDate`, `PostedDate`, `ActiveStatus` 
+    FROM `tichethelptbl` WHERE ActiveStatus=0");
 
 
 ?>
@@ -113,7 +119,6 @@ tichethelptbl.helper=usertbl.uid WHERE tichethelptbl.ActiveStatus=0;");
                                 <th>Problem Description</th>
                                 <th>Choosed Date</th>
                                 <th>Posted Date</th>
-                                <th>Suppoter</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -123,16 +128,15 @@ tichethelptbl.helper=usertbl.uid WHERE tichethelptbl.ActiveStatus=0;");
 
                             ?>
                                 <tr>
-                                    <td><?php echo $row['pname']; ?></td>
+                                    <td><?php echo $row['persontohelp']; ?></td>
                                     </td>
                                     <td><?php echo $row['category']; ?></td>
                                     <td><?php echo $row['priority']; ?></td>
                                     <td><?php echo $row['description']; ?></td>
                                     <td><?php echo $row['ChoosedDate']; ?></td>
                                     <td><?php echo $row['PostedDate']; ?></td>
-                                    <td><?php echo $row['fn'] . " " . $row['ln']; ?>
                                     <td>
-                                        <a href="make-help.php?ttid=<?php echo htmlentities($row['ttid']); ?>">yes</a>
+                                        <a href="make-help.php?ttid=<?php echo htmlentities($row['id']); ?>">yes</a>
                                     </td>
                                 </tr>
 
@@ -148,7 +152,6 @@ tichethelptbl.helper=usertbl.uid WHERE tichethelptbl.ActiveStatus=0;");
                                 <th>Problem Description</th>
                                 <th>Choosed Date</th>
                                 <th>Posted Date</th>
-                                <th>Suppoter</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -178,7 +181,6 @@ tichethelptbl.helper=usertbl.uid WHERE tichethelptbl.ActiveStatus=0;");
                                     <th>Problem Description</th>
                                     <th>Choosed Date</th>
                                     <th>Posted Date</th>
-                                    <th>Suppoter</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -188,14 +190,13 @@ tichethelptbl.helper=usertbl.uid WHERE tichethelptbl.ActiveStatus=0;");
 
                                 ?>
                                     <tr>
-                                        <td><?php echo $row['pname']; ?></td>
+                                        <td><?php echo $row['persontohelp']; ?></td>
                                         </td>
                                         <td><?php echo $row['category']; ?></td>
                                         <td><?php echo $row['priority']; ?></td>
                                         <td><?php echo $row['description']; ?></td>
                                         <td><?php echo $row['ChoosedDate']; ?></td>
                                         <td><?php echo $row['PostedDate']; ?></td>
-                                        <td><?php echo $row['fn'] . " " . $row['ln']; ?>
                                         <td>
                                             Done
                                         </td>

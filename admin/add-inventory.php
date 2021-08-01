@@ -14,8 +14,7 @@ if (strlen($_SESSION['SID']) == 0) {
         $comment=$_POST['comment'];
 
         $status = 1;
-        $query = mysqli_query($con, "INSERT INTO `budgetAsset`(`assetname`, `quantity`, `Amount`, `AssetType`,`Comment1`,`ActiveStatus`) 
-        VALUES ('$name','$quantity','$amount','$type','$comment','$status')");
+        $query = mysqli_query($con, "INSERT INTO `tblInventory`(`item`,`year_purchased`, `value`, `quantity`, `total`, `comments`,`ActiveStatys`) VALUES ('$name','$quantity','$amount','$type','$comment','$status')");
         if ($query) {
             $msg = "Category created ";
         } else {
@@ -71,16 +70,16 @@ if (strlen($_SESSION['SID']) == 0) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Add Plan</h4>
+                                    <h4 class="page-title">Add Inventory</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="#">User</a>
+                                            <a href="#">Inventory</a>
                                         </li>
                                         <li>
-                                            <a href="#">Plan </a>
+                                            <a href="#">Inventory </a>
                                         </li>
                                         <li class="active">
-                                            Add Plan
+                                            Add Inventory
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -93,7 +92,7 @@ if (strlen($_SESSION['SID']) == 0) {
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
-                                    <h4 class="m-t-0 header-title"><b>Add Plan </b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Add Inventory </b></h4>
                                     <hr />
 
 
@@ -123,36 +122,40 @@ if (strlen($_SESSION['SID']) == 0) {
                                         <div class="col-md-6">
                                             <form class="form-horizontal" name="category" method="post">
                                                 <div class="form-group">
-                                                    <label class="col-md-2 control-label">Asset Name</label>
+                                                    <label class="col-md-2 control-label">Item </label>
                                                     <div class="col-md-10">
-                                                        <input type="text" class="form-control" value="" name="name" required>
+                                                        <input type="text" class="form-control" value="" name="item" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-md-2 control-label">Quantity</label>
+                                                    <label class="col-md-2 control-label">year_purchased</label>
                                                     <div class="col-md-10">
-                                                        <input type="text" class="form-control" value="" name="quantity" required>
+                                                        <input type="year" class="form-control" value="" name="year_purchased" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-md-2 control-label">Amount</label>
+                                                    <label class="col-md-2 control-label">value</label>
                                                     <div class="col-md-10">
-                                                        <input type="text" class="form-control" value="" name="amount" required>
+                                                        <input type="text" class="form-control" value="" name="value" required>
                                                     </div>
                                                 </div>
 
                                                  <div class="form-group">
-                                                <label class="col-md-2 control-label">Asset Type</label>
-                                                <div class="col-md-10">
-                                                    <select class="form-control" name="type" id="category" onChange="getSubCat(this.value);" required>
-                                                        <option value="">  Type</option>
-                                                        <option value="IT Asset">IT Asset</option>
-                                                        <option value="Non-IT Asset">Non-IT Asset</option>
-                                                     </select>
+                                                    <label class="col-md-2 control-label">quantity</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" value="" name="quantity" required>
+                                                    </div>
                                                 </div>
-                                            </div>
 
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label">total</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" value="" name="total" required>
+                                                    </div>
+                                                </div>
+
+                                                 
 
                                             <div class="form-group">
                                                     <label class="col-md-2 control-label">Comment </label>

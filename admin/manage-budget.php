@@ -2,7 +2,7 @@
 session_start();
 include('includes/config.php');
 error_reporting(0);
-if (strlen($_SESSION['id']) == 0) {
+if (strlen($_SESSION['SID']) == 0) {
     header('location:index.php');
 } 
 else {
@@ -133,8 +133,8 @@ else {
                                                         <th> Quantiy</th>
                                                         <th>Amount (rwF)</th>
                                                         <th>Asset Type</th>
+                                                        <th>Comment</th>
                                                         <th>Posting Date</th>
-                                                        <!-- <th>Last updation Date</th> -->
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -151,6 +151,7 @@ else {
                                                             <td><?php echo htmlentities($row['quantity']); ?></td>
                                                             <td><?php echo htmlentities($row['Amount']); ?></td>
                                                             <td><?php echo htmlentities($row['AssetType']); ?></td>
+                                                            <td><?php echo htmlentities($row['Comment1']); ?></td>
                                                             <td><?php echo htmlentities($row['postedDate']); ?></td>
                                                             <td>
                                                             <!-- <a href="edit-category.php?cid=<?php echo htmlentities($row['id']); ?>"><i class="fa fa-pencil" style="color: #29b6f6;"></i></a> -->
@@ -196,6 +197,7 @@ else {
                                                         <th> Quantiy</th>
                                                         <th>Amount (rwF)</th>
                                                         <th>Asset Type</th>
+                                                        <th>Comment</th>
                                                         <th>Posting Date</th>
                                                         <!-- <th>Last updation Date</th> -->
                                                         <th>Action</th>
@@ -214,6 +216,7 @@ else {
                                                             <td><?php echo htmlentities($row['quantity']); ?></td>
                                                             <td><?php echo htmlentities($row['Amount']); ?></td>
                                                             <td><?php echo htmlentities($row['AssetType']); ?></td>
+                                                            <td><?php echo htmlentities($row['Comment1']); ?></td>
                                                             <td><?php echo htmlentities($row['postedDate']); ?></td>
                                                             <td><a href="manage-budget.php?resid=<?php echo htmlentities($row['id']); ?>"><i class="ion-arrow-return-right" title="Restore this category"></i></a>
                                                                 &nbsp;<a href="manage-budget.php?rid=<?php echo htmlentities($row['id']); ?>&&action=parmdel" title="Delete forever"> <i class="fa fa-trash-o" style="color: #f05050"></i> </td>
