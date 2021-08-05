@@ -8,15 +8,17 @@ if (strlen($_SESSION['SID']) == 0) {
 
     if (isset($_POST['submit'])) {
         $name=$_POST['name'];
+        $years=$_POST['year_purchased'];
+        $value = $_POST['value'];
         $quantity=$_POST['quantity'];
-        $amount=$_POST['amount']." RWF";
-        $type=$_POST['type'];
+        $total=$_POST['total'];
         $comment=$_POST['comment'];
 
         $status = 1;
-        $query = mysqli_query($con, "INSERT INTO `tblInventory`(`item`,`year_purchased`, `value`, `quantity`, `total`, `comments`,`ActiveStatys`) VALUES ('$name','$quantity','$amount','$type','$comment','$status')");
+        $query = mysqli_query($con, "INSERT INTO `tblInventory`(`item`, `year_purchased`, `value`, `quantity`,
+         `total`, `comments`,`ActiveStatus`) VALUES ('$name','$years','$value','$quantity','$total','$comment','$status')");
         if ($query) {
-            $msg = "Category created ";
+            $msg = "Inventory Is Created ";
         } else {
             $error = "Something went wrong . Please try again.";
         }
@@ -124,14 +126,14 @@ if (strlen($_SESSION['SID']) == 0) {
                                                 <div class="form-group">
                                                     <label class="col-md-2 control-label">Item </label>
                                                     <div class="col-md-10">
-                                                        <input type="text" class="form-control" value="" name="item" required>
+                                                        <input type="text" class="form-control"  name="item" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-md-2 control-label">year_purchased</label>
                                                     <div class="col-md-10">
-                                                        <input type="year" class="form-control" value="" name="year_purchased" required>
+                                                        <input type="text" class="form-control" name="year_purchased" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

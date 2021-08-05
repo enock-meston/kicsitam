@@ -199,18 +199,9 @@ if (strlen($_SESSION['id']) == 0) {
                                             
 
                                             <div class="form-group m-b-20">
-                                                <label for="exampleInputEmail1">Select Student</label>
-                                                <select class="form-control" name="studentID" id="category" onChange="getSubCat(this.value);" required>
-                                                    <option value="">Select Student </option>
-                                                    <?php
-                                                    // Feching active categories
-                                                    $ret = mysqli_query($con, "SELECT * from  tblstudent where Active_Status=1");
-                                                    while ($result = mysqli_fetch_array($ret)) {
-                                                    ?>
-                                                        <option value="<?php echo htmlentities($result['id']); ?>"><?php echo htmlentities($result['Firstname'])." ". htmlentities($result['Lastname']); ?></option>
-                                                    <?php } ?>
-
-                                                </select>
+                                                <label for="exampleInputEmail1">Student Names</label>
+                                                <input class="form-control" name="studentID" id="category" placeholder="Enter Student Names"  required>
+                                                    
                                             </div>
 
                                             <div class="form-group m-b-20">

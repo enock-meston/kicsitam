@@ -112,8 +112,28 @@ if (strlen($_SESSION['id']) == 0) {
                                             <form method="post" action="qrcode-report.php">
                                                 <button class="btn btn-success" name="export"> Print Qr Code
                                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
-                                            </form><br>
-                                    
+                                            </form>
+                                            <br>
+<!-- Search Widget -->
+
+
+
+          <div class="card-box">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+                   <form name="search" method="post">
+              <div class="input-group">
+           
+        <input type="text" name="searchtitle" class="form-control" placeholder="Search for..." required>
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit" name="search">Go</button>
+                </span>
+              </form>
+              </div>
+            </div>
+                      <!-- endd   Search Widget --> 
+
+                      <br>             
                                     <div class="table-responsive">
                                         <table class="table table-colored table-centered table-inverse m-0" style="width: 100%;" border="1">
                                             <thead>
@@ -132,19 +152,26 @@ if (strlen($_SESSION['id']) == 0) {
                                             <tbody>
 
                                                 <?php
+                                            
+                                     if (isset($_POST['search'])) {
+                             # code...
+
+                                    $search= mysqli_real_escape_string($con,$_POST['searchtitle']);
 
                                                 $page = $_GET['page'];
                                                 if ($page=="" || $page=="1") {
                                                     $page1=0;
                                                 }else {
-                                                    $page1= ($page*7)-7;
+                                                    $page1= ($page*90)-90;
                                                 }
                                                 $query = mysqli_query($con, "SELECT tbltools.id as toolid,tbltools.Toolname as name,
                                                 tbltools.ToolImage as image,tbltools.serial_number as serialnumber,tbltools.QRimage as QRimage,
                                                 tbltools.ToolDescription as ToolDescription,
                                                 tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
                                                 from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory 
-                                                WHERE tbltools.ActiveStatus=1 LIMIT $page1,7");
+                                                WHERE tblcategory.CategoryName LIKE '%$search%' OR tbltools.Toolname LIKE '%$search%' OR
+                                                 tbltools.serial_number LIKE '%$search%' AND tbltools.ActiveStatus=1 
+                                                 ORDER BY tbltools.Toolname ASC  LIMIT $page1,90");
                                                 $rowcount = mysqli_num_rows($query);
                                                 if ($rowcount == 0) {
                                                 ?>
@@ -188,17 +215,24 @@ if (strlen($_SESSION['id']) == 0) {
                                                 tbltools.ToolImage as image,tbltools.serial_number as serialnumber,tbltools.QRimage as QRimage,
                                                 tbltools.ToolDescription as ToolDescription,
                                                 tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category 
-                                                from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory WHERE tbltools.ActiveStatus=1");
+                                                from tbltools left join tblcategory on tblcategory.c_id=tbltools.ToolCategory 
+                                                WHERE tbltools.ActiveStatus=1");
                                                 $cou = mysqli_num_rows($query1);
 
-                                                $a = $cou/7;
+                                                $a = $cou/90;
                                                 $a=ceil($a);
-
-                                                for ($b=1;$b<=$a;$b++) { 
+                                                    if ($page>1) {
+                                                        echo "<a href='manage-tools.php?page=".($page-1)."' class='btn btn-danger'>Previous</a>";
+                                                    }
+                                                for ($b=1;$b<$a;$b++) { 
                                                     ?>
                                                         <a href="manage-tools.php?page=<?php echo $b;?>" class="btn btn-primary"
                                                         style="text-decoration:none;"><?php echo $b."  ";?></a>
                                                     <?php
+                                                }
+                                                if ($b>$page) {
+                                                        echo "<a href='manage-tools.php?page=".($page+1)."' class='btn btn-danger'>Next</a>";
+                                                    }
                                                 }
 
                                     ?>

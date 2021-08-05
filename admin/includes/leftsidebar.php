@@ -65,6 +65,18 @@
                                     <li><a href="manage-inventory.php"> Manage Inventory</a></li>
                                 </ul>
                             </li>
+
+
+                             <!--Add Vendors -->
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-format-list-bulleted"></i> <span>  Vendors </span> <span
+                                        class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="add-vendor.php"> Add Vendors</a></li>
+                                    <li><a href="manage-vendor.php"> Manage Vendors</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <!-- Sidebar -->
